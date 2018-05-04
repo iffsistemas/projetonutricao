@@ -1,0 +1,445 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">  
+
+<ui:composition template="/templates/templates.xhtml"> 
+
+
+<ui:define name="titulo">Formulário de Atendimento da Criança</ui:define>
+
+
+<ui:define name="conteudo">
+
+<p:tabView scrollable="true" affect="alide">
+        <p:tab title="Identificação">
+        
+        <h:panelGrid columns="2">
+             	<h:outputText value="Nome" for="nome"/>
+                <h:inputText id="nome" value="#{pacienteBean.paciente.nome}" required="true" requiredMessage="Nome Obrigatório!"/>
+ 
+                <h:outputText value="Dt. Nascimento:" for="dataNasc"/>
+                <h:inputText id="dataNasc" value="#{pacienteBean.paciente.dataNasc}" />
+                
+                <h:outputText value="Idade:" for="idade"/>
+                <h:inputText id="idade" value="#{pacienteBean.paciente.idade}" />
+                
+       </h:panelGrid>
+                
+               <!-- =================Identificação Contatos===================================== --> 
+              
+                               
+                <p:fieldset legend="Contatos" id="fieldContados"> 
+               
+                <h:panelGrid columns="2">
+                 
+                 	<h:outputText value="Email:" for="email"/>
+                	<h:inputText id="email" value="#{pacienteBean.paciente.email}" />
+                
+                	<h:outputText value="Tel. Resid:" for="telefoneRes"/>
+                    <h:inputText id="telefoneRes" value="#{pacienteBean.paciente.telefoneRes}" />
+                
+                    <h:outputText value="Celular:" for="telefoneCel"/>
+                    <h:inputText id="telefoneCel" value="#{pacienteBean.paciente.telefoneCel}" />
+                
+                 </h:panelGrid>    
+                
+                </p:fieldset>
+                
+                 <!-- =======================Escolaridade============================================= --> 
+                 
+                 <p:fieldset legend="Escolaridade" id="fieldEscolaridade"> 
+               
+                
+                
+                <h:panelGrid columns="2">
+                 
+         <h:outputText value="Frequenta Escola/Creche" />
+        <p:selectOneButton>
+             <f:selectItem itemLabel="SIM" itemValue="sim" />
+             <f:selectItem itemLabel="NÂO" itemValue="não" />   
+        </p:selectOneButton>
+                 
+          <h:outputText value="Período: " for="periodo"/>
+          <h:inputText id="periodo" value="#{pacienteCriancaBean.paciente.periodo}" />
+                
+                	                
+                 </h:panelGrid>    
+                
+                </p:fieldset>
+
+        
+        </p:tab>
+        
+        
+        
+        <!-- =======================TAB 2 - ==================================== --> 
+        
+        
+        <p:tab title="História pregressa">
+   <h:form> 
+      
+      <h:panelGrid columns="2"> 
+    	<h:outputText value="Tipo de Parto: " />
+        <p:selectOneButton>
+             <f:selectItem itemLabel="Normal" itemValue="nomal" />
+             <f:selectItem itemLabel="Cesárea" itemValue="cesaria" />  
+                </p:selectOneButton>
+                
+                
+                <h:outputText value="Nascimento: " />
+        <p:selectOneButton>
+             <f:selectItem itemLabel="A termo" itemValue="atermo" />
+             <f:selectItem itemLabel="prematuro" itemValue="prematuro" />  
+                </p:selectOneButton>
+       
+          </h:panelGrid>   
+             
+         <p:fieldset legend="Ao Nascer" id="aoNascer">
+             
+              <h:panelGrid columns="2">
+           	    <h:outputText value="Peso:" for="pesoNascer"/>
+                <h:inputText id="pesoNascer" value="#{#}" />
+                
+                <h:outputText value="Comprimento:" for="compNascer"/>
+                <h:inputText id="compNascer" value="#{#}" />
+                
+                <h:outputText value="PC:" for="pcNascer"/>
+                <h:inputText id="pcNascer" value="#{#}" />     
+            </h:panelGrid>
+     	</p:fieldset>
+    
+    
+    <h:panelGrid columns="2"> 
+    	<h:outputText value="Recebeu Leite Materno: " />
+        <p:selectOneButton>
+             <f:selectItem itemLabel="Sim" itemValue="leiteSim" />
+             <f:selectItem itemLabel="Não" itemValue="leiteNao" />  
+                </p:selectOneButton>
+                
+                
+              <h:outputText value="Duração do aleitamento" for="duracaoAleitamento"/>
+              <h:inputText id="duracaoAleitamento" value="#{#}" />
+              
+              <h:outputText value="Alimentação Complementar: " />
+        <p:selectOneButton>
+             <f:selectItem itemLabel="Antes de 6 meses   " itemValue="antes6meses" />
+             <f:selectItem itemLabel="Após de 6 meses   " itemValue="apos6Meses" />  
+        </p:selectOneButton>
+    
+    
+      
+      
+    <h4>Outros:</h4> 
+    <h:inputTextarea rows="3" cols="22"  autoResize="false"/>
+    
+      
+     </h:panelGrid>	
+     
+     
+    </h:form>  
+        
+        </p:tab>
+       
+       
+       
+        <!-- =======================TAB 3 ==================================== --> 
+       
+           
+        
+<p:tab title="Anamnese Clínica">
+        
+        	<h:panelGrid columns="2">
+             	<h:outputText value="Queixa Principal: " for="queixaPrincipal"/>
+        	 <h:inputTextarea id="queixaPrincipal"  value="#{#}" rows="3" cols="25" autoResize="false" />
+               
+       <h:outputText value="História da doença atual: " for="histDoencaAtual"/>
+        	 <h:inputTextarea id="histDoencaAtual"  value="#{#}" rows="3" cols="25" autoResize="false" />
+        	 
+        	 <h:outputText value="História patológica pregressa: " for="histPatologicaPre"/>
+        	 <h:inputTextarea id="histPatologicaPre"  value="#{#}" rows="3" cols="25" autoResize="false" />
+        	 
+        	 <h:outputText value="História familiar: " for="histFamiliar"/>
+        	 <h:inputTextarea id="histFamiliar"  value="#{#}" rows="3" cols="25" autoResize="false" />
+        	 
+        	 <h:outputText value="Vacinação em Dia: " />
+        <p:selectOneButton>
+             <f:selectItem itemLabel="Sim" itemValue="vacSim" />
+             <f:selectItem itemLabel="Não" itemValue="vacNao" />  
+        </p:selectOneButton>
+        
+        
+       		 <h:outputText value="Medicamentos: " for="medicamentos"/>
+        	 <h:inputTextarea id="medicamentos"  value="#{#}" rows="3" cols="25" autoResize="false" />
+        	 
+        	<h:outputText value="Suplementos: " for="suplementos"/>
+        	<h:inputTextarea id="suplementos"  value="#{#}" rows="3" cols="25" autoResize="false" />
+        	
+        	<h:outputText value="Funcionamento intestinal:  " for="funcIntestinal"/>
+        	<h:inputTextarea id="funcIntestinal"  value="#{#}" rows="3" cols="25" autoResize="false" />
+        
+          </h:panelGrid>
+        
+        	 
+        <p:fieldset legend="Sintomas Digestivos" id="fieldSistemasDigestivos">  
+        <p:selectManyCheckbox id="basic" value="#{checkboxView.selectedConsoles}" layout="responsive" columns="2">
+        <f:selectItem itemLabel= "Disfagia"  itemValue="" />  
+		<f:selectItem itemLabel= "Odinofagia"  itemValue="" />
+		<f:selectItem itemLabel= "Pirose"  itemValue="" />
+		<f:selectItem itemLabel= "Náuseas"   itemValue="" />
+		<f:selectItem itemLabel= "Vômito "   itemValue="" />
+		<f:selectItem itemLabel= "Flatulência"   itemValue="" />
+		</p:selectManyCheckbox>
+		
+        </p:fieldset>
+        
+        <h:panelGrid columns="2">
+             
+             <h:outputText value="Intolerâncias: " for="intorelancias"/>
+        	 <h:inputTextarea id="intorelancias"  value="#{#}" rows="3" cols="25" autoResize="false" />
+        	 
+        	 <h:outputText value="Atividade física: " for="atividadeFisica"/>
+        	 <h:inputTextarea id="atividadeFisica"  value="#{#}" rows="3" cols="25" autoResize="false" />
+        	 
+        	 <h:outputText value="Que horas você acorda? : " for="horasAcorda"/>
+        	 <h:inputTextarea id="horasAcorda"  value="#{#}" rows="3" cols="25" autoResize="false" />
+        	 
+        	 <h:outputText value="Que horas você dorme : " for="horasDorme"/>
+        	 <h:inputTextarea id="horasDorme"  value="#{#}" rows="3" cols="25" autoResize="false" />
+        	 
+        	 
+        	 
+        	 
+        </h:panelGrid>
+        
+</p:tab>
+        
+        
+        
+        
+         <!-- =======================TAB 4 - ==================================== -->
+        
+<p:tab title="Exame Físico ">
+        
+        <h:panelGrid columns="2">
+      		<h:outputText value="Cabeça: " for="cabeca"/>
+       		<h:inputTextarea id="cabeca"  value="#{#}" rows="2" cols="15" autoResize="false" />
+       		
+       		<h:outputText value="Pescoço " for="pescoco"/>
+       		<h:inputTextarea id="pescoco"  value="#{#}" rows="2" cols="15" autoResize="false" />
+       		
+       		<h:outputText value="Abdômem: " for="abdomem"/>
+       		<h:inputTextarea id="abdomem"  value="#{#}" rows="2" cols="15" autoResize="false" />
+       		
+       		<h:outputText value="MMII: " for="mmii"/>
+       		<h:inputTextarea id="mmii"  value="#{#}" rows="2" cols="15" autoResize="false" />
+       		
+       		<h:outputText value="MMSS: " for="mmss"/>
+       		<h:inputTextarea id="mmss"  value="#{#}" rows="2" cols="15" autoResize="false" />
+       		
+       		<h:outputText value="Edema: " for="edema"/>
+       		<h:inputTextarea id="edema"  value="#{#}" rows="2" cols="15" autoResize="false" />
+        	 
+          </h:panelGrid>
+          
+          
+</p:tab>
+          
+          
+<p:tab title="Avaliação Antropométrica">
+
+
+
+          
+</p:tab>
+           
+           
+<p:tab title="Anamnese Alimentar">
+
+
+
+
+          
+</p:tab>
+           
+           
+ <p:tab title="Exames Laboratoriais">
+           
+           
+           <h:panelGrid columns="6" cellpadding="1px" columnClasses=", columnClasses-labo, , columnClasses-labo, , columnClasses-labo">
+           
+				           
+				<h:outputText value="Hematócrito: " for="hematocrito"/>
+				<h:inputText styleClass="input-exames-labo"  id="hematocrito" value="#{#}" />
+				
+				<h:outputText value="Hemoglobina: " for="hemoglobina"/>
+				<h:inputText styleClass="input-exames-labo"  id="hemoglobina" value="#{#}" />
+				
+				<h:outputText value="Eritrócitos: " for="eritrocitos"/>
+				<h:inputText styleClass="input-exames-labo"  id="eritrocitos" value="#{#}" />
+				
+				<h:outputText value="Linfócitos: " for="linfocitos"/>
+				<h:inputText styleClass="input-exames-labo"  id="linfocitos" value="#{#}" />
+				
+				<h:outputText value="Leucótitos: " for="leucotitos"/>
+				<h:inputText styleClass="input-exames-labo"  id="leucotitos" value="#{#}" />
+				
+				<h:outputText value="Plaquetas: " for="plaquetas"/>
+				<h:inputText styleClass="input-exames-labo"  id="plaquetas" value="#{#}" />
+				
+				<h:outputText value="Proteínas totais: " for="proteinasTotais "/>
+				<h:inputText styleClass="input-exames-labo"  id="proteinasTotais" value="#{#}" />
+				
+				<h:outputText value="Albumina: " for="albumina"/>
+				<h:inputText styleClass="input-exames-labo"  id="albumina" value="#{#}" />
+				
+				<h:outputText value="Ferritina: " for="ferritina"/>
+				<h:inputText styleClass="input-exames-labo"  id="ferritina" value="#{#}" />
+				
+				<h:outputText value="Leptina: " for="leptina"/>
+				<h:inputText styleClass="input-exames-labo"  id="leptina" value="#{#}" />
+				
+				<h:outputText value="Transferrina: " for="transferrina"/>
+				<h:inputText styleClass="input-exames-labo"  id="transferrina" value="#{#}" />
+				
+				<h:outputText value="Proteína C-reativa: " for="proteinaC"/>
+				<h:inputText styleClass="input-exames-labo"  id="proteinaC" value="#{#}" />
+				
+				<h:outputText value="Glicemia de jejum: " for="glicemiaJejum "/>
+				<h:inputText styleClass="input-exames-labo"  id="glicemiaJejum" value="#{#}" />
+				
+				<h:outputText value="Hemoglobina glicada: " for="hemoglobinaGli"/>
+				<h:inputText styleClass="input-exames-labo"  id="hemoglobinaGli" value="#{#}" />
+				
+				<h:outputText value="Colesterol total: " for="colesterolTot"/>
+				<h:inputText styleClass="input-exames-labo"  id="colesterolTot" value="#{#}" />
+				
+				<h:outputText value="HDL-c: " for="hdlc"/>
+				<h:inputText styleClass="input-exames-labo"  id="hdlc" value="#{#}" />
+				
+				<h:outputText value="VLDL-c: " for="vldl"/>
+				<h:inputText styleClass="input-exames-labo"  id="vldl" value="#{#}" />
+				
+				<h:outputText value="LDL-c: " for="ldl"/>
+				<h:inputText styleClass="input-exames-labo"  id="ldl" value="#{#}" />
+				
+				<h:outputText value="Triglicerídeos: " for="triglicerideos"/>
+				<h:inputText styleClass="input-exames-labo"  id="triglicerideos" value="#{#}" />
+				
+				<h:outputText value="Cálcio: " for="calcio"/>
+				<h:inputText styleClass="input-exames-labo"  id="calcio" value="#{#}" />
+				
+				<h:outputText value="Cloro: " for="cloro"/>
+				<h:inputText styleClass="input-exames-labo"  id="cloro" value="#{#}" />
+				
+				<h:outputText value="Cobre: " for="cobre"/>
+				<h:inputText styleClass="input-exames-labo"  id="cobre" value="#{#}" />
+				
+				<h:outputText value="Fósforo: " for="fosforo"/>
+				<h:inputText styleClass="input-exames-labo"  id="fosforo" value="#{#}" />
+				
+				<h:outputText value="Ferro: " for="ferro"/>
+				<h:inputText styleClass="input-exames-labo"  id="ferro" value="#{#}" />
+				
+				<h:outputText value="Magnésio: " for="magnesio"/>
+				<h:inputText styleClass="input-exames-labo"  id="magnesio" value="#{#}" />
+				
+				<h:outputText value="Manganês: " for="manganes"/>
+				<h:inputText styleClass="input-exames-labo"  id="manganes" value="#{#}" />
+				
+				<h:outputText value="Potássio: " for="potassio"/>
+				<h:inputText styleClass="input-exames-labo"  id="potassio" value="#{#}" />
+				
+				<h:outputText value="Selênio: " for="selenio"/>
+				<h:inputText styleClass="input-exames-labo"  id="selenio" value="#{#}" />
+				
+				<h:outputText value="Sódio: " for="sodio"/>
+				<h:inputText styleClass="input-exames-labo"  id="sodio" value="#{#}" />
+				
+				<h:outputText value="Zinco: " for="zinco"/>
+				<h:inputText styleClass="input-exames-labo"  id="zinco" value="#{#}" />
+				
+				<h:outputText value="TGO: " for="tgo"/>
+				<h:inputText styleClass="input-exames-labo"  id="tgo" value="#{#}" />
+				
+				<h:outputText value="TGP: " for="tgp"/>
+				<h:inputText styleClass="input-exames-labo"  id="tgp" value="#{#}" />
+				
+				<h:outputText value="Fosfatase alcalina: " for="fosfatase"/>
+				<h:inputText styleClass="input-exames-labo"  id="fosfatase" value="#{#}" />
+				
+				<h:outputText value="Ativ. protrombina: " for="atvProtrombina "/>
+				<h:inputText styleClass="input-exames-labo"  id="atvProtrombina" value="#{#}" />
+				
+				<h:outputText value="Ureia: " for="ureia"/>
+				<h:inputText styleClass="input-exames-labo"  id="ureia" value="#{#}" />
+				
+				<h:outputText value="Creatinina: " for="creatinina"/>
+				<h:inputText styleClass="input-exames-labo"  id="creatinina" value="#{#}" />
+				
+				<h:outputText value="Ácido úrico: " for="acidoUrico "/>
+				<h:inputText styleClass="input-exames-labo"  id="acidoUrico" value="#{#}" />
+				
+				<h:outputText value="T3: " for="t3"/>
+				<h:inputText styleClass="input-exames-labo"  id="t3" value="#{#}" />
+				
+				<h:outputText value="T4 livre TSH: " for="t4"/>
+				<h:inputText styleClass="input-exames-labo"  id="t4" value="#{#}" />
+				
+				<h:outputText value="Homocisteína: " for="homocisteina"/>
+				<h:inputText styleClass="input-exames-labo"  id="homocisteina" value="#{#}" />
+				
+				<h:outputText value="Insulina: " for="insulina:"/>
+				<h:inputText styleClass="input-exames-labo"  id="insulina" value="#{#}" />
+				
+				<h:outputText value="Clearance de creatinina: " for="clearanceCreat"/>
+				<h:inputText styleClass="input-exames-labo"  id="clearanceCreat" value="#{#}" />
+				
+				<h:outputText value="Testosterona total: " for="testosteronaTot "/>
+				<h:inputText styleClass="input-exames-labo"  id="testosteronaTot" value="#{#}" />
+				
+				<h:outputText value="Testosterona livre: " for="testosteronaLiv "/>
+				<h:inputText styleClass="input-exames-labo"  id="testosteronaLiv" value="#{#}" />
+				
+				<h:outputText value="Testosterona disponível: " for="testosteronaDisp"/>
+				<h:inputText styleClass="input-exames-labo"  id="testosterona" value="#{#}" />
+				
+				<h:outputText value="Prolactina: " for="prolactina"/>
+				<h:inputText styleClass="input-exames-labo"  id="prolactina" value="#{#}" />
+				
+				<h:outputText value="Estradiol: " for="estradiol"/>
+				<h:inputText styleClass="input-exames-labo"  id="estradiol" value="#{#}" />
+				
+				<h:outputText value="FSH LH: " for="fsh"/>
+				<h:inputText styleClass="input-exames-labo"  id="fsh" value="#{#}" />
+				
+				<h:outputText value="Lipoproteína A: " for="lipoproteína"/>
+				<h:inputText styleClass="input-exames-labo"  id="lipoproteína" value="#{#}" />
+				
+				<h:outputText value="Cortisol: " for="cortisol"/>
+				<h:inputText styleClass="input-exames-labo"  id="cortisol" value="#{#}" />
+				
+				<h:outputText value="Bilirrubina total: " for="bilirrubina"/>
+				<h:inputText styleClass="input-exames-labo"  id="bilirrubina" value="#{#}" />
+				           
+                     
+           </h:panelGrid>
+          
+</p:tab>
+           
+           
+           
+          
+             
+    </p:tabView>
+    
+     
+</ui:define>	 
+</ui:composition>
+	
+
+
+
+</html>

@@ -1,0 +1,223 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">  
+
+<ui:composition template="/templates/templates.xhtml"> 
+
+
+<ui:define name="titulo">Formulário de Atendimento da Gestante</ui:define>
+
+
+<ui:define name="conteudo">
+
+<p:tabView scrollable="true" affect="alide">
+        <p:tab title="Identificação">
+        
+        <h:panelGrid columns="2">
+             	<h:outputText value="Nome" for="nome"/>
+                <h:inputText id="nome" value="#{pacienteBean.paciente.nome}" required="true" requiredMessage="Nome Obrigatório!"/>
+ 
+                <h:outputText value="Dt. Nascimento:" for="dataNasc"/>
+                <h:inputText id="dataNasc" value="#{pacienteBean.paciente.dataNasc}" />
+                
+                <h:outputText value="Idade:" for="idade"/>
+                <h:inputText id="idade" value="#{pacienteBean.paciente.idade}" />
+                
+       </h:panelGrid>
+                
+               <!-- =================Identificação Contatos===================================== --> 
+              
+                               
+                <p:fieldset legend="Contatos" id="fieldContados"> 
+               
+                <h:panelGrid columns="2">
+                 
+                 	<h:outputText value="Email:" for="email"/>
+                	<h:inputText id="email" value="#{pacienteBean.paciente.email}" />
+                
+                	<h:outputText value="Tel. Resid:" for="telefoneRes"/>
+                    <h:inputText id="telefoneRes" value="#{pacienteBean.paciente.telefoneRes}" />
+                
+                    <h:outputText value="Celular:" for="telefoneCel"/>
+                    <h:inputText id="telefoneCel" value="#{pacienteBean.paciente.telefoneCel}" />
+                
+                 </h:panelGrid>    
+                
+                </p:fieldset>
+                
+                 <!-- =======================OCUPAÇÂO============================================= --> 
+                 
+                 <p:fieldset legend="Ocupação" id="fieldOcupação"> 
+               
+                <h:panelGrid columns="2">
+                 
+                 	<h:outputText value="Profissão:" for="profissao"/>
+                	<h:inputText id="profissao" value="#{pacienteAdultoBean.paciente.profissao}" />
+                
+                	                
+                 </h:panelGrid>    
+                
+                </p:fieldset>
+
+        
+        </p:tab>
+        
+        
+        
+        <!-- =======================TAB 2 ==================================== --> 
+        
+        
+        <p:tab title="História obstétrica ">
+   <h:form> 
+      
+       <h:panelGrid columns="2">
+             	<h:outputText value="Gesta" for="gesta"/>
+                <h:inputText id="gesta" value="#{#}"/>
+                
+                <h:outputText value="Para" for="para"/>
+                <h:inputText id="para" value="#{#}"/>
+                
+                <h:outputText value="Abortos" for="abortos"/>
+                <h:inputText id="abortos" value="#{#}"/>
+                
+                </h:panelGrid>
+        
+        	 
+        <p:fieldset legend="História Anterior" id="fieldHistoriaAnterior"> 
+        <p:selectManyCheckbox id="basic" value="#{checkboxView.selectedConsoles}" layout="responsive" columns="2">
+        <f:selectItem itemLabel= "NeoMorto"  itemValue="" />  
+		<f:selectItem itemLabel= "NatiMorto"  itemValue="" />
+		<f:selectItem itemLabel= "BPN (-2.5kg)"  itemValue="" />
+		<f:selectItem itemLabel= "macrossomia (+4kg)"   itemValue="" />
+		<f:selectItem itemLabel= "Pré-termo"   itemValue="" />
+		<f:selectItem itemLabel= "Intercorrências gestacionais"   itemValue="" />
+		
+		</p:selectManyCheckbox>
+		
+		<h:outputText value="Quais?" for="quais"/>
+        <h:inputText id="quais" value="#{#}"/>
+		
+		</p:fieldset>
+           
+          <h:panelGrid columns="2">  
+          		                
+                <h:outputText value="Intervalo:" for="intervalo"/>
+                <h:inputText id="intervalo" value="#{#}"/>
+                
+     </h:panelGrid>
+    </h:form>  
+        
+        </p:tab>
+       
+       
+       
+        <!-- =======================TAB 3 ==================================== --> 
+       
+       
+       
+       
+        
+        
+        <p:tab title="História obstétrica Atual">
+        
+        <h:panelGrid columns="2">
+             	<h:outputText value="Enfermidades prévias:" for="enfermidadesPrevias"/>
+                <p:inputTextarea id="enfermidadesPrevias"  value="#{#}" rows="2" cols="25" autoResize="false" />
+                
+                <h:outputText value="Intercorrências gestacionais:" for="incorrenciasGestacionais"/>
+                <p:inputTextarea id="incorrenciasGestacionais"  value="#{#}" rows="2" cols="25" autoResize="false" />
+                
+                <h:outputText value="Medicamentos e suplementos:" for="medicamentosSuplementos"/>
+                <p:inputTextarea id="medicamentosSuplementos"  value="#{#}" rows="2" cols="25" autoResize="false" />
+                
+                <h:outputText value="Funcionamento intestinal:" for="funcionamentoIntestinal"/>
+                <p:inputTextarea id="funcionamentoIntestinal"  value="#{#}" rows="2" cols="25" autoResize="false" />
+                
+                 </h:panelGrid>
+        
+        	 
+        <p:fieldset legend="Sintomas Digestivos" id="fieldSistemasDigestivos">  
+        <p:selectManyCheckbox id="basic" value="#{checkboxView.selectedConsoles}" layout="responsive" columns="2">
+        <f:selectItem itemLabel= "Disfagia"  itemValue="" />  
+		<f:selectItem itemLabel= "Odinofagia"  itemValue="" />
+		<f:selectItem itemLabel= "Pirose"  itemValue="" />
+		<f:selectItem itemLabel= "Náuseas"   itemValue="" />
+		<f:selectItem itemLabel= "Vômito "   itemValue="" />
+		<f:selectItem itemLabel= "Flatulência"   itemValue="" />
+		</p:selectManyCheckbox>
+		
+        </p:fieldset>
+        
+        <h:panelGrid columns="2">
+             
+             <h:outputText value="Intolerâncias: " for="intorelancias"/>
+        	 <p:inputTextarea id="intorelancias"  value="#{#}" rows="3" cols="25" autoResize="false" />
+        	 
+        	 <h:outputText value="Atividade física: " for="atividadeFisica"/>
+        	 <p:inputTextarea id="atividadeFisica"  value="#{#}" rows="3" cols="25" autoResize="false" />
+               
+            </h:panelGrid>
+            
+         <h:panelGrid columns="2"> 
+            <h:outputText value="Etilista: " />
+        <p:selectOneButton>
+             <f:selectItem itemLabel="Sim" itemValue="vacSim" />
+             <f:selectItem itemLabel="Não" itemValue="vacNao" />  
+        </p:selectOneButton>
+        
+        <h:outputText value="Tabagista: " />
+        <p:selectOneButton>
+             <f:selectItem itemLabel="Sim" itemValue="vacSim" />
+             <f:selectItem itemLabel="Não" itemValue="vacNao" />  
+        </p:selectOneButton>
+        </h:panelGrid>
+            
+            
+      	  </p:tab>
+        
+        
+        
+        
+         <!-- =======================TAB 4 - Exames ==================================== -->
+        <p:tab title="Exame Físico" >
+        
+        
+        <h:panelGrid columns="2">
+      		<h:outputText value="Cabeça: " for="cabeca"/>
+       		<p:inputTextarea id="cabeca"  value="#{#}" rows="2" cols="15" autoResize="false" />
+       		
+       		<h:outputText value="Pescoço " for="pescoco"/>
+       		<p:inputTextarea id="pescoco"  value="#{#}" rows="2" cols="15" autoResize="false" />
+       		
+       		<h:outputText value="Abdômem: " for="abdomem"/>
+       		<p:inputTextarea id="abdomem"  value="#{#}" rows="2" cols="15" autoResize="false" />
+       		
+       		<h:outputText value="MMII: " for="mmii"/>
+       		<p:inputTextarea id="mmii"  value="#{#}" rows="2" cols="15" autoResize="false" />
+       		
+       		<h:outputText value="MMSS: " for="mmss"/>
+       		<p:inputTextarea id="mmss"  value="#{#}" rows="2" cols="15" autoResize="false" />
+       		
+       		<h:outputText value="Edema: " for="edema"/>
+       		<p:inputTextarea id="edema"  value="#{#}" rows="2" cols="15" autoResize="false" />
+        	 
+          </h:panelGrid>      
+        
+        
+        </p:tab> 
+        
+      
+             
+    </p:tabView>
+    
+     
+</ui:define>	 
+</ui:composition>
+	
+
+
+
+</html>

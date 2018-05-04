@@ -1,0 +1,166 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">  
+
+<ui:composition template="/templates/templates.xhtml"> 
+
+
+<ui:define name="titulo">Formulário de Atendimento do Adulto</ui:define>
+
+
+<ui:define name="conteudo">
+
+<p:tabView scrollable="true" affect="alide">
+        <p:tab title="Identificação">
+        
+        <h:panelGrid columns="2">
+             	<h:outputText value="Nome" for="nome"/>
+                <h:inputText id="nome" value="#{#}" required="true" requiredMessage="Nome Obrigatório!"/>
+ 
+                <h:outputText value="Dt. Nascimento:" for="dataNasc"/>
+                <h:inputText id="dataNasc" value="#{#}" />
+                
+                <h:outputText value="Idade:" for="idade"/>
+                <h:inputText id="idade" value="#{#}" />
+                
+       </h:panelGrid>
+                
+               <!-- =================Identificação Contatos===================================== --> 
+              
+                               
+                <p:fieldset legend="Contatos" id="fieldContados"> 
+               
+                <h:panelGrid columns="2">
+                 
+                 	<h:outputText value="Email:" for="email"/>
+                	<h:inputText id="email" value="#{#}" />
+                
+                	<h:outputText value="Tel. Resid:" for="telefoneRes"/>
+                    <h:inputText id="telefoneRes" value="#{#}" />
+                
+                    <h:outputText value="Celular:" for="telefoneCel"/>
+                    <h:inputText id="telefoneCel" value="#{#}" />
+                
+                 </h:panelGrid>    
+                
+                </p:fieldset>
+                
+                 <!-- =======================OCUPAÇÂO============================================= --> 
+                 
+                 <p:fieldset legend="Ocupação" id="fieldOcupação"> 
+               
+                <h:panelGrid columns="2">
+                 
+                 	<h:outputText value="Profissão:" for="profissao"/>
+                	<h:inputText id="profissao" value="#{pacienteAdultoBean.paciente.profissao}" />
+                
+                	                
+                 </h:panelGrid>    
+                
+                </p:fieldset>
+
+        
+        </p:tab>
+        
+        
+        
+        <!-- =======================TAB 2 - Motivos ==================================== --> 
+        
+        
+        <p:tab title="Motivos do Atendimento">
+   <h:form> 
+      
+      Por que você procurou o atendimento nutricional? (marque uma ou mais opções)<br></br>
+        
+       
+    	<p:fieldset legend="Motivos" id="fieldMotivos"> 
+   
+   <p:selectManyCheckbox id="basic" value="#{checkboxView.selectedConsoles}" layout="responsive" columns="2">
+        <f:selectItem itemLabel= "Emagrecimento"  itemValue="" />  
+		<f:selectItem itemLabel= "Manter o peso"  itemValue="" />
+		<f:selectItem itemLabel= "Reeducação Alimentar"  itemValue="" />
+		<f:selectItem itemLabel= "Controlar a hipertensão"   itemValue="" />
+		<f:selectItem itemLabel= "Controlar o colesterol"  itemValue="" />
+		<f:selectItem itemLabel= "Controlar a glicemia/glicose sanguínea"   itemValue="" />
+		<f:selectItem itemLabel= "Ganhar peso"   itemValue="" />
+		<f:selectItem itemLabel= "Nutrição adequada ao exercício físico"  itemValue="" />
+		<f:selectItem itemLabel= "Controle do Intestino preso"  itemValue="" />
+		<f:selectItem itemLabel= "Controle da Síndrome do Intestino Irritável"  itemValue="" />
+		<f:selectItem itemLabel= "Controle da Gastrite/Úlcera"  itemValue="" />
+		<f:selectItem itemLabel= "Controle do ácido úrico"  itemValue="" />
+		<f:selectItem itemLabel= "Prevenção e/ou controle do cálculo renal"  itemValue="" />
+		<f:selectItem itemLabel= "Controle do Refluxo gastro-esofágico"   itemValue="" />
+		<f:selectItem itemLabel= "Controle da TPM"  itemValue="" />
+		<f:selectItem itemLabel= "Controle da Enxaqueca"   itemValue="" />
+		<f:selectItem itemLabel= "Acompanhamento da Gestação"  itemValue="" />
+		<f:selectItem itemLabel= "Prevenção e/ou recuperação da anemia"   itemValue="" />
+		<f:selectItem itemLabel= "Controle da Osteoporose"  itemValue="" />
+		<f:selectItem itemLabel= "Pré ou pós cirurgias oncológicas (câncer)"  itemValue="" />
+		<f:selectItem itemLabel= "Nutrição estética – controle da celulite, acne, flacidez, etc"  itemValue="" />
+		<f:selectItem itemLabel= "Intolerância à lactose"   itemValue="" />
+		<f:selectItem itemLabel= "Alimentação para doença celíaca"  itemValue="" />
+		<f:selectItem itemLabel= "Anorexia/bulimia nervosa"   itemValue="" />
+		<f:selectItem itemLabel= "Hipotireoidismo"  itemValue="" />
+		<f:selectItem itemLabel= "Prevenção ou Controle de Doenças cardiovasculares"  itemValue="" />
+		<f:selectItem itemLabel= "Controle de outros transtornos do intestino."  itemValue="" />
+    </p:selectManyCheckbox>
+      
+    <h4>Outros Motivos:</h4> 
+    <p:inputTextarea value="#{#}" rows="5" cols="80" counter="display" maxlength="300" counterTemplate="{0} restantes" autoResize="false" />
+    <br /><h:outputText id="display" />
+      
+     	</p:fieldset>   
+     
+     
+    </h:form>  
+        
+        </p:tab>
+       
+       
+       
+        <!-- =======================TAB 3 - Motivos ==================================== --> 
+       
+       
+       
+       
+        
+        
+        <p:tab title="Saúde">
+               
+       
+        
+      	  </p:tab>
+        
+        
+        
+        
+         <!-- =======================TAB 4 - Exames ==================================== -->
+        <p:tab title="Exames Laboratoriais">
+		<h:form id="testeForm">
+			<p:selectManyCheckbox id="teste" value="#{pacienteBean.motivosSelecionados}" layout="responsive" columns="2">
+				<f:selectItems value="#{pacienteBean.motivosAtendimento()}" var="motivo" itemLabel="#{motivo.descricao}" itemValue="#{motivo}"/>
+			</p:selectManyCheckbox>
+			<br />
+			
+			<p:commandButton action="#{pacienteBean.testar()}" value="Testar Gravar" update="testeForm" process="testeForm" />
+			<p:commandButton action="#{pacienteBean.testarCarregar()}" value="Testar Carregar" update="testeForm" process="testeForm" />
+			<h:inputText value="#{pacienteBean.id}" />
+		</h:form>		
+		</p:tab> 
+        
+        
+      
+             
+    </p:tabView>
+    
+     
+</ui:define>	 
+</ui:composition>
+	
+
+
+
+</html>
