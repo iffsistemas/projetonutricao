@@ -13,18 +13,27 @@
 
 <ui:define name="conteudo">
 
+<h:form id="form1">
+
 <p:tabView scrollable="true" affect="alide">
+
+
         <p:tab title="Identificação">
         
+        
+   
+     
         <h:panelGrid columns="2">
              	<h:outputText value="Nome" for="nome"/>
-                <h:inputText id="nome" value="#{#}" required="true" requiredMessage="Nome Obrigatório!"/>
+                <h:inputText id="nome" value="#{pacienteAdultoBean.pacienteAdulto.nome}" required="true" requiredMessage="Nome Obrigatório!"/>
  
-                <h:outputText value="Dt. Nascimento:" for="dataNasc"/>
-                <h:inputText id="dataNasc" value="#{#}" />
+                <h:outputText value="Data de Nascimento: " for="dataNascumento" />
+				<p:calendar locale="pt" id="data"
+                            value="#{pacienteAdultoBean.pacienteAdulto.dataNascimento}" effect="slide"
+                            pattern="dd/MM/yyyy" mask="true" />
                 
                 <h:outputText value="Idade:" for="idade"/>
-                <h:inputText id="idade" value="#{#}" />
+                <h:inputText id="idade" value="#{pacienteAdultoBean.pacienteAdulto.idade}" />
                 
        </h:panelGrid>
                 
@@ -36,13 +45,13 @@
                 <h:panelGrid columns="2">
                  
                  	<h:outputText value="Email:" for="email"/>
-                	<h:inputText id="email" value="#{#}" />
+                	<h:inputText id="email" value="#{pacienteAdultoBean.pacienteAdulto.email}" />
                 
-                	<h:outputText value="Tel. Resid:" for="telefoneRes"/>
-                    <h:inputText id="telefoneRes" value="#{#}" />
+                	<h:outputText value="Tel. Residencial:" for="telefoneRes"/>
+                    <h:inputText id="telefoneRes" value="#{pacienteAdultoBean.pacienteAdulto.telefoneRes}" />
                 
                     <h:outputText value="Celular:" for="telefoneCel"/>
-                    <h:inputText id="telefoneCel" value="#{#}" />
+                    <h:inputText id="telefoneCel" value="#{pacienteAdultoBean.pacienteAdulto.telefoneCel}" />
                 
                  </h:panelGrid>    
                 
@@ -55,30 +64,36 @@
                 <h:panelGrid columns="2">
                  
                  	<h:outputText value="Profissão:" for="profissao"/>
-                	<h:inputText id="profissao" value="#{pacienteAdultoBean.paciente.profissao}" />
+                	<h:inputText id="profissao" value="#{pacienteAdultoBean.pacienteAdulto.profissão}" />
                 
+              <!--  
+                <p:commandButton action="#{pacienteAdultoBean.gravarIdentificacao()}" value="Gravar" 
+                update="formIdentificacao, :atualizaMsgTela," 
+                process="formIdentificacao" />
+                
+                              	           -->     
+                	
                 	                
                  </h:panelGrid>    
                 
                 </p:fieldset>
 
-        
+    
         </p:tab>
         
         
-        
+      
         <!-- =======================TAB 2 - Motivos ==================================== --> 
         
         
         <p:tab title="Motivos do Atendimento">
-   <h:form> 
-      
+         
       Por que você procurou o atendimento nutricional? (marque uma ou mais opções)<br></br>
         
        
     	<p:fieldset legend="Motivos" id="fieldMotivos"> 
    
-   <p:selectManyCheckbox id="basic" value="#{checkboxView.selectedConsoles}" layout="responsive" columns="2">
+   <p:selectManyCheckbox id="basic" value="#{#}" layout="responsive" columns="2">
         <f:selectItem itemLabel= "Emagrecimento"  itemValue="" />  
 		<f:selectItem itemLabel= "Manter o peso"  itemValue="" />
 		<f:selectItem itemLabel= "Reeducação Alimentar"  itemValue="" />
@@ -115,49 +130,88 @@
      	</p:fieldset>   
      
      
-    </h:form>  
+  
         
         </p:tab>
        
        
        
-        <!-- =======================TAB 3 - Motivos ==================================== --> 
-       
-       
-       
-       
+            
         
         
         <p:tab title="Saúde">
-               
+               teste
        
         
       	  </p:tab>
+      	  
+      	  
+    <p:tab title="Exames Fisícos">
+  	    	   
+     	  
+  
+            	<h:panelGrid columns="2">
+      		<h:outputText value="Cabeça: " for="cabeca"/>
+       		<h:inputTextarea id="cabeca"  value="#{pacienteAdultoBean.pacienteAdulto.efCabeca}" rows="2" cols="15" autoResize="false" />
+       		
+       		<h:outputText value="Pescoço " for="pescoco"/>
+       		<h:inputTextarea id="pescoco"  value="#{pacienteAdultoBean.pacienteAdulto.efPescoco}" rows="2" cols="15" autoResize="false" />
+       		
+       		<h:outputText value="Abdômem: " for="abdomem"/>
+       		<h:inputTextarea id="abdomem"  value="#{pacienteAdultoBean.pacienteAdulto.efAbdmon}" rows="2" cols="15" autoResize="false" />
+       		
+       		<h:outputText value="MMII: " for="mmii"/>
+       		<h:inputTextarea id="mmii"  value="#{pacienteAdultoBean.pacienteAdulto.efMmii}" rows="2" cols="15" autoResize="false" />
+       		
+       		<h:outputText value="MMSS: " for="mmss"/>
+       		<h:inputTextarea id="mmss"  value="#{pacienteAdultoBean.pacienteAdulto.efMmss}" rows="2" cols="15" autoResize="false" />
+       		
+       		<h:outputText value="Edema: " for="edema"/>
+       		<h:inputTextarea id="edema"  value="#{pacienteAdultoBean.pacienteAdulto.efEdema}" rows="2" cols="15" autoResize="false" />
+        	
+        	 <p:commandButton action="#{pacienteAdultoBean.gravarIdentificacao()}" value="Gravar" 
+                update=":atualizaMsgTela" />
+       
+        	 
+          </h:panelGrid>
+          
         
-        
+       
+       
+      	  </p:tab>  	  
+      	  
+      	   
         
         
          <!-- =======================TAB 4 - Exames ==================================== -->
-        <p:tab title="Exames Laboratoriais">
-		<h:form id="testeForm">
-			<p:selectManyCheckbox id="teste" value="#{pacienteBean.motivosSelecionados}" layout="responsive" columns="2">
-				<f:selectItems value="#{pacienteBean.motivosAtendimento()}" var="motivo" itemLabel="#{motivo.descricao}" itemValue="#{motivo}"/>
+        <p:tab title="Motivos teste Enum">
+        
+
+			<p:selectManyCheckbox id="teste" value="#{pacienteAdultoBean.motivosSelecionados}" layout="responsive" columns="2">
+				<f:selectItems value="#{pacienteAdultoBean.motivosAtendimento()}" var="motivo" itemLabel="#{motivo.descricao}" itemValue="#{motivo}"/>
 			</p:selectManyCheckbox>
 			<br />
-			
-			<p:commandButton action="#{pacienteBean.testar()}" value="Testar Gravar" update="testeForm" process="testeForm" />
-			<p:commandButton action="#{pacienteBean.testarCarregar()}" value="Testar Carregar" update="testeForm" process="testeForm" />
+	
+	<!--  	
+			<p:commandButton action="#{pacienteAdultoBean.testar()}" value="Testar Gravar" update="testeForm" process="testeForm" />
+			<p:commandButton action="#{pacienteAdultoBean.testarCarregar()}" value="Testar Carregar" update="testeForm" process="testeForm" />				
 			<h:inputText value="#{pacienteBean.id}" />
-		</h:form>		
+		
+		-->	
+
+
+		
 		</p:tab> 
         
         
-      
+
+       
              
     </p:tabView>
-    
+ </h:form>      
      
 </ui:define>	 
+
 </ui:composition>
 	
 

@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+
+<ui:composition template="/templates/templates.xhtml"> 
+
+
+<ui:define name="titulo">Agenda</ui:define>
+
+
+<ui:define name="conteudo">
+
+ 
+
+
+		<p:schedule value="#{scheduleBean.eventoModel}">
+		
+		 <p:ajax event="dateSelect" listener="#{#}" oncomplete="PF('dialogo').show();" />
+		
+				
+		</p:schedule>
+
+
+		<p:dialog widgetVar="dialogo" header="Compromisso" showEffect="clip" hideEffect="clip">
+        
+        <h:panelGrid columns="2">
+        
+        	<p:outputLabel value="Evento" for="evento"  />
+            <p:inputText id="evento" value="#{#}" />
+            
+           <p:commandButton action="#{#}" value="Gravar" oncomplete="PF('dialogo').hide();"></p:commandButton> 
+        
+        </h:panelGrid>
+        </p:dialog>
+
+
+
+ 
+  
+</ui:define>	 
+</ui:composition>
+</html>

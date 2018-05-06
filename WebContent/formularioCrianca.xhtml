@@ -18,13 +18,13 @@
         
         <h:panelGrid columns="2">
              	<h:outputText value="Nome" for="nome"/>
-                <h:inputText id="nome" value="#{pacienteBean.paciente.nome}" required="true" requiredMessage="Nome Obrigatório!"/>
+                <h:inputText id="nome" value="#{#}" required="true" requiredMessage="Nome Obrigatório!"/>
  
                 <h:outputText value="Dt. Nascimento:" for="dataNasc"/>
-                <h:inputText id="dataNasc" value="#{pacienteBean.paciente.dataNasc}" />
+                <h:inputText id="dataNasc" value="#{#}" />
                 
                 <h:outputText value="Idade:" for="idade"/>
-                <h:inputText id="idade" value="#{pacienteBean.paciente.idade}" />
+                <h:inputText id="idade" value="#{#}" />
                 
        </h:panelGrid>
                 
@@ -36,13 +36,13 @@
                 <h:panelGrid columns="2">
                  
                  	<h:outputText value="Email:" for="email"/>
-                	<h:inputText id="email" value="#{pacienteBean.paciente.email}" />
+                	<h:inputText id="email" value="#{#}" />
                 
                 	<h:outputText value="Tel. Resid:" for="telefoneRes"/>
-                    <h:inputText id="telefoneRes" value="#{pacienteBean.paciente.telefoneRes}" />
+                    <h:inputText id="telefoneRes" value="#{#}" />
                 
                     <h:outputText value="Celular:" for="telefoneCel"/>
-                    <h:inputText id="telefoneCel" value="#{pacienteBean.paciente.telefoneCel}" />
+                    <h:inputText id="telefoneCel" value="#{#}" />
                 
                  </h:panelGrid>    
                 
@@ -63,7 +63,7 @@
         </p:selectOneButton>
                  
           <h:outputText value="Período: " for="periodo"/>
-          <h:inputText id="periodo" value="#{pacienteCriancaBean.paciente.periodo}" />
+          <h:inputText id="periodo" value="#{#}" />
                 
                 	                
                  </h:panelGrid>    
