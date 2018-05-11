@@ -3,92 +3,87 @@
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:p="http://primefaces.org/ui">
+  		xmlns:p="http://primefaces.org/ui">
 
 
 <ui:composition template="/templates/templates.xhtml"> 
 
 
-<ui:define name="titulo">Tabela TACO</ui:define>
+<ui:define name="titulo">Tabela Taco</ui:define>
 
 
 <ui:define name="conteudo">
 
-<form id="formCadastroTaco">
-				
-	   <p:panelGrid columns="3" style="margin-top:20px">
-	   
-	 
-		<p:column>Nome:</p:column>
-	    <p:column><h:inputText id="nomeAlimento1" value="#{#}" required="true" requiredMessage="Nome Obrigatório!"/></p:column>
-		<p:commandButton action="#{#}" value="Gravar"></p:commandButton> 
-		</p:panelGrid>
-	   	
-	   
-	  
-	     
-	  <p:panelGrid style="margin-top:20px">
 
-	 <f:facet name="header">
+		
+<h:form id="formCadAlimentos">			
+				
+		<p:panelGrid>
+		<p:row>
+		<p:column><h:outputText value="Alimento:" for="alimento"/></p:column>
+		
+        <p:column><h:inputText id="alimento" value="#{tacoBean.taco.nome}" /></p:column>
+        
+        </p:row>
+        </p:panelGrid>
+      
+	   <p:panelGrid>
+	   
+		<f:facet name="header">
 	    <p:column colspan="13">Cadastrar Alimentos</p:column>
 	   </f:facet>
-	   
-	   
-	   
-	   	<p:row>
-	   	<p:column rowspan="2"><h:outputText value="Umidade" for="umidade"/></p:column>
-	  	<p:column colspan="2">Energia</p:column>
-	  	<p:column rowspan="2" ><h:outputText value="Proteína(g)" for="proteina"/></p:column>
-	  	<p:column rowspan="2"><h:outputText value="Lipídeos (g)" for="lipideos"/></p:column>
-	  	<p:column rowspan="2"><h:outputText value="Colesterol (mg)" for="colesterol"/></p:column>
-	  	<p:column rowspan="2"><h:outputText value="Carboitrato (g)" for="carboitrato"/></p:column>
-	  	<p:column rowspan="2"><h:outputText value="Fibra Alimentar (g)" for="fibraAlimentar"/></p:column>
-	  	<p:column rowspan="2"><h:outputText value="Cinzas (g)" for="cinzas"/></p:column>
-	  	<p:column rowspan="2"><h:outputText value="Cálcio (mg)" for="calcio"/></p:column>
-	  	<p:column rowspan="2"><h:outputText value="Magnésio (mg)" for="magnesio"/></p:column>
-	  	<p:column rowspan="2"><h:outputText value="Manganês" for="manganes"/></p:column>	
-	  	<p:column rowspan="2"><h:outputText value="Fósforo" for="fosforo"/></p:column>  	
+		
+	   <p:row>
+	   	<p:column ><h:outputText value="Umidade" for="umidade"/></p:column>
+	  	<p:column ><h:outputText value="KCAL" for="kcal"/></p:column>
+	    <p:column  ><h:outputText value="KJ" for="kj"/></p:column>
+	  	<p:column  ><h:outputText value="Proteína(g)" for="proteina"/></p:column>
+	  	<p:column ><h:outputText value="Lipídeos (g)" for="lipideos"/></p:column>
+	  	<p:column ><h:outputText value="Colesterol (mg)" for="colesterol"/></p:column>
+	  	<p:column ><h:outputText value="Carboitrato (g)" for="carboitrato"/></p:column>
+	  	<p:column ><h:outputText value="Fibra Alimentar (g)" for="fibraAlimentar"/></p:column>
+	  	<p:column ><h:outputText value="Cinzas (g)" for="cinzas"/></p:column>
+	  	<p:column ><h:outputText value="Cálcio (mg)" for="calcio"/></p:column>
+	  	<p:column ><h:outputText value="Magnésio (mg)" for="magnesio"/></p:column>
+	  	<p:column ><h:outputText value="Manganês" for="manganes"/></p:column>	
+	  	<p:column ><h:outputText value="Fósforo" for="fosforo"/></p:column>  	
 	    </p:row>
-	    
-	    <p:row>
-	    
-	    <p:column><h:outputText value="KCAL" for="kcal"/></p:column>
-	    <p:column><h:outputText value="KJ" for="kj"/></p:column>
-	    </p:row>       
-        
+      
+               
+         
         <p:row>
         	
-            <p:column> <h:inputText styleClass="input-taco" id="umindade" value="#{#}"/></p:column>
-            <p:column> <h:inputText styleClass="input-taco" id="kcal" value="#{#}"/></p:column>
-            <p:column> <h:inputText styleClass="input-taco" id="kj" value="#{#}"/></p:column>
-            <p:column> <h:inputText styleClass="input-taco" id="proteina" value="#{#}"/></p:column>
-            <p:column> <h:inputText styleClass="input-taco" id="lipideos" value="#{#}"/></p:column>
-            <p:column> <h:inputText styleClass="input-taco" id="colesterol" value="#{#}"/></p:column>
-            <p:column> <h:inputText styleClass="input-taco" id="carboidrato" value="#{#}"/></p:column>
-            <p:column> <h:inputText styleClass="input-taco" id="fibraAlimentar" value="#{#}"/></p:column>
-            <p:column> <h:inputText styleClass="input-taco" id="cinzas" value="#{#}"/></p:column>
-            <p:column> <h:inputText styleClass="input-taco" id="calcio" value="#{#}"/></p:column>
-            <p:column> <h:inputText styleClass="input-taco" id="magnesio" value="#{#}"/></p:column>
-            <p:column> <h:inputText styleClass="input-taco" id="manganes" value="#{#}"/></p:column>
-            <p:column> <h:inputText styleClass="input-taco" id="fosforo" value="#{#}"/></p:column>
+            <p:column> <h:inputText styleClass="input-taco" id="umidade" value="#{tacoBean.taco.umidade}"/></p:column>
+            <p:column> <h:inputText styleClass="input-taco" id="kcal" value="#{tacoBean.taco.kcal}"/></p:column>
+            <p:column> <h:inputText styleClass="input-taco" id="kj" value="#{tacoBean.taco.kj}"/></p:column>
+            <p:column> <h:inputText styleClass="input-taco" id="proteina" value="#{tacoBean.taco.proteina}"/></p:column>
+            <p:column> <h:inputText styleClass="input-taco" id="lipideos" value="#{tacoBean.taco.lipideos}"/></p:column>
+            <p:column> <h:inputText styleClass="input-taco" id="colesterol" value="#{tacoBean.taco.colesterol}"/></p:column>
+            <p:column> <h:inputText styleClass="input-taco" id="carboidrato" value="#{tacoBean.taco.carboidrato}"/></p:column>
+            <p:column> <h:inputText styleClass="input-taco" id="fibraAlimentar" value="#{tacoBean.taco.fibraAlimentar}"/></p:column>
+            <p:column> <h:inputText styleClass="input-taco" id="cinzas" value="#{tacoBean.taco.cinzas}"/></p:column>
+            <p:column> <h:inputText styleClass="input-taco" id="calcio" value="#{tacoBean.taco.calcio}"/></p:column>
+            <p:column> <h:inputText styleClass="input-taco" id="magnesio" value="#{tacoBean.taco.magnesio}"/></p:column>
+            <p:column> <h:inputText styleClass="input-taco" id="manganes" value="#{tacoBean.taco.manganes}"/></p:column>
+            <p:column> <h:inputText styleClass="input-taco" id="fosforo" value="#{tacoBean.taco.fosforo}"/></p:column>
             
         </p:row>
         
        								 <!-- Tabela parte de baixo -->
         	<p:row>
-        	<p:column rowspan="1"><h:outputText value="Ferro(mg)" for="ferro"/></p:column>
-        	<p:column rowspan="1"><h:outputText value="Sódio(mg)" for="sodio"/></p:column>
-        	<p:column rowspan="1"><h:outputText value="Potássio(mg)" for="potassio"/></p:column>
-        	<p:column rowspan="1"><h:outputText value="Cobre(mg)" for="cobre"/></p:column>
-        	<p:column rowspan="1"><h:outputText value="Zinco(mg)" for="zinco"/></p:column>
-        	<p:column rowspan="1"><h:outputText value="Retinol" for="retinol"/></p:column>
-        	<p:column rowspan="1"><h:outputText value="RE" for="re"/></p:column>
-        	<p:column rowspan="1"><h:outputText value="RAE" for="rea"/></p:column>
-        	<p:column rowspan="1"><h:outputText value="Tiamina(mg)" for="tiamina"/></p:column>
-        	<p:column rowspan="1"><h:outputText value="Riboflavina(mg)" for="riboflavina"/></p:column>
-        	<p:column rowspan="1"><h:outputText value="Piridoxina(mg)" for="piridoxina"/></p:column>
-        	<p:column rowspan="1"><h:outputText value="Niacina(mg)" for="niacina"/></p:column>
-        	<p:column rowspan="1"><h:outputText value="Vitamina C(mg)" for="vitaminaC"/></p:column>
+        	<p:column ><h:outputText value="Ferro(mg)" for="ferro"/></p:column>
+        	<p:column ><h:outputText value="Sódio(mg)" for="sodio"/></p:column>
+        	<p:column ><h:outputText value="Potássio(mg)" for="potassio"/></p:column>
+        	<p:column ><h:outputText value="Cobre(mg)" for="cobre"/></p:column>
+        	<p:column ><h:outputText value="Zinco(mg)" for="zinco"/></p:column>
+        	<p:column ><h:outputText value="Retinol" for="retinol"/></p:column>
+        	<p:column ><h:outputText value="RE" for="re"/></p:column>
+        	<p:column ><h:outputText value="RAE" for="rea"/></p:column>
+        	<p:column ><h:outputText value="Tiamina(mg)" for="tiamina"/></p:column>
+        	<p:column ><h:outputText value="Riboflavina(mg)" for="riboflavina"/></p:column>
+        	<p:column ><h:outputText value="Piridoxina(mg)" for="piridoxina"/></p:column>
+        	<p:column ><h:outputText value="Niacina(mg)" for="niacina"/></p:column>
+        	<p:column ><h:outputText value="Vitamina C(mg)" for="vitaminaC"/></p:column>
         	
    			 </p:row>
      
@@ -96,44 +91,109 @@
      
      
      		<p:row>
-     		<p:column> <h:inputText styleClass="input-taco" id="ferro" value="#{#}"/></p:column>
-     		<p:column> <h:inputText styleClass="input-taco" id="sodio" value="#{#}"/></p:column>
-     		<p:column> <h:inputText styleClass="input-taco" id="potassio" value="#{#}"/></p:column>
-     		<p:column> <h:inputText styleClass="input-taco" id="cobre" value="#{#}"/></p:column>
-     		<p:column> <h:inputText styleClass="input-taco" id="zinco" value="#{#}"/></p:column>
-     		<p:column> <h:inputText styleClass="input-taco" id="retinol" value="#{#}"/></p:column>
-     		<p:column> <h:inputText styleClass="input-taco" id="re" value="#{#}"/></p:column>
-     		<p:column> <h:inputText styleClass="input-taco" id="rea" value="#{#}"/></p:column>
-     		<p:column> <h:inputText styleClass="input-taco" id="tiamina" value="#{#}"/></p:column>
-     		<p:column> <h:inputText styleClass="input-taco" id="riboflavina" value="#{#}"/></p:column>
-     		<p:column> <h:inputText styleClass="input-taco" id="piridoxina" value="#{#}"/></p:column>
-     		<p:column> <h:inputText styleClass="input-taco" id="niacina" value="#{#}"/></p:column>
-     		<p:column> <h:inputText styleClass="input-taco" id="vitaminaC" value="#{#}"/></p:column>
+     		<p:column> <h:inputText styleClass="input-taco" id="ferro" value="#{tacoBean.taco.ferro}"/></p:column>
+     		<p:column> <h:inputText styleClass="input-taco" id="sodio" value="#{tacoBean.taco.sodio}"/></p:column>
+     		<p:column> <h:inputText styleClass="input-taco" id="potassio" value="#{tacoBean.taco.potassio}"/></p:column>
+     		<p:column> <h:inputText styleClass="input-taco" id="cobre" value="#{tacoBean.taco.cobre}"/></p:column>
+     		<p:column> <h:inputText styleClass="input-taco" id="zinco" value="#{tacoBean.taco.zinco}"/></p:column>
+     		<p:column> <h:inputText styleClass="input-taco" id="retinol" value="#{tacoBean.taco.retinol}"/></p:column>
+     		<p:column> <h:inputText styleClass="input-taco" id="re" value="#{tacoBean.taco.re}"/></p:column>
+     		<p:column> <h:inputText styleClass="input-taco" id="rea" value="#{tacoBean.taco.rea}"/></p:column>
+     		<p:column> <h:inputText styleClass="input-taco" id="tiamina" value="#{tacoBean.taco.tiamina}"/></p:column>
+     		<p:column> <h:inputText styleClass="input-taco" id="riboflavina" value="#{tacoBean.taco.riboflavina}"/></p:column>
+     		<p:column> <h:inputText styleClass="input-taco" id="piridoxina" value="#{tacoBean.taco.piridoxina}"/></p:column>
+     		<p:column> <h:inputText styleClass="input-taco" id="niacina" value="#{tacoBean.taco.niacina}"/></p:column>
+     		<p:column> <h:inputText styleClass="input-taco" id="vitaminaC" value="#{tacoBean.taco.vitaminaC}"/></p:column>
      		
      		
      		 </p:row>
      		 
-     			
-     		 
-      
- 
-     </p:panelGrid>
-   
- </form>   
+<p:column> <p:commandButton action="#{tacoBean.salvar()}" value="Gravar" 
+                update=":mensagem, formListaAlimentos:tableAlimentos" /> </p:column>
+                
+<p:column> <p:commandButton action="#{#}" value="Buscar" 
+                update=":mensagem, formListaAlimentos:tableAlimentos" /> </p:column>
+        
+        </p:panelGrid>
+		
+</h:form>
+
+<br></br><br></br>
+<h:form id="formListaAlimentos">
+	<p:dataTable value="#{tacoBean.alimentos}" var="alim"
+	paginator="true" id="tableAlimentos"  emptyMessage="Nenhum Alimento Cadastrado!" rows="5">
+		<p:column>
+			<f:facet name="header">Nome</f:facet>
+			<h:outputText value="#{alim.nome}" />
+		</p:column>
+		<p:column>
+			<f:facet name="header">Unidade</f:facet>
+			<h:outputText value="#{alim.umidade}" />
+		</p:column>		
+		<p:column>
+			<f:facet name="header">Kcal</f:facet>
+			<h:outputText value="#{alim.kcal}" />
+		</p:column>	
+		<p:column>
+			<f:facet name="header">Editar</f:facet>
+			<p:commandButton icon="ui-icon-edit" action="#{tacoBean.editarAlimeto(alim)}"
+			value="Editar" update=":mensagem, :formCadAlimentos" process="@form"/>
+		</p:column>
+		
+		<p:column>
+			<f:facet name="header">Deletar</f:facet>
+			<p:commandButton icon="ui-icon-trash" action="#{tacoBean.removerAlimento(alim)}"
+			value="Deletar" update=":mensagem, :formCadAlimentos" process="@form" >
+			<p:confirm header="Confirmação" message="Deseja excluir alimento?" icon="ui-icon-alert" />
+			</p:commandButton>
+			
+			<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+        <p:commandButton value="Sim" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+        <p:commandButton value="Não" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+        </p:confirmDialog>
+						 
+		</p:column>
+		
+		
+	</p:dataTable> 
+	
+	
+	
+	
+ </h:form>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   
 </ui:define>	 
 </ui:composition>
 
+<h:head></h:head> 
+<body> 
 
-
-
-
-
-
-
-
-
-
-
-
+</body> 
 </html>

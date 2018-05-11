@@ -13,7 +13,7 @@ public class Paciente {
 	
 	
 	
-	private String nome="PacTeste";
+	private String nome;
 	
 	private Date dataNascimento;
 	private Integer idade=30;

@@ -67,7 +67,7 @@ public class PacienteAdultoBean {
 	
 	public void gravarIdentificacao() {
 		String msg="Paciente gravado com sucesso";
-		
+				
 		if(getPacienteAdulto().getId()==null){ 
 		pacienteAdultoService.create(pacienteAdulto);
 		setPacienteAdulto(new PacienteAdulto());		
