@@ -1,0 +1,114 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html" 
+	  xmlns:p="http://primefaces.org/ui">
+
+
+<ui:composition template="/templates/templates.xhtml"> 
+
+
+<ui:define name="titulo">Atendimento</ui:define>
+
+
+<ui:define name="conteudo">
+
+
+		
+		
+<h:form id="buscarAtendimento">			
+				
+		<p:panelGrid align="center" id="tableBuscarAtendimento" columns="3" > 
+		
+		
+		<p:column><h:outputText value="Nome: " for="nome"/></p:column>
+		
+		<p:column><h:inputText id="nome" value="#{#}" /></p:column>      		 
+	
+		<p:column> <p:commandButton action="#{#}" value="Buscar" 
+                update=":mensagem" icon="ui-icon-search" /> </p:column>
+		
+		
+		</p:panelGrid>
+</h:form>
+
+
+
+<h:form id="formConsultas">
+	<p:dataTable value="#{#}" var="cons"
+	paginator="true" id="tableConsultas"  emptyMessage="Nenhum registro encontrado!" rows="5">
+		<p:column>
+			<f:facet name="header">Nome do Paciente</f:facet>
+			<h:outputText value="#{#}" />
+		</p:column>
+		<p:column>
+			<f:facet name="header">Data da Consulta</f:facet>
+			<h:outputText value="#{#}" />
+		</p:column>		
+		<p:column>
+			<f:facet name="header">Descriçao</f:facet>
+			<h:outputText value="#{#}" />
+		</p:column>	
+		<p:column>
+			<f:facet name="header">Ver Consulta</f:facet>
+			<p:commandButton icon="ui-icon-list-alt" action="#{#}"
+			value="verConsulta" update=":mensagem"  process="@form"/>
+		</p:column>
+		
+				
+		
+	</p:dataTable> 
+	
+	
+	
+ </h:form>
+
+	<p:commandButton icon="ui-icon-plus" action="#{#}"
+			value="Nova Consulta" update=":mensagem"  />
+
+
+<br></br><br></br>
+
+<h:form id="formNovoPaciente">
+
+	 <p:fieldset legend="Novo Paciente" id="fieldNovoPaciente">
+	 
+	 
+	 	 <h:panelGrid cellpadding="10" columns="3">
+	 	 
+	 	 
+	 	 <p:column> <p:commandButton  action="#{atendimentoBean.chamarFormAdulto()}" value="Adulto"  /> </p:column>
+	 	 
+	 	 <p:column> <p:commandButton action="#{atendimentoBean.chamarFormCrianca()}" value="Criança"  /> </p:column>
+	 	  
+	 	 <p:column> <p:commandButton action="#{atendimentoBean.chamarFormGestante()}" value="Gestante" /> </p:column>
+	 	 
+	 	 </h:panelGrid>
+	 
+	 
+	 </p:fieldset>
+</h:form>
+
+
+
+
+  
+</ui:define>	 
+</ui:composition>
+
+
+
+
+
+
+
+	
+
+
+
+
+
+
+ 
+</html>
