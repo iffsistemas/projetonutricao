@@ -15,11 +15,11 @@
 <ui:define name="conteudo">
 
  
-<h:form>
+<h:form id="formSchedule">
 
 		<p:schedule locale="pt" timeZone="America/Sao_Paulo" value="#{scheduleBean.eventoModel}">
 		
-		 <p:ajax event="dateSelect"  listener="#{scheduleBean.salvarCompromisso()}"
+		 <p:ajax event="dateSelect"  listener="#{scheduleBean.onDateSelect}"
 		 update=":formCompromissos:painelCompromisso" oncomplete="PF('dialogo').show();" />
 		
 				
@@ -41,7 +41,7 @@
         	<p:outputLabel value="Compromisso" for="compromisso"  />
             <p:inputText id="compromisso" value="#{scheduleBean.agenda.compromisso}" />
             
-           <p:commandButton action="#{scheduleBean.salvarCompromisso()}" update=":mensagem"
+           <p:commandButton action="#{scheduleBean.salvarCompromisso()}" update=":mensagem, :formSchedule"
            process="formCompromissos" value="Gravar" oncomplete="PF('dialogo').hide();"></p:commandButton> 
         
         </h:panelGrid>

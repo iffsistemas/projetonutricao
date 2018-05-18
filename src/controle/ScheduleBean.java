@@ -54,26 +54,14 @@ public class ScheduleBean {
 	}
 	
 
-		
 	
 	
-	
-	
-	
-	public void salvarCompromisso(SelectEvent evento) {
-		 
-		
-		agenda.setDataSelecionada((Date) evento.getObject());
+	public void salvarCompromisso() {
 
 		scheduleService.create(agenda); 
-		
-		 
-		
+		atualizarCalendario();
 	}
-	
-	
-	
-	
+
 	
 	private ScheduleModel eventoModel;
 	private ScheduleEvent event = new DefaultScheduleEvent();
@@ -101,6 +89,7 @@ public class ScheduleBean {
 	
 	public void onDateSelect(SelectEvent selectEvent) {
         event = new DefaultScheduleEvent("", (Date) selectEvent.getObject(), (Date) selectEvent.getObject());
+        agenda.setDataSelecionada(event.getStartDate());
     }
 	
 	
@@ -108,9 +97,19 @@ public class ScheduleBean {
 	@PostConstruct
     public void init() {
 		
+		atualizarCalendario();
+		
+		
+	}
+	
+	public void atualizarCalendario() {
 		eventoModel = new DefaultScheduleModel();
-		
-		
+		List<Schedule> sS = scheduleService.listAll();
+		for(Schedule s: sS) {
+			eventoModel.addEvent(new DefaultScheduleEvent(s.getCompromisso(), s.getDataSelecionada(), s.getDataSelecionada()));
+		}
+			
+			
 	}
 	
 

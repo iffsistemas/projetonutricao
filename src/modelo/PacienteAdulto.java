@@ -13,20 +13,13 @@ import javax.persistence.Id;
 public class PacienteAdulto extends Paciente{
 
 	
-	@Id @GeneratedValue
-	private Long id;	
+	
 	private String profissão="Professor";
 	
 	@ElementCollection(fetch = FetchType.EAGER)
 	private Collection<MotivoAtendimento> motivos  = new ArrayList<MotivoAtendimento>();
 	
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
+	
 
 	public String getProfissão() {
 		return profissão;
@@ -43,7 +36,5 @@ public class PacienteAdulto extends Paciente{
 	public void setMotivos(Collection<MotivoAtendimento> motivos) {
 		this.motivos = motivos;
 	}	
-
-	
 	
 }

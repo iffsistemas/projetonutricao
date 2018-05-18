@@ -98,13 +98,6 @@
 				<f:selectItems value="#{pacienteAdultoBean.motivosAtendimento()}" var="motivo" itemLabel="#{motivo.descricao}" itemValue="#{motivo}"/>
 			</p:selectManyCheckbox>
 			<br />
-	
-	<!--  	
-			<p:commandButton action="#{pacienteAdultoBean.testar()}" value="Testar Gravar" update="testeForm" process="testeForm" />
-			<p:commandButton action="#{pacienteAdultoBean.testarCarregar()}" value="Testar Carregar" update="testeForm" process="testeForm" />				
-			<h:inputText value="#{pacienteBean.id}" />
-		
-		-->	
    
     <h4>Outros Motivos:</h4> 
     <p:inputTextarea value="#{#}" rows="5" cols="80" counter="display" maxlength="300" counterTemplate="{0} restantes" autoResize="false" />

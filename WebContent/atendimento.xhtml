@@ -24,10 +24,10 @@
 		
 		<p:column><h:outputText value="Nome: " for="nome"/></p:column>
 		
-		<p:column><h:inputText id="nome" value="#{#}" /></p:column>      		 
+		<p:column><h:inputText id="nome" value="#{pacienteBean.paciente.nome}" /></p:column>      		 
 	
-		<p:column> <p:commandButton action="#{#}" value="Buscar" 
-                update=":mensagem" icon="ui-icon-search" /> </p:column>
+		<p:column> <p:commandButton action="#{pacienteBean.buscarNome()}" value="Buscar" 
+                update=":mensagem, :formConsultas" icon="ui-icon-search" /> </p:column>
 		
 		
 		</p:panelGrid>
@@ -36,15 +36,15 @@
 
 
 <h:form id="formConsultas">
-	<p:dataTable value="#{#}" var="cons"
+	<p:dataTable value="#{pacienteBean.pacientes}" var="paciente"
 	paginator="true" id="tableConsultas"  emptyMessage="Nenhum registro encontrado!" rows="5">
 		<p:column>
 			<f:facet name="header">Nome do Paciente</f:facet>
-			<h:outputText value="#{#}" />
+			<h:outputText value="#{paciente.nome}" />
 		</p:column>
 		<p:column>
 			<f:facet name="header">Data da Consulta</f:facet>
-			<h:outputText value="#{#}" />
+			<h:outputText value="#{paciente.dataNascimento}" />
 		</p:column>		
 		<p:column>
 			<f:facet name="header">Descriçao</f:facet>

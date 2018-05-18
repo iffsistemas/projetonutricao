@@ -1,5 +1,6 @@
 package controle;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -24,6 +25,7 @@ public class PacienteBean {
 	
 	private Paciente paciente = new Paciente();
 	
+	List<Paciente> pacientes = new ArrayList<Paciente>();
 	 
 	
 	
@@ -65,6 +67,16 @@ public class PacienteBean {
 
 	 
 	
+	public List<Paciente> getPacientes() {
+		return pacientes;
+	}
+
+
+	public void setPacientes(List<Paciente> pacientes) {
+		this.pacientes = pacientes;
+	}
+
+
 	public void gravarIdentificacao() {
 		String msg="Paciente gravado com sucesso";
 		
@@ -79,7 +91,10 @@ public class PacienteBean {
 		
 	}
 	
-	
+	public void buscarNome() {
+		 pacientes = pacienteService.obtemPacientePorNome(getPaciente().getNome());
+		
+	}
 	
 	
 	

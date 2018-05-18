@@ -1,18 +1,20 @@
 package modelo;
 
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Date;
 
-import javax.persistence.ElementCollection;
-import javax.persistence.FetchType;
-import javax.persistence.MappedSuperclass;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 
-@MappedSuperclass
+@Entity
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public class Paciente {
 	
 	
-	
+	@Id @GeneratedValue
+	private Long id;	
 	private String nome;
 	
 	private Date dataNascimento;
@@ -32,6 +34,14 @@ public class Paciente {
 	
 
 	
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
 
 	public String getNome() {
 		return nome;

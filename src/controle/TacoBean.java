@@ -109,13 +109,13 @@ public class TacoBean {
 		FacesContext.getCurrentInstance().addMessage(null, message);
 		
 		
-		atualizarAlimentos();		
+		atualizarAlimentos();
+		setTaco(new Taco());
 	}
 	
 	
-	public void buscarAlimento(String nome) {
-		 
-		
+	public void buscarAlimento() {
+		 alimentos = tacoService.obtemAlimentosPorNome(getTaco().getNome());	
 		
 		
 	}
