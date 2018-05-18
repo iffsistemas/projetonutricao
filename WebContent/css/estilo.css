@@ -49,6 +49,18 @@ body{
 	padding: 2px;
 }
 
+.ui-panelgrid .ui-panelgrid-cell {
+    border-style: none;
+    padding: 2px 3px;
+
+}
+	
+
+.ui-panelgrid {
+border-collapse: nome;
+
+}
+
 .ui-selectmanycheckbox.ui-grid label, .ui-selectoneradio.ui-grid label{
 	    display: unset;
 }

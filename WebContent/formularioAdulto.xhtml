@@ -145,8 +145,7 @@
        		<h:outputText value="Edema: " for="edema"/>
        		<h:inputTextarea id="edema"  value="#{pacienteAdultoBean.pacienteAdulto.efEdema}" rows="4" cols="60" autoResize="false" />
         	
-        	 <p:commandButton action="#{pacienteAdultoBean.gravarIdentificacao()}" value="Gravar" 
-                update=":mensagem" />
+        	
        
         	 
           </h:panelGrid>
@@ -330,6 +329,9 @@
        
              
     </p:tabView>
+    
+     <p:commandButton action="#{pacienteAdultoBean.gravarIdentificacao()}" value="Gravar" 
+                update=":mensagem" />
  </h:form>      
      
 </ui:define>	 

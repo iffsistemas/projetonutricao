@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
@@ -21,8 +22,7 @@ public class PacienteBean {
 	@EJB
 	PacienteService pacienteService;
 	
-	private Long id=1L;
-	
+		
 	private Paciente paciente = new Paciente();
 	
 	List<Paciente> pacientes = new ArrayList<Paciente>();
@@ -37,15 +37,6 @@ public class PacienteBean {
 	}
 
 	
-	public Long getId() {
-		return id;
-	}
-
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
 
 	public MotivoAtendimento[] getMotivosSelecionados() {
 		return motivosSelecionados;
@@ -96,6 +87,16 @@ public class PacienteBean {
 		
 	}
 	
+	
+	@PostConstruct
+	public void init(){
+		atualizarPacientes();
+	}
+	
+	protected void atualizarPacientes(){
+		getPacientes().clear();
+		getPacientes().addAll(pacienteService.listAll());
+	}
 	
 	
 	
