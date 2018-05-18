@@ -42,7 +42,9 @@
 		</p:column>
 		<p:column>
 			<f:facet name="header">Nascimento</f:facet>
-			<h:outputText value="#{paciente.dataNascimento}" />
+			<h:outputText value="#{paciente.dataNascimento}">
+			<f:convertDateTime pattern="dd/MM/yyyy" />
+			</h:outputText>
 		</p:column>		
 		<p:column>
 			<f:facet name="header">Ver Atendimentos</f:facet>
