@@ -24,13 +24,14 @@ public class Paciente {
 	private String telefoneCel="9999-8558";
 	
 	
+	/*
 	private String efCabeca="1";
 	private String efPescoco="1";
 	private String efAbdmon="1";
 	private String efMmii="1";
 	private String efMmss="1";
 	private String efEdema="1";
-	
+	*/
 	
 
 	
@@ -95,55 +96,6 @@ public class Paciente {
 		this.telefoneCel = telefoneCel;
 	}
 
-	public String getEfCabeca() {
-		return efCabeca;
-	}
-
-	public void setEfCabeca(String efCabeca) {
-		this.efCabeca = efCabeca;
-	}
-
-	public String getEfPescoco() {
-		return efPescoco;
-	}
-
-	public void setEfPescoco(String efPescoco) {
-		this.efPescoco = efPescoco;
-	}
-
-	public String getEfAbdmon() {
-		return efAbdmon;
-	}
-
-	public void setEfAbdmon(String efAbdmon) {
-		this.efAbdmon = efAbdmon;
-	}
-
-	public String getEfMmii() {
-		return efMmii;
-	}
-
-	public void setEfMmii(String efMmii) {
-		this.efMmii = efMmii;
-	}
-
-	public String getEfMmss() {
-		return efMmss;
-	}
-
-	public void setEfMmss(String efMmss) {
-		this.efMmss = efMmss;
-	}
-
-	public String getEfEdema() {
-		return efEdema;
-	}
-
-	public void setEfEdema(String efEdema) {
-		this.efEdema = efEdema;
-	}
-
-	
 	
 	
 }

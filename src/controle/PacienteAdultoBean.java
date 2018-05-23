@@ -69,10 +69,10 @@ public class PacienteAdultoBean {
 		String msg="Paciente gravado com sucesso";
 				
 		if(getPacienteAdulto().getId()==null){ 
-			getPacienteAdulto().getMotivos().addAll(Arrays.asList(motivosSelecionados));
+		//	getPacienteAdulto().getMotivos().addAll(Arrays.asList(motivosSelecionados));
 			pacienteAdultoService.create(pacienteAdulto);
 			setPacienteAdulto(new PacienteAdulto());		
-			Arrays.fill(motivosSelecionados, null);
+		//	Arrays.fill(motivosSelecionados, null);
 			FacesContext.getCurrentInstance().addMessage("menssagem", new FacesMessage("Parabéns!", msg));
 		
 		}

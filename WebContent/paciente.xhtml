@@ -49,7 +49,7 @@
 		<p:column>
 			<f:facet name="header">Ver Atendimentos</f:facet>
 			<p:commandButton icon="ui-icon-list-alt" action="#{#}"
-			value="Atendimentos" update=":mensagem"  process="@form"/>
+			value="Atendimentos" update=":mensagem, formConsultas:tableConsultas"  process="@form"/>
 		</p:column>
 		
 				
@@ -72,17 +72,87 @@
 	 	 <h:panelGrid cellpadding="10" columns="3">
 	 	 
 	 	 
-	 	 <p:column> <p:commandButton  action="#{atendimentoBean.chamarFormAdulto()}" value="Adulto"  /> </p:column>
+	 	 <p:column> <p:commandButton value="Adulto"  oncomplete="PF('dialogCadAdulto').show();"/> </p:column>
 	 	 
-	 	 <p:column> <p:commandButton action="#{atendimentoBean.chamarFormCrianca()}" value="Criança"  /> </p:column>
+	 	 <p:column> <p:commandButton value="Criança"  /> </p:column>
 	 	  
-	 	 <p:column> <p:commandButton action="#{atendimentoBean.chamarFormGestante()}" value="Gestante" /> </p:column>
+	 	 <p:column> <p:commandButton value="Gestante" /> </p:column>
 	 	 
 	 	 </h:panelGrid>
 	 
 	 
 	 </p:fieldset>
 </h:form>
+
+                  
+
+<p:dialog  header="Cadastro - Paciente Adulto" widgetVar="dialogCadAdulto" 
+draggable="false" resizable="false" showEffect="slide" hideEffect="slide"> 
+<h:form id="dialogAdulto">
+	
+	
+	
+     
+        <h:panelGrid columns="2">
+             	<h:outputText value="Nome" for="nome"/>
+                <h:inputText id="nome" value="#{pacienteAdultoBean.pacienteAdulto.nome}" required="true" requiredMessage="Nome Obrigatório!"/>
+ 
+                <h:outputText value="Data de Nascimento: " for="dataNascimento" />
+				<p:calendar locale="pt" id="dataNascimento"
+                            value="#{pacienteAdultoBean.pacienteAdulto.dataNascimento}" effect="slide"
+                            pattern="dd/MM/yyyy" mask="true"/>
+                
+                <h:outputText value="Idade:" for="idade"/>
+                <h:inputText id="idade" value="#{pacienteAdultoBean.pacienteAdulto.idade}" />
+                
+       </h:panelGrid>
+                
+               <!-- =================Identificação Contatos===================================== --> 
+              
+                               
+                <p:fieldset legend="Contatos" id="fieldContados"> 
+               
+                <h:panelGrid columns="2">
+                 
+                 	<h:outputText value="Email:" for="email"/>
+                	<h:inputText id="email" value="#{pacienteAdultoBean.pacienteAdulto.email}" />
+                
+                	<h:outputText value="Tel. Residencial:" for="telefoneRes"/>
+                    <h:inputText id="telefoneRes" value="#{pacienteAdultoBean.pacienteAdulto.telefoneRes}" />
+                
+                    <h:outputText value="Celular:" for="telefoneCel"/>
+                    <h:inputText id="telefoneCel" value="#{pacienteAdultoBean.pacienteAdulto.telefoneCel}" />
+                
+                 </h:panelGrid>    
+                
+                </p:fieldset>
+                
+                 <!-- =======================OCUPAÇÂO============================================= --> 
+                 
+                 <p:fieldset legend="Ocupação" id="fieldOcupação"> 
+               
+                <h:panelGrid columns="2">
+                 
+                 	<h:outputText value="Profissão:" for="profissao"/>
+                	<h:inputText id="profissao" value="#{pacienteAdultoBean.pacienteAdulto.profissão}" />
+                
+              <p:commandButton action="#{pacienteAdultoBean.gravarIdentificacao()}" value="Salvar" 
+                update=":mensagem, :formConsultas:tableConsultas, :buscarAtendimento, :formNovoPaciente" 
+                process="@form" oncomplete="PF('dialogCadAdulto').hide();" /> 
+                
+                <p:commandButton value="Fechar" oncomplete="PF('dialogCadAdulto').hide();" />               	
+                	                
+                 </h:panelGrid>    
+                
+                </p:fieldset>
+</h:form>
+</p:dialog>
+
+
+
+
+
+
 
 
 

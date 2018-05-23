@@ -19,12 +19,16 @@ public class InitBean {
 	public void iniciar() {
 		Paciente pac = new PacienteAdulto();
 		pac.setDataNascimento(new Date());
+		
+		/*
 		pac.setEfAbdmon("teste");
 		pac.setEfCabeca("cabeça");
 		pac.setEfEdema("edema");
 		pac.setEfMmii("membros inferiores");
 		pac.setEfMmss("Membros Superiores");
 		pac.setEfPescoco("Pescoço");
+		*/
+		
 		pac.setEmail("123@123.com");
 		pac.setIdade(25);
 		pac.setNome("Fulano da Silva");

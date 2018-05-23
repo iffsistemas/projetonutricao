@@ -74,7 +74,7 @@ public class PacienteBean {
 		if(getPaciente().getNome()==null){ 
 		pacienteService.create(paciente);
 		setPaciente(new Paciente());		
-		
+		atualizarPacientes();
 		FacesContext.getCurrentInstance().addMessage("menssagem", new FacesMessage("Parabéns!", msg));
 		
 		}
