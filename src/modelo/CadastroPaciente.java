@@ -27,6 +27,21 @@ public class CadastroPaciente {
 	@Column(length=3)
 	private Integer idade=30;
 
+	@Column(length=30)
+	private String email="pac1@email.com";
+	
+	@Column(length=10)
+	private String telefoneRes="2212331256";
+	
+	@Column(length=11)
+	private String telefoneCel="22999998558";
+	
+	
+	
+	
+	
+	
+	
 	public Long getId() {
 		return id;
 	}
@@ -57,6 +72,30 @@ public class CadastroPaciente {
 
 	public void setIdade(Integer idade) {
 		this.idade = idade;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getTelefoneRes() {
+		return telefoneRes;
+	}
+
+	public void setTelefoneRes(String telefoneRes) {
+		this.telefoneRes = telefoneRes;
+	}
+
+	public String getTelefoneCel() {
+		return telefoneCel;
+	}
+
+	public void setTelefoneCel(String telefoneCel) {
+		this.telefoneCel = telefoneCel;
 	}
 	
 	

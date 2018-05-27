@@ -13,11 +13,11 @@ import javax.faces.context.FacesContext;
 
 import modelo.MotivoAtendimento;
 
-@ViewScoped
-@ManagedBean
+//@ViewScoped
+//@ManagedBean
 public class PacienteBean {
 	
-	@EJB
+	//@EJB
 	PacienteService pacienteService;
 	
 		
