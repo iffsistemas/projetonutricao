@@ -1,9 +1,8 @@
-package service;
+package tools;
 
 import javax.ejb.Stateless;
 
-import modelo.Paciente;
-import modelo.PacienteAdulto;
+import service.GenericService;
 
 @Stateless
 public class PacienteAdultoService extends GenericService<PacienteAdulto> {

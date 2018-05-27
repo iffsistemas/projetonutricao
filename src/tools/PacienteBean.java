@@ -1,4 +1,4 @@
-package controle;
+package tools;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -12,8 +12,6 @@ import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 
 import modelo.MotivoAtendimento;
-import modelo.Paciente;
-import service.PacienteService;
 
 @ViewScoped
 @ManagedBean

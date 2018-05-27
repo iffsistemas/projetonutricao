@@ -1,4 +1,4 @@
-package service;
+package tools;
 
 import java.util.List;
 
@@ -8,23 +8,18 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Expression;
 import javax.persistence.criteria.Root;
 
-import modelo.Atendimento;
-import modelo.Paciente;
-import modelo.Taco;
+import service.GenericService;
 
 @Stateless
-public class AtendimentoService extends GenericService<Atendimento> {
+public class PacienteService extends GenericService<Paciente>{
 	
-	public AtendimentoService(){
-		super(Atendimento.class);
+	public PacienteService(){
+		super(Paciente.class);
 	}
 	
 	
 	
 	
-	
-	
-
 	public List<Paciente> obtemPacientePorNome(String nome){
 		CriteriaBuilder cb = getEntityManager().getCriteriaBuilder();
 		CriteriaQuery<Paciente> cquery = cb.createQuery(Paciente.class);
@@ -38,5 +33,6 @@ public class AtendimentoService extends GenericService<Atendimento> {
 		
 		return pacientes;
 	}
+	
 
 }

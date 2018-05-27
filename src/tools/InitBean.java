@@ -5,10 +5,6 @@ import java.util.Date;
 import javax.annotation.ManagedBean;
 import javax.ejb.EJB;
 
-import modelo.Paciente;
-import modelo.PacienteAdulto;
-import service.PacienteService;
-
 @ManagedBean
 public class InitBean {
 	

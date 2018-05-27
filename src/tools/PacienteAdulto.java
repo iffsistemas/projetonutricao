@@ -1,4 +1,4 @@
-package modelo;
+package tools;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -9,7 +9,9 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
-@Entity
+import modelo.MotivoAtendimento;
+
+//@Entity
 public class PacienteAdulto extends Paciente{
 
 	

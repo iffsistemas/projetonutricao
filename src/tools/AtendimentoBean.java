@@ -1,4 +1,4 @@
-package controle;
+package tools;
 
 public class AtendimentoBean {
 

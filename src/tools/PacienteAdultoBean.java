@@ -1,4 +1,4 @@
-package controle;
+package tools;
 
 import java.util.Arrays;
 import java.util.List;
@@ -10,8 +10,6 @@ import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 
 import modelo.MotivoAtendimento;
-import modelo.PacienteAdulto;
-import service.PacienteAdultoService;
 
 @ViewScoped
 @ManagedBean
@@ -69,10 +67,10 @@ public class PacienteAdultoBean {
 		String msg="Paciente gravado com sucesso";
 				
 		if(getPacienteAdulto().getId()==null){ 
-		//	getPacienteAdulto().getMotivos().addAll(Arrays.asList(motivosSelecionados));
+			getPacienteAdulto().getMotivos().addAll(Arrays.asList(motivosSelecionados));
 			pacienteAdultoService.create(pacienteAdulto);
 			setPacienteAdulto(new PacienteAdulto());		
-		//	Arrays.fill(motivosSelecionados, null);
+			Arrays.fill(motivosSelecionados, null);
 			FacesContext.getCurrentInstance().addMessage("menssagem", new FacesMessage("Parabéns!", msg));
 		
 		}

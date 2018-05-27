@@ -1,4 +1,4 @@
-package modelo;
+package tools;
 
 import java.util.Date;
 
@@ -7,7 +7,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
-@Entity
+//@Entity
 public class Atendimento {
 	
 	@Id @GeneratedValue

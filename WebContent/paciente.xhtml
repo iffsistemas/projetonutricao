@@ -20,7 +20,7 @@
 		<p:panelGrid align="center" id="tableBuscarAtendimento" columns="3" > 
 		
 		
-		<p:column><h:outputText value="Paciente: " for="nome"/></p:column>
+		<p:column><p:outputLabel value="Paciete: " for="nome"/></p:column>
 		
 		<p:column><h:inputText id="nome" value="#{pacienteBean.paciente.nome}" /></p:column>      		 
 	
@@ -36,15 +36,15 @@
 <h:form id="formConsultas">
 	<p:dataTable value="#{pacienteBean.pacientes}" var="paciente"
 	paginator="true" id="tableConsultas"  emptyMessage="Nenhum registro encontrado!" rows="5">
-		<p:column>
-			<f:facet name="header">Nome do Paciente</f:facet>
-			<h:outputText value="#{paciente.nome}" />
+		<p:column sortBy="#{paciente.nome}" filterBy="#{paciente.nome}">
+			<f:facet  name="header">Nome do Paciente</f:facet>
+			<p:outputLabel value="#{paciente.nome}" />
 		</p:column>
 		<p:column>
 			<f:facet name="header">Nascimento</f:facet>
-			<h:outputText value="#{paciente.dataNascimento}">
+			<p:outputLabel value="#{paciente.dataNascimento}">
 			<f:convertDateTime pattern="dd/MM/yyyy" />
-			</h:outputText>
+			</p:outputLabel>
 		</p:column>		
 		<p:column>
 			<f:facet name="header">Ver Atendimentos</f:facet>
@@ -94,16 +94,16 @@ draggable="false" resizable="false" showEffect="slide" hideEffect="slide">
 	
      
         <h:panelGrid columns="2">
-             	<h:outputText value="Nome" for="nome"/>
-                <h:inputText id="nome" value="#{pacienteAdultoBean.pacienteAdulto.nome}" required="true" requiredMessage="Nome Obrigatório!"/>
+             	<p:outputLabel value="Nome" for="nome"/>
+                <p:inputText id="nome" value="#{pacienteAdultoBean.pacienteAdulto.nome}" required="true" requiredMessage="Nome Obrigatório!"/>
  
-                <h:outputText value="Data de Nascimento: " for="dataNascimento" />
+                <p:outputLabel value="Data de Nascimento: " for="dataNascimento" />
 				<p:calendar locale="pt" id="dataNascimento"
                             value="#{pacienteAdultoBean.pacienteAdulto.dataNascimento}" effect="slide"
                             pattern="dd/MM/yyyy" mask="true"/>
                 
-                <h:outputText value="Idade:" for="idade"/>
-                <h:inputText id="idade" value="#{pacienteAdultoBean.pacienteAdulto.idade}" />
+                <p:outputLabel value="Idade:" for="idade"/>
+                <p:inputText id="idade" value="#{pacienteAdultoBean.pacienteAdulto.idade}" />
                 
        </h:panelGrid>
                 
@@ -114,14 +114,14 @@ draggable="false" resizable="false" showEffect="slide" hideEffect="slide">
                
                 <h:panelGrid columns="2">
                  
-                 	<h:outputText value="Email:" for="email"/>
-                	<h:inputText id="email" value="#{pacienteAdultoBean.pacienteAdulto.email}" />
+                 	<p:outputLabel value="Email:" for="email"/>
+                	<p:inputText id="email" value="#{pacienteAdultoBean.pacienteAdulto.email}" />
                 
-                	<h:outputText value="Tel. Residencial:" for="telefoneRes"/>
-                    <h:inputText id="telefoneRes" value="#{pacienteAdultoBean.pacienteAdulto.telefoneRes}" />
+                	<p:outputLabel value="Tel. Residencial:" for="telefoneRes"/>
+                    <p:inputText id="telefoneRes" value="#{pacienteAdultoBean.pacienteAdulto.telefoneRes}" />
                 
-                    <h:outputText value="Celular:" for="telefoneCel"/>
-                    <h:inputText id="telefoneCel" value="#{pacienteAdultoBean.pacienteAdulto.telefoneCel}" />
+                    <p:outputLabel value="Celular:" for="telefoneCel"/>
+                    <p:inputText id="telefoneCel" value="#{pacienteAdultoBean.pacienteAdulto.telefoneCel}" />
                 
                  </h:panelGrid>    
                 
@@ -133,8 +133,10 @@ draggable="false" resizable="false" showEffect="slide" hideEffect="slide">
                
                 <h:panelGrid columns="2">
                  
-                 	<h:outputText value="Profissão:" for="profissao"/>
-                	<h:inputText id="profissao" value="#{pacienteAdultoBean.pacienteAdulto.profissão}" />
+                 	<p:outputLabel value="Profissão:" for="profissao"/>
+                	<p:inputText id="profissao" value="#{pacienteAdultoBean.pacienteAdulto.profissão}" />
+                	
+                	
                 
               <p:commandButton action="#{pacienteAdultoBean.gravarIdentificacao()}" value="Salvar" 
                 update=":mensagem, :formConsultas:tableConsultas, :buscarAtendimento, :formNovoPaciente" 
