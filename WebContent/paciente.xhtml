@@ -78,7 +78,7 @@
 	 	 
 	 	 <p:column> <p:commandButton value="Criança"  /> </p:column>
 	 	  
-	 	 <p:column> <p:commandButton value="Gestante" /> </p:column>
+	 	 <p:column> <p:commandButton value="Gestante" oncomplete="PF('dialogCadGestante').show();" /> </p:column>
 	 	 
 	 	 </h:panelGrid>
 	 
@@ -154,6 +154,78 @@ draggable="false" resizable="false" showEffect="slide" hideEffect="slide">
 </p:dialog>
 
 
+
+
+<!-- =================Dialog Gestante===================================== --> 
+
+
+
+
+
+<p:dialog  header="Cadastro - Paciente Gestante" widgetVar="dialogCadGestante" 
+draggable="false" resizable="false" showEffect="slide" hideEffect="slide"> 
+
+<h:form id="dialogGestante">
+	
+	
+	
+     
+        <h:panelGrid id="tableIdentificacao" columns="2">
+             	<p:outputLabel value="Nome" for="nome"/>
+                <p:inputText id="nome" value="#{cadastroPacienteGestanteBean.cadastroPacienteGestante.nome}" required="true" requiredMessage="Nome Obrigatório!"/>
+ 
+                <p:outputLabel value="Data de Nascimento: " for="dataNascimento" />
+				<p:calendar locale="pt" id="dataNascimento"
+                            value="#{cadastroPacienteGestanteBean.cadastroPacienteGestante.dataNascimento}" effect="slide"
+                            pattern="dd/MM/yyyy" mask="true"/>
+                
+                <p:outputLabel value="Idade:" for="idade"/>
+                <p:inputText id="idade" value="#{cadastroPacienteGestanteBean.cadastroPacienteGestante.idade}" />
+                
+       </h:panelGrid>
+                
+               <!-- =================Identificação Contatos===================================== --> 
+              
+                               
+                <p:fieldset legend="Contatos" id="fieldContados"> 
+               
+                <h:panelGrid columns="2">
+                 
+                 	<p:outputLabel value="Email:" for="email"/>
+                	<p:inputText id="email" value="#{cadastroPacienteGestanteBean.cadastroPacienteGestante.email}" />
+                
+                	<p:outputLabel value="Tel. Residencial:" for="telefoneRes"/>
+                    <p:inputText id="telefoneRes"  value="#{cadastroPacienteGestanteBean.cadastroPacienteGestante.telefoneRes}" />
+                
+                    <p:outputLabel value="Celular:" for="telefoneCel"/>
+                    <p:inputText id="telefoneCel" value="#{cadastroPacienteGestanteBean.cadastroPacienteGestante.telefoneCel}" />
+                
+                 </h:panelGrid>    
+                
+                </p:fieldset>
+                
+                 <!-- =======================OCUPAÇÂO============================================= --> 
+                 
+                 <p:fieldset legend="Ocupação" id="fieldOcupação"> 
+               
+                <h:panelGrid columns="2">
+                 
+                 	<p:outputLabel value="Profissão:" for="profissao"/>
+                	<p:inputText id="profissao" value="#{cadastroPacienteGestanteBean.cadastroPacienteGestante.profissão}" />
+                	
+                	
+                
+              <p:commandButton actionListener="#{cadastroPacienteGestanteBean.salvar()}" value="Salvar" 
+                update=":mensagem :formConsultas:tableConsultas :dialogAdulto:tableIdentificacao" 
+                process="@form" oncomplete="PF('dialogCadGestante').hide();" /> 
+                
+                <p:commandButton value="Fechar" oncomplete="PF('dialogCadGestante').hide();" />               	
+                	                
+                 </h:panelGrid>    
+                
+                </p:fieldset>
+</h:form>
+</p:dialog>
 
 
 

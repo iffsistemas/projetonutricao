@@ -7,7 +7,7 @@ import javax.persistence.Entity;
 public class CadastroPacienteGestante extends CadastroPaciente {
 	
 	@Column(length=20)
-  private String profissão;
+  private String profissão="Destista";
 
 public String getProfissão() {
 	return profissão;
