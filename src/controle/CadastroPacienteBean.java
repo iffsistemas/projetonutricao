@@ -77,6 +77,7 @@ public class CadastroPacienteBean {
 		cadastroPacientes = cadastroPacienteService.obtemPacientePorNome(getNome());
 		
 		
+		
 	}
 	
 	

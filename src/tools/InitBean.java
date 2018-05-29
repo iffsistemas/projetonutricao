@@ -5,11 +5,11 @@ import java.util.Date;
 import javax.annotation.ManagedBean;
 import javax.ejb.EJB;
 
-@ManagedBean
+//@ManagedBean
 public class InitBean {
 	
-	@EJB
-	PacienteService pacienteService;
+	//@EJB
+	//PacienteService pacienteService;
 
 	
 	public void iniciar() {

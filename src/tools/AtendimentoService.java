@@ -11,7 +11,7 @@ import javax.persistence.criteria.Root;
 import modelo.Taco;
 import service.GenericService;
 
-@Stateless
+//@Stateless
 public class AtendimentoService extends GenericService<Atendimento> {
 	
 	public AtendimentoService(){

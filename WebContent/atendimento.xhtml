@@ -9,34 +9,33 @@
 <ui:composition template="/templates/templates.xhtml"> 
 
 
-<ui:define name="titulo">Novo Atendimento</ui:define>
+<ui:define name="titulo"></ui:define>
 
 
 <ui:define name="conteudo">
 
 
-		
-       
+
+      
  <h:form id="formNovoAtendimento">
         
        
        <h:panelGrid columns="2"> 
        
         <h:outputText value="Descrição do Atendimento: " for="descricaoAtndimento"/>
-        <h:inputTextarea id="descricaoAtndimento"  value="#{atendimentoBean.atendimento.descricaoAtendimento}" rows="3" cols="60" autoResize="false" />
+        <h:inputTextarea id="descricaoAtndimento"  value="#{atendimentoBean.atendimento.descricao}" rows="3" cols="60" autoResize="false" />
        
        </h:panelGrid> 
        
-        <p:commandButton action="#{atendimentoBean.gravar()}" value="Gravar" 
+        <p:commandButton action="#{atendimentoBean.salvar()}" value="Gravar" 
                 update=":mensagem" />
 
 </h:form>
+
+
+
+
   
-	
-
-
-
-
 </ui:define>	 
 </ui:composition>
 

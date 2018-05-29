@@ -117,6 +117,7 @@ public class TacoBean {
 	public void buscarAlimento() {
 		 alimentos = tacoService.obtemAlimentosPorNome(getTaco().getNome());	
 		
+	
 		
 	}
 	

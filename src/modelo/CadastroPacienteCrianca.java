@@ -8,6 +8,7 @@ public class CadastroPacienteCrianca extends CadastroPaciente {
 	
 	
    private Boolean escolaridade;
+   
    @Column(length=15)
    private String periodo="C.A";
    
