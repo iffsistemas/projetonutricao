@@ -30,6 +30,10 @@ public class AtendimentoBean {
 	
 	List<CadastroPaciente> cadastroPacientes = new ArrayList<CadastroPaciente>();
 	
+	List<Atendimento> atendimentos = new ArrayList<Atendimento>();
+
+	
+	
 	CadastroPaciente cadastroPaciente = new CadastroPaciente();
 	
 	
@@ -37,6 +41,18 @@ public class AtendimentoBean {
 	
 
 	
+	public List<Atendimento> getAtendimentos() {
+		return atendimentos;
+	}
+
+
+
+	public void setAtendimentos(List<Atendimento> atendimentos) {
+		this.atendimentos = atendimentos;
+	}
+
+
+
 	public CadastroPaciente getCadastroPaciente() {
 		return cadastroPaciente;
 	}
@@ -157,15 +173,18 @@ public class AtendimentoBean {
 		public void pegarPaciente(ActionEvent evento) {
 			
 		
-			System.out.println("teste");
+		cadastroPaciente = (CadastroPaciente) evento.getComponent().getAttributes().get("pegarPaciente");	
+		
+	//	atendimentos = atendimentoService.obtemPorId(cadastroPaciente.getId());	
 			
 			
-		//cadastroPaciente = (CadastroPaciente) evento.getComponent().getAttributes().get("pegarPaciente");
+			
+		//
 		
 		//FacesContext.getCurrentInstance().addMessage("menssagem", new FacesMessage("Paciente ", getCadastroPaciente().getNome()));
 		
 		
-		
+		//System.out.println(cadastroPaciente.getNome());
 			
 		}
 	

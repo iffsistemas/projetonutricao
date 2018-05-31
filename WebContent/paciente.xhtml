@@ -50,8 +50,8 @@
 		</p:column>		
 		<p:column>
 			<f:facet name="header">Ver Atendimentos</f:facet>
-			<p:commandButton icon="ui-icon-list-alt" action="#{atendimentoBean.pegarPaciente()}"
-			value="Atendimentos" update=":mensagem, formConsultas:tableConsultas"  process="@form">
+			<p:commandButton icon="ui-icon-list-alt" actionListener="#{atendimentoBean.pegarPaciente}"
+			oncomplete="PF('dialogAtendimentos').show()" value="Atendimentos" update=":mensagem, formConsultas:tableConsultas"  process="@form">
 			<f:attribute name="pegarPaciente"  value="#{paciente}"/>
 			</p:commandButton>			
 						
@@ -93,7 +93,7 @@
                   
 
 <p:dialog  header="Cadastro - Paciente Adulto" widgetVar="dialogCadAdulto" 
-draggable="false" resizable="false" showEffect="slide" hideEffect="slide"> 
+draggable="false" resizable="false" modal="true" showEffect="slide" hideEffect="slide"> 
 
 <h:form id="dialogAdulto">
 	
@@ -167,7 +167,7 @@ draggable="false" resizable="false" showEffect="slide" hideEffect="slide">
 
 
 <p:dialog  header="Cadastro - Paciente Gestante" widgetVar="dialogCadGestante" 
-draggable="false" resizable="false" showEffect="slide" hideEffect="slide"> 
+draggable="false" resizable="false" modal="true" showEffect="slide" hideEffect="slide"> 
 
 <h:form id="dialogGestante">
 	
@@ -236,7 +236,7 @@ draggable="false" resizable="false" showEffect="slide" hideEffect="slide">
 
 
 <p:dialog  header="Cadastro - Paciente Criança" widgetVar="dialogCadCrianca" 
-draggable="false" resizable="false" showEffect="slide" hideEffect="slide"> 
+draggable="false" resizable="false" modal="true" showEffect="slide" hideEffect="slide"> 
 
 <h:form id="dialogCrianca">
 	
@@ -311,7 +311,37 @@ draggable="false" resizable="false" showEffect="slide" hideEffect="slide">
 
 
 
+<!-- ======================= Botao Atendimentos============================================= --> 
 
+
+<p:dialog  header="Atendimentos" widgetVar="dialogAtendimentos" 
+draggable="false" resizable="false" modal="true" showEffect="slide" hideEffect="slide"> 
+
+
+<p:dataTable style="max-width: 550px; min-width: 550px" value="#{atendimentoBean.atendimentos}" var="atend"
+	paginator="true" id="tableAtendimentos"  emptyMessage="Nenhum Atendimento Cadastrado!" rows="5">
+		
+			
+		<p:column>
+			<f:facet name="header">Dt. Atendimento</f:facet>
+			<h:outputText value="#{atend.dataAtendimento}" />
+		</p:column>
+		<p:column>
+			<f:facet name="header">Descrição</f:facet>
+			<h:outputText value="#{atend.descricao}" />
+		</p:column>		
+			
+						 
+		 <p:commandButton value="Fechar" oncomplete="PF('dialogCadAtendimentos').hide();" />
+		
+		
+	</p:dataTable> 
+
+
+
+
+
+</p:dialog>
 
 
 
