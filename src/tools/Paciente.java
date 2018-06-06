@@ -1,46 +1,31 @@
 package tools;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import javax.persistence.ElementCollection;
+import javax.persistence.FetchType;
 
-//@Entity
-//@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+
 public class Paciente {
 	
+
+	private Long id;
 	
-	@Id @GeneratedValue
-	private Long id;	
-	private String nome;
+	private String nome="PacTeste";
 	
-	@Temporal(TemporalType.DATE)
 	private Date dataNascimento;
-	
-	@Column(length=3)
 	private Integer idade=30;
 	private String email="pac1@email.com";
 	private String telefoneRes="1233-1256";
 	private String telefoneCel="9999-8558";
 	
 	
-	/*
-	private String efCabeca="1";
-	private String efPescoco="1";
-	private String efAbdmon="1";
-	private String efMmii="1";
-	private String efMmss="1";
-	private String efEdema="1";
-	*/
 	
-
 	
+	@ElementCollection(fetch = FetchType.EAGER)
+	private Collection<MotivoAtendimento> motivos  = new ArrayList<MotivoAtendimento>();
 
 	public Long getId() {
 		return id;
@@ -102,6 +87,12 @@ public class Paciente {
 		this.telefoneCel = telefoneCel;
 	}
 
-	
-	
+	public Collection<MotivoAtendimento> getMotivos() {
+		return motivos;
+	}
+
+	public void setMotivos(Collection<MotivoAtendimento> motivos) {
+		this.motivos = motivos;
+	}	
+
 }

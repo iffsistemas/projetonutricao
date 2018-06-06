@@ -113,7 +113,7 @@
         	<p:column ><h:outputText value="Piridoxina(mg)" for="piridoxina"/></p:column>
         	<p:column ><h:outputText value="Niacina(mg)" for="niacina"/></p:column>
         	<p:column ><h:outputText value="Vitamina C(mg)" for="vitaminaC"/></p:column>
-        	<p:column >Ação</p:column>
+        	<p:column >Salvar</p:column>
         	
         	
         	
@@ -134,8 +134,8 @@
      		<p:column> <h:inputText styleClass="input-taco" id="niacina" value="#{tacoBean.taco.niacina}"/></p:column>
      		<p:column> <h:inputText styleClass="input-taco" id="vitaminaC" value="#{tacoBean.taco.vitaminaC}"/></p:column>
      		
-     		<p:column> <p:commandButton action="#{tacoBean.salvar()}" value="Salvar" 
-                update=":mensagem, formListaAlimentos:tableAlimentos, :formCadAlimentos" /> </p:column>
+     		<p:column> <p:commandButton action="#{tacoBean.salvar()}" 
+               icon="ui-icon-disk" update=":mensagem, formListaAlimentos:tableAlimentos, :formCadAlimentos" /> </p:column>
      		
      	 
      		 </p:row>
@@ -145,7 +145,7 @@
      		 
      		 
                 
-<p:column> <p:commandButton action="#{tacoBean.buscarAlimento()}" value="Buscar" 
+<p:column> <p:commandButton action="#{tacoBean.buscarAlimento()}" icon="ui-icon-search" value="Buscar" 
                 update=":mensagem, formListaAlimentos:tableAlimentos" /> </p:column>
         
         </p:panelGrid>
@@ -170,14 +170,14 @@
 		</p:column>	
 		<p:column>
 			<f:facet name="header">Editar</f:facet>
-			<p:commandButton icon="ui-icon-edit" action="#{tacoBean.editarAlimeto(alim)}"
-			value="Editar" update=":mensagem, :formCadAlimentos" process="@form"/>
+			<p:commandButton icon="ui-icon-pencil" action="#{tacoBean.editarAlimeto(alim)}"
+			update=":mensagem, :formCadAlimentos" process="@form"/>
 		</p:column>
 		
 		<p:column>
 			<f:facet name="header">Deletar</f:facet>
 			<p:commandButton icon="ui-icon-trash" action="#{tacoBean.removerAlimento(alim)}"
-			value="Deletar" update=":mensagem, :formCadAlimentos, :formListaAlimentos" process="@form" >
+			 update=":mensagem, :formCadAlimentos, :formListaAlimentos" process="@form" >
 			<p:confirm header="Confirmação" message="Deseja excluir alimento?" icon="ui-icon-alert" />
 			</p:commandButton>
 			
@@ -186,6 +186,12 @@
         <p:commandButton value="Não" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
         </p:confirmDialog>
 						 
+		</p:column>
+		
+		<p:column>
+			<f:facet name="header">Ver</f:facet>
+			<p:commandButton icon="ui-icon-extlink" oncomplete="PF('dialogVerAlimento').show()"/>
+			 
 		</p:column>
 		
 		
@@ -198,6 +204,105 @@
 
 
 
+<p:dialog  header="Tabela Nutricional" widgetVar="dialogVerAlimento" 
+draggable="false" resizable="false" modal="true" showEffect="slide" hideEffect="slide"> 
+
+
+<p:panelGrid  columns="2" styleClass=".ui-panelgrid">	
+	
+	
+	<h:outputText value="Umidade:" />
+    <h:outputText value="#{tacoBean.taco.umidade}" />
+    
+    <h:outputText value="Umidade:" />
+    <h:outputText value="#{tacoBean.taco.umidade}" />
+    
+    <h:outputText value="Umidade:" />
+    <h:outputText value="#{tacoBean.taco.umidade}" />
+    
+    <h:outputText value="Umidade:" />
+    <h:outputText value="#{tacoBean.taco.umidade}" />
+    
+    <h:outputText value="Umidade:" />
+    <h:outputText value="#{tacoBean.taco.umidade}" />
+    
+    <h:outputText value="Umidade:" />
+    <h:outputText value="#{tacoBean.taco.umidade}" />
+    
+    <h:outputText value="Umidade:" />
+    <h:outputText value="#{tacoBean.taco.umidade}" />
+    
+    <h:outputText value="Umidade:" />
+    <h:outputText value="#{tacoBean.taco.umidade}" />
+    
+    <h:outputText value="Umidade:" />
+    <h:outputText value="#{tacoBean.taco.umidade}" />
+    
+    <h:outputText value="Umidade:" />
+    <h:outputText value="#{tacoBean.taco.umidade}" />
+    
+    <h:outputText value="Umidade:" />
+    <h:outputText value="#{tacoBean.taco.umidade}" />
+    
+    <h:outputText value="Umidade:" />
+    <h:outputText value="#{tacoBean.taco.umidade}" />
+    
+    <h:outputText value="Umidade:" />
+    <h:outputText value="#{tacoBean.taco.umidade}" />
+    
+    <h:outputText value="Umidade:" />
+    <h:outputText value="#{tacoBean.taco.umidade}" />
+    
+    <h:outputText value="Umidade:" />
+    <h:outputText value="#{tacoBean.taco.umidade}" />
+    
+    <h:outputText value="Umidade:" />
+    <h:outputText value="#{tacoBean.taco.umidade}" />
+    
+    <h:outputText value="Umidade:" />
+    <h:outputText value="#{tacoBean.taco.umidade}" />
+    
+    <h:outputText value="Umidade:" />
+    <h:outputText value="#{tacoBean.taco.umidade}" />
+    
+    <h:outputText value="Umidade:" />
+    <h:outputText value="#{tacoBean.taco.umidade}" />
+    
+    <h:outputText value="Umidade:" />
+    <h:outputText value="#{tacoBean.taco.umidade}" />
+    
+    <h:outputText value="Umidade:" />
+    <h:outputText value="#{tacoBean.taco.umidade}" />
+    
+    <h:outputText value="Umidade:" />
+    <h:outputText value="#{tacoBean.taco.umidade}" />
+    
+    <h:outputText value="Umidade:" />
+    <h:outputText value="#{tacoBean.taco.umidade}" />
+    
+    <h:outputText value="Umidade:" />
+    <h:outputText value="#{tacoBean.taco.umidade}" />
+    
+    <h:outputText value="Umidade:" />
+    <h:outputText value="#{tacoBean.taco.umidade}" />
+    
+    <h:outputText value="Umidade:" />
+    <h:outputText value="#{tacoBean.taco.umidade}" />
+    
+	
+	
+	
+	</p:panelGrid>
+
+
+
+
+
+
+
+
+
+</p:dialog>
 
 
 
