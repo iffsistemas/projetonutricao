@@ -190,8 +190,10 @@
 		
 		<p:column>
 			<f:facet name="header">Ver</f:facet>
-			<p:commandButton icon="ui-icon-extlink" oncomplete="PF('dialogVerAlimento').show()"/>
+			<p:commandButton update=":formTabeAlimento:panelAlimento" icon="ui-icon-extlink" oncomplete="PF('dialogVerAlimento').show()">
+			 <f:setPropertyActionListener value="#{alim}" target="#{tacoBean.taco}"/>
 			 
+			 </p:commandButton>
 		</p:column>
 		
 		
@@ -207,18 +209,20 @@
 <p:dialog  header="Tabela Nutricional" widgetVar="dialogVerAlimento" 
 draggable="false" resizable="false" modal="true" showEffect="slide" hideEffect="slide"> 
 
+<h:form id="formTabeAlimento">
+	
 
-<p:panelGrid  columns="2" styleClass=".ui-panelgrid">	
+<p:panelGrid  columns="2" id="panelAlimento">	
 	
 	
 	<h:outputText value="Umidade:" />
-    <h:outputText value="#{tacoBean.taco.umidade}" />
+    <h:outputText value="#{tacoBean.taco.nome}" />
     
     <h:outputText value="Umidade:" />
     <h:outputText value="#{tacoBean.taco.umidade}" />
     
     <h:outputText value="Umidade:" />
-    <h:outputText value="#{tacoBean.taco.umidade}" />
+    <h:outputText value="#{tacoBean.taco.kcal}" />
     
     <h:outputText value="Umidade:" />
     <h:outputText value="#{tacoBean.taco.umidade}" />
@@ -294,7 +298,7 @@ draggable="false" resizable="false" modal="true" showEffect="slide" hideEffect="
 	
 	</p:panelGrid>
 
-
+</h:form>
 
 
 
