@@ -190,10 +190,12 @@
 		
 		<p:column>
 			<f:facet name="header">Ver</f:facet>
-			<p:commandButton update=":formTabeAlimento:panelAlimento" icon="ui-icon-extlink" oncomplete="PF('dialogVerAlimento').show()">
-			 <f:setPropertyActionListener value="#{alim}" target="#{tacoBean.taco}"/>
+			<p:commandButton update="formTabeAlimento:panelAlimento" 
+			icon="ui-icon-extlink" oncomplete="PF('dialogVerAlimento').show()">
+			<f:setPropertyActionListener value="#{alim}" target="#{tacoBean.taco}" />
+			
 			 
-			 </p:commandButton>
+			 			 </p:commandButton>
 		</p:column>
 		
 		
@@ -206,7 +208,7 @@
 
 
 
-<p:dialog  header="Tabela Nutricional do alimento" widgetVar="dialogVerAlimento" 
+<p:dialog  header="Tabela Nutricional" widgetVar="dialogVerAlimento" 
 draggable="false" resizable="false" modal="true" showEffect="slide" hideEffect="slide"> 
 
 <h:form id="formTabeAlimento">
@@ -215,87 +217,88 @@ draggable="false" resizable="false" modal="true" showEffect="slide" hideEffect="
 <p:panelGrid  columns="2" id="panelAlimento">	
 	
 	
-	<h:outputText value="Umidade:" />
+	<h:outputText value="Alimento:" />
     <h:outputText value="#{tacoBean.taco.nome}" />
     
     <h:outputText value="Umidade:" />
     <h:outputText value="#{tacoBean.taco.umidade}" />
     
-    <h:outputText value="Umidade:" />
+    <h:outputText value="Kcal:" />
     <h:outputText value="#{tacoBean.taco.kcal}" />
     
-    <h:outputText value="Umidade:" />
-    <h:outputText value="#{tacoBean.taco.umidade}" />
+    <h:outputText value="Kj:" />
+    <h:outputText value="#{tacoBean.taco.kj}" />
     
-    <h:outputText value="Umidade:" />
-    <h:outputText value="#{tacoBean.taco.umidade}" />
+    <h:outputText value="Proteína (g):" />
+    <h:outputText value="#{tacoBean.taco.proteina}" />
     
-    <h:outputText value="Umidade:" />
-    <h:outputText value="#{tacoBean.taco.umidade}" />
+    <h:outputText value="Lipídeos:" />
+    <h:outputText value="#{tacoBean.taco.lipideos}" />
     
-    <h:outputText value="Umidade:" />
-    <h:outputText value="#{tacoBean.taco.umidade}" />
+    <h:outputText value="Colesterol (mg):" />
+    <h:outputText value="#{tacoBean.taco.colesterol}" />
     
-    <h:outputText value="Umidade:" />
-    <h:outputText value="#{tacoBean.taco.umidade}" />
+    <h:outputText value="Carboítrado (g):" />
+    <h:outputText value="#{tacoBean.taco.carboidrato}" />
     
-    <h:outputText value="Umidade:" />
-    <h:outputText value="#{tacoBean.taco.umidade}" />
+    <h:outputText value="Fibra Alimentar (g):" />
+    <h:outputText value="#{tacoBean.taco.fibraAlimentar}" />
     
-    <h:outputText value="Umidade:" />
-    <h:outputText value="#{tacoBean.taco.umidade}" />
+    <h:outputText value="Cinzas (g):" />
+    <h:outputText value="#{tacoBean.taco.cinzas}" />
     
-    <h:outputText value="Umidade:" />
-    <h:outputText value="#{tacoBean.taco.umidade}" />
+    <h:outputText value="Cálcio (mg):" />
+    <h:outputText value="#{tacoBean.taco.calcio}" />
     
-    <h:outputText value="Umidade:" />
-    <h:outputText value="#{tacoBean.taco.umidade}" />
+    <h:outputText value="Magnésio:" />
+    <h:outputText value="#{tacoBean.taco.magnesio}" />
     
-    <h:outputText value="Umidade:" />
-    <h:outputText value="#{tacoBean.taco.umidade}" />
+    <h:outputText value="Manganês:" />
+    <h:outputText value="#{tacoBean.taco.manganes}" />
     
-    <h:outputText value="Umidade:" />
-    <h:outputText value="#{tacoBean.taco.umidade}" />
+    <h:outputText value="Fósforo:" />
+    <h:outputText value="#{tacoBean.taco.fosforo}" />
     
-    <h:outputText value="Umidade:" />
-    <h:outputText value="#{tacoBean.taco.umidade}" />
+    <h:outputText value="Ferro (mg):" />
+    <h:outputText value="#{tacoBean.taco.ferro}" />
     
-    <h:outputText value="Umidade:" />
-    <h:outputText value="#{tacoBean.taco.umidade}" />
+    <h:outputText value="Sódio (mg):" />
+    <h:outputText value="#{tacoBean.taco.sodio}" />
     
-    <h:outputText value="Umidade:" />
-    <h:outputText value="#{tacoBean.taco.umidade}" />
+    <h:outputText value="Potássio (mg):" />
+    <h:outputText value="#{tacoBean.taco.potassio}" />
     
-    <h:outputText value="Umidade:" />
-    <h:outputText value="#{tacoBean.taco.umidade}" />
+    <h:outputText value="Cobre (mg):" />
+    <h:outputText value="#{tacoBean.taco.cobre}" />
     
-    <h:outputText value="Umidade:" />
-    <h:outputText value="#{tacoBean.taco.umidade}" />
+    <h:outputText value="Zinco (mg):" />
+    <h:outputText value="#{tacoBean.taco.zinco}" />
     
-    <h:outputText value="Umidade:" />
-    <h:outputText value="#{tacoBean.taco.umidade}" />
+    <h:outputText value="Retinol:" />
+    <h:outputText value="#{tacoBean.taco.retinol}" />
     
-    <h:outputText value="Umidade:" />
-    <h:outputText value="#{tacoBean.taco.umidade}" />
+    <h:outputText value="RE:" />
+    <h:outputText value="#{tacoBean.taco.re}" />
     
-    <h:outputText value="Umidade:" />
-    <h:outputText value="#{tacoBean.taco.umidade}" />
+    <h:outputText value="REA:" />
+    <h:outputText value="#{tacoBean.taco.rea}" />
     
-    <h:outputText value="Umidade:" />
-    <h:outputText value="#{tacoBean.taco.umidade}" />
+    <h:outputText value="Tiamina (mg):" />
+    <h:outputText value="#{tacoBean.taco.tiamina}" />
     
-    <h:outputText value="Umidade:" />
-    <h:outputText value="#{tacoBean.taco.umidade}" />
+    <h:outputText value="Riboflavina (mg):" />
+    <h:outputText value="#{tacoBean.taco.riboflavina}" />
     
-    <h:outputText value="Umidade:" />
-    <h:outputText value="#{tacoBean.taco.umidade}" />
+    <h:outputText value="Piridoxina (mg):" />
+    <h:outputText value="#{tacoBean.taco.piridoxina}" />
     
-    <h:outputText value="Umidade:" />
-    <h:outputText value="#{tacoBean.taco.umidade}" />
+    <h:outputText value="Niacina (mg):" />
+    <h:outputText value="#{tacoBean.taco.niacina}" />
     
+    <h:outputText value="Vitamina C (mg):" />
+    <h:outputText value="#{tacoBean.taco.vitaminaC}" />
 	
-	
-	
+		
 	</p:panelGrid>
 
 </h:form>

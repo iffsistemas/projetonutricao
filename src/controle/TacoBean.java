@@ -25,8 +25,10 @@ public class TacoBean {
 	TacoService tacoService;
 	
 	
+	Taco alimentoSelecionado = new Taco();
 	
 	Taco taco = new Taco();
+	
 	
 	List<Taco> alimentos = new ArrayList<Taco>();
 	
@@ -57,9 +59,16 @@ public class TacoBean {
 	public void setAlimentos(List<Taco> alimentos) {
 		this.alimentos = alimentos;
 	}
+	
+	
+	public Taco getAlimentoSelecionado() {
+		return alimentoSelecionado;
+	}
 
-	
-	
+	public void setAlimentoSelecionado(Taco alimentoSelecionado) {
+		this.alimentoSelecionado = alimentoSelecionado;
+	}
+
 	@PostConstruct
 	public void init(){
 		atualizarAlimentos();
@@ -105,7 +114,7 @@ public class TacoBean {
 		tacoService.remove(alimento);
 		//FacesContext.getCurrentInstance().addMessage("menssagem", new FacesMessage("Parabéns!", "Alimento Removido!"));
 		 
-		FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Alimento", "excluído com sucesso");
+		FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Parabéns", "Alimento excluído com sucesso");
 		FacesContext.getCurrentInstance().addMessage(null, message);
 		
 		
@@ -121,5 +130,7 @@ public class TacoBean {
 		
 	}
 	
-	
 }
+	
+	
+
