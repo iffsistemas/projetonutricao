@@ -23,10 +23,10 @@
 		
 		
 			<p:column><p:outputLabel value="Paciente: " for="nome"/></p:column>
-			<p:column><h:inputText id="nome" value="#{cadastroPacienteBean.nome}" /></p:column>   
+			<p:column><h:inputText id="nome" value="#{pacienteBean.nome}" /></p:column>   
 		   		 
 	
-		<p:column> <p:commandButton action="#{cadastroPacienteBean.buscarNome()}" value="Buscar" 
+		<p:column> <p:commandButton action="#{pacienteBean.buscarNome()}" value="Buscar" 
                 update=":mensagem :formConsultas:tableConsultas" icon="ui-icon-search" /> </p:column>
 		
 		
@@ -36,7 +36,7 @@
 
 
 <h:form id="formConsultas">
-	<p:dataTable value="#{cadastroPacienteBean.cadastroPacientes}" var="paciente"
+	<p:dataTable value="#{pacienteBean.pacientes}" var="paciente"
 	paginator="true" id="tableConsultas"  emptyMessage="Nenhum registro encontrado!" rows="5">
 		<p:column sortBy="#{paciente.nome}" filterBy="#{paciente.nome}">
 			<f:facet  name="header">Nome do Paciente</f:facet>
@@ -50,9 +50,9 @@
 		</p:column>		
 		<p:column>
 			<f:facet name="header">Ver Atendimentos</f:facet>
-			<p:commandButton icon="ui-icon-list-alt" action="#{cadastroPacienteBean.carregarAtendimentos()}"
+			<p:commandButton icon="ui-icon-list-alt" action="#{pacienteBean.carregarAtendimentos()}"
 			oncomplete="PF('dialogAtendimentos').show()" value="Atendimentos" update=":mensagem, formConsultas:tableConsultas, formAtendimentos"  process="@form">
-				<f:setPropertyActionListener value="#{paciente}" target="#{cadastroPacienteBean.pacienteSelecionado}" />
+				<f:setPropertyActionListener value="#{paciente}" target="#{pacienteBean.pacienteSelecionado}" />
 			</p:commandButton>			
 						
 		</p:column>
@@ -82,7 +82,7 @@
 	 	  <p:column> <p:commandButton value="Gestante" oncomplete="PF('dialogCadGestante').show();" /> </p:column>
 	 	 
 	 	 <p:column> <p:commandButton value="Criança"  oncomplete="PF('dialogCadCrianca').show();" 
-	 	 action="#{cadastroPacienteCriancaBean.limpar()}" update="dialogCrianca" process="@form"/> </p:column>
+	 	 action="#{pacienteBean.limpar()}" update="dialogCrianca" process="@form"/> </p:column>
 	 	  
 	 		 	 
 	 	 </h:panelGrid>
@@ -103,15 +103,15 @@ draggable="false" resizable="false" modal="true" showEffect="slide" hideEffect="
      
         <h:panelGrid id="tableIdentificacao" columns="2">
              	<p:outputLabel value="Nome" for="nome"/>
-                <p:inputText id="nome" value="#{cadastroPacienteAdultoBean.cadastroPacienteAdulto.nome}" required="true" requiredMessage="Nome Obrigatório!"/>
+                <p:inputText id="nome" value="#{pacienteBean.pacienteAdulto.nome}" required="true" requiredMessage="Nome Obrigatório!"/>
  
                 <p:outputLabel value="Data de Nascimento: " for="dataNascimento" />
 				<p:calendar locale="pt" id="dataNascimento"
-                            value="#{cadastroPacienteAdultoBean.cadastroPacienteAdulto.dataNascimento}" effect="slide"
+                            value="#{pacienteBean.pacienteAdulto.dataNascimento}" effect="slide"
                             pattern="dd/MM/yyyy" mask="true"/>
                 
                 <p:outputLabel value="Idade:" for="idade"/>
-                <p:inputText id="idade" value="#{cadastroPacienteAdultoBean.cadastroPacienteAdulto.idade}" />
+                <p:inputText id="idade" value="#{pacienteBean.pacienteAdulto.idade}" />
                 
        </h:panelGrid>
                 
@@ -123,13 +123,13 @@ draggable="false" resizable="false" modal="true" showEffect="slide" hideEffect="
                 <h:panelGrid columns="2">
                  
                  	<p:outputLabel value="Email:" for="email"/>
-                	<p:inputText id="email" value="#{cadastroPacienteAdultoBean.cadastroPacienteAdulto.email}" />
+                	<p:inputText id="email" value="#{pacienteBean.pacienteAdulto.email}" />
                 
                 	<p:outputLabel value="Tel. Residencial:" for="telefoneRes"/>
-                    <p:inputText id="telefoneRes"  value="#{cadastroPacienteAdultoBean.cadastroPacienteAdulto.telefoneRes}" />
+                    <p:inputText id="telefoneRes"  value="#{pacienteBean.pacienteAdulto.telefoneRes}" />
                 
                     <p:outputLabel value="Celular:" for="telefoneCel"/>
-                    <p:inputText id="telefoneCel" value="#{cadastroPacienteAdultoBean.cadastroPacienteAdulto.telefoneCel}" />
+                    <p:inputText id="telefoneCel" value="#{pacienteBean.pacienteAdulto.telefoneCel}" />
                 
                  </h:panelGrid>    
                 
@@ -142,11 +142,11 @@ draggable="false" resizable="false" modal="true" showEffect="slide" hideEffect="
                 <h:panelGrid columns="2">
                  
                  	<p:outputLabel value="Profissão:" for="profissao"/>
-                	<p:inputText id="profissao" value="#{cadastroPacienteAdultoBean.cadastroPacienteAdulto.profissão}" />
+                	<p:inputText id="profissao" value="#{pacienteBean.pacienteAdulto.profissão}" />
                 	
                 	
                 
-              <p:commandButton actionListener="#{cadastroPacienteAdultoBean.salvar()}" value="Salvar" 
+              <p:commandButton actionListener="#{pacienteBean.salvarPacienteAdulto()}" value="Salvar" 
                 update=":mensagem :formConsultas:tableConsultas :dialogAdulto:tableIdentificacao" 
                 process="@form" oncomplete="PF('dialogCadAdulto').hide();" /> 
                 
@@ -177,15 +177,15 @@ draggable="false" resizable="false" modal="true" showEffect="slide" hideEffect="
      
         <h:panelGrid id="tableIdentificacao" columns="2">
              	<p:outputLabel value="Nome" for="nome"/>
-                <p:inputText id="nome" value="#{cadastroPacienteGestanteBean.cadastroPacienteGestante.nome}" required="true" requiredMessage="Nome Obrigatório!"/>
+                <p:inputText id="nome" value="#{pacienteBean.pacienteGestante.nome}" required="true" requiredMessage="Nome Obrigatório!"/>
  
                 <p:outputLabel value="Data de Nascimento: " for="dataNascimento" />
 				<p:calendar locale="pt" id="dataNascimento"
-                            value="#{cadastroPacienteGestanteBean.cadastroPacienteGestante.dataNascimento}" effect="slide"
+                            value="#{pacienteBean.pacienteGestante.dataNascimento}" effect="slide"
                             pattern="dd/MM/yyyy" mask="true"/>
                 
                 <p:outputLabel value="Idade:" for="idade"/>
-                <p:inputText id="idade" value="#{cadastroPacienteGestanteBean.cadastroPacienteGestante.idade}" />
+                <p:inputText id="idade" value="#{pacienteBean.pacienteGestante.idade}" />
                 
        </h:panelGrid>
                 
@@ -197,13 +197,13 @@ draggable="false" resizable="false" modal="true" showEffect="slide" hideEffect="
                 <h:panelGrid columns="2">
                  
                  	<p:outputLabel value="Email:" for="email"/>
-                	<p:inputText id="email" value="#{cadastroPacienteGestanteBean.cadastroPacienteGestante.email}" />
+                	<p:inputText id="email" value="#{pacienteBean.pacienteGestante.email}" />
                 
                 	<p:outputLabel value="Tel. Residencial:" for="telefoneRes"/>
-                    <p:inputText id="telefoneRes"  value="#{cadastroPacienteGestanteBean.cadastroPacienteGestante.telefoneRes}" />
+                    <p:inputText id="telefoneRes"  value="#{pacienteBean.pacienteGestante.telefoneRes}" />
                 
                     <p:outputLabel value="Celular:" for="telefoneCel"/>
-                    <p:inputText id="telefoneCel" value="#{cadastroPacienteGestanteBean.cadastroPacienteGestante.telefoneCel}" />
+                    <p:inputText id="telefoneCel" value="#{pacienteBean.pacienteGestante.telefoneCel}" />
                 
                  </h:panelGrid>    
                 
@@ -216,11 +216,11 @@ draggable="false" resizable="false" modal="true" showEffect="slide" hideEffect="
                 <h:panelGrid columns="2">
                  
                  	<p:outputLabel value="Profissão:" for="profissao"/>
-                	<p:inputText id="profissao" value="#{cadastroPacienteGestanteBean.cadastroPacienteGestante.profissão}" />
+                	<p:inputText id="profissao" value="#{pacienteBean.pacienteGestante.profissão}" />
                 	
                 	
                 
-              <p:commandButton actionListener="#{cadastroPacienteGestanteBean.salvar()}" value="Salvar" 
+              <p:commandButton actionListener="#{pacienteBean.salvarPacienteGestante()}" value="Salvar" 
                 update=":mensagem :formConsultas:tableConsultas :dialogGestante:tableIdentificacao" 
                 process="@form" oncomplete="PF('dialogCadGestante').hide();" /> 
                 
@@ -246,15 +246,15 @@ draggable="false" resizable="false" modal="true" showEffect="slide" hideEffect="
      
         <h:panelGrid id="tableIdentificacao" columns="2">
              	<p:outputLabel value="Nome" for="nome"/>
-                <p:inputText id="nome" value="#{cadastroPacienteCriancaBean.cadastroPacienteCrianca.nome}" required="true" requiredMessage="Nome Obrigatório!"/>
+                <p:inputText id="nome" value="#{pacienteBean.pacienteCrianca.nome}" required="true" requiredMessage="Nome Obrigatório!"/>
  
                 <p:outputLabel value="Data de Nascimento: " for="dataNascimento" />
 				<p:calendar locale="pt" id="dataNascimento"
-                            value="#{cadastroPacienteCriancaBean.cadastroPacienteCrianca.dataNascimento}" effect="slide"
+                            value="#{pacienteBean.pacienteCrianca.dataNascimento}" effect="slide"
                             pattern="dd/MM/yyyy" mask="true"/>
                 
                 <p:outputLabel value="Idade:" for="idade"/>
-                <p:inputText id="idade" value="#{cadastroPacienteCriancaBean.cadastroPacienteCrianca.idade}" />
+                <p:inputText id="idade" value="#{pacienteBean.pacienteCrianca.idade}" />
                 
        </h:panelGrid>
                 
@@ -266,13 +266,13 @@ draggable="false" resizable="false" modal="true" showEffect="slide" hideEffect="
                 <h:panelGrid columns="2">
                  
                  	<p:outputLabel value="Email:" for="email"/>
-                	<p:inputText id="email" value="#{cadastroPacienteCriancaBean.cadastroPacienteCrianca.email}" />
+                	<p:inputText id="email" value="#{pacienteBean.pacienteCrianca.email}" />
                 
                 	<p:outputLabel value="Tel. Residencial:" for="telefoneRes"/>
-                    <p:inputText id="telefoneRes"  value="#{cadastroPacienteCriancaBean.cadastroPacienteCrianca.telefoneRes}" />
+                    <p:inputText id="telefoneRes"  value="#{pacienteBean.pacienteCrianca.telefoneRes}" />
                 
                     <p:outputLabel value="Celular:" for="telefoneCel"/>
-                    <p:inputText id="telefoneCel" value="#{cadastroPacienteCriancaBean.cadastroPacienteCrianca.telefoneCel}" />
+                    <p:inputText id="telefoneCel" value="#{pacienteBean.pacienteCrianca.telefoneCel}" />
                 
                  </h:panelGrid>    
                 
@@ -288,16 +288,16 @@ draggable="false" resizable="false" modal="true" showEffect="slide" hideEffect="
                 <h:panelGrid columns="2">
                  
 			         <h:outputText value="Frequenta Escola/Creche" />
-			        <p:selectBooleanCheckbox value="#{cadastroPacienteCriancaBean.cadastroPacienteCrianca.escolaridade}" />
+			        <p:selectBooleanCheckbox value="#{pacienteBean.pacienteCrianca.escolaridade}" />
 			             
 			       			                 
 			          <h:outputText value="Período: " for="periodo"/>
-			          <p:inputText id="periodo" value="#{cadastroPacienteCriancaBean.cadastroPacienteCrianca.periodo}" />
+			          <p:inputText id="periodo" value="#{pacienteBean.pacienteCrianca.periodo}" />
 			                
 			                    
 			                         	
                 
-              <p:commandButton actionListener="#{cadastroPacienteCriancaBean.salvar()}" value="Salvar" 
+              <p:commandButton actionListener="#{pacienteBean.salvarPacienteCrianca()}" value="Salvar" 
                 update=":mensagem :formConsultas:tableConsultas :dialogCrianca:tableIdentificacao" 
                 process="@form" oncomplete="PF('dialogCadCrianca').hide();"/> 
                 
@@ -319,13 +319,15 @@ draggable="false" resizable="false" modal="true" showEffect="slide" hideEffect="
 draggable="false" resizable="false" modal="true" showEffect="slide" hideEffect="slide"> 
 
 <h:form id="formAtendimentos">
-	<p:dataTable style="max-width: 550px; min-width: 550px" value="#{cadastroPacienteBean.atendimentos}" var="atend"
+	<p:dataTable style="max-width: 550px; min-width: 550px" value="#{pacienteBean.atendimentos}" var="atend"
 		paginator="true" id="tableAtendimentos"  emptyMessage="Nenhum Atendimento Cadastrado!" rows="5">
 		
 			
 		<p:column>
 			<f:facet name="header">Dt. Atendimento</f:facet>
-			<h:outputText value="#{atend.dataAtendimento}" />
+			<h:outputText value="#{atend.dataAtendimento}" >
+			<f:convertDateTime pattern="dd/MM/yyyy" />
+			</h:outputText>
 		</p:column>
 		<p:column>
 			<f:facet name="header">Descrição</f:facet>
@@ -337,7 +339,7 @@ draggable="false" resizable="false" modal="true" showEffect="slide" hideEffect="
 	</p:dataTable> 
 	
 	<p:column>				 
-		 <p:commandButton value="Novo Atendimento" action="#{cadastroPacienteBean.chamarAtendimento()}" ajax="false"/>
+		 <p:commandButton value="Novo Atendimento" action="#{pacienteBean.chamarAtendimento()}" ajax="false"/>
 	</p:column>
 </h:form>
 

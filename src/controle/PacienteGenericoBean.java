@@ -7,7 +7,7 @@ public class PacienteGenericoBean {
 	
 	public void atualizarPacientes(){
 		FacesContext context = FacesContext.getCurrentInstance();
-		CadastroPacienteBean cadastroPacienteBean = (CadastroPacienteBean) context.getApplication().getELResolver().getValue(context.getELContext(), null, "cadastroPacienteBean");
-		cadastroPacienteBean.atualizarPacientes();
+		PacienteBean pacienteBean = (PacienteBean) context.getApplication().getELResolver().getValue(context.getELContext(), null, "pacienteBean");
+		pacienteBean.atualizarPacientes();
 	}
 }

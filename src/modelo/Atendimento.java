@@ -28,7 +28,7 @@ public class Atendimento {
 	private Date dataAtendimento = new Date();
 	
 	@OneToOne
-	private CadastroPaciente paciente;
+	private Paciente paciente;
 
 	public Long getId() {
 		return id;
@@ -57,11 +57,11 @@ public class Atendimento {
 		this.dataAtendimento = dataAtendimento;
 	}
 
-	public CadastroPaciente getPaciente() {
+	public Paciente getPaciente() {
 		return paciente;
 	}
 
-	public void setPaciente(CadastroPaciente paciente) {
+	public void setPaciente(Paciente paciente) {
 		this.paciente = paciente;
 	}
 	

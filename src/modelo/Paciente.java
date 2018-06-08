@@ -13,12 +13,12 @@ import javax.persistence.TemporalType;
 
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-public class CadastroPaciente {
+public class Paciente {
 
 	@Id @GeneratedValue
 	private Long id;
 	
-	@Column(length=50, nullable= false)
+	@Column(length=100, nullable= false)
 	private String nome;
 	
 	@Temporal(TemporalType.DATE)

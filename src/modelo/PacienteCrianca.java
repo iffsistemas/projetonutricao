@@ -4,7 +4,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 
 @Entity
-public class CadastroPacienteCrianca extends CadastroPaciente {
+public class PacienteCrianca extends Paciente {
 	
 	
    private Boolean escolaridade;

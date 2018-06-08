@@ -8,7 +8,7 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 
 import modelo.Atendimento;
-import modelo.CadastroPaciente;
+import modelo.Paciente;
 
 @Stateless
 public class AtendimentoService extends GenericService<Atendimento> {
@@ -19,7 +19,7 @@ public class AtendimentoService extends GenericService<Atendimento> {
 	
 	
 	
-	public List<Atendimento> obtemAtendimentoPorPaciente(CadastroPaciente paciente) {
+	public List<Atendimento> obtemAtendimentoPorPaciente(Paciente paciente) {
 		CriteriaBuilder cb = getEntityManager().getCriteriaBuilder();
 		CriteriaQuery<Atendimento> cquery = cb.createQuery(Atendimento.class);
 		Root<Atendimento> root = cquery.from(Atendimento.class);

@@ -4,7 +4,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 
 @Entity
-public class CadastroPacienteGestante extends CadastroPaciente {
+public class PacienteGestante extends Paciente {
 	
 	@Column(length=20)
   private String profissão="Destista";
