@@ -13,7 +13,7 @@ import service.CadastroPacienteGestanteService;
 
 @ViewScoped
 @ManagedBean
-public class CadastroPacienteGestanteBean {
+public class CadastroPacienteGestanteBean extends PacienteGenericoBean {
 	
 	
 
@@ -56,8 +56,6 @@ public class CadastroPacienteGestanteBean {
 	public void setCadastroPacienteGestante(CadastroPacienteGestante cadastroPacienteGestante) {
 		this.cadastroPacienteGestante = cadastroPacienteGestante;
 	}
-
-
 	
 	public void salvar() {
 		String msg="Paciente gravado com sucesso";
@@ -69,6 +67,7 @@ public class CadastroPacienteGestanteBean {
 		if(getCadastroPacienteGestante().getId()==null){ 
 			cadastroPacienteGestanteService.create(cadastroPacienteGestante);
 			setCadastroPacienteGestante(new CadastroPacienteGestante());
+			atualizarPacientes();
 			FacesContext.getCurrentInstance().addMessage("menssagem", new FacesMessage("Parabéns!", msg));
 		
 		
@@ -77,7 +76,7 @@ public class CadastroPacienteGestanteBean {
 	} catch (RuntimeException erro) {
 		
 		FacesContext.getCurrentInstance().addMessage("menssagem", new FacesMessage("ERRO!", "Ocorreu um erro Inesperado"));
-	
+		erro.printStackTrace();
 				
 	}	}
 	

@@ -50,9 +50,9 @@
 		</p:column>		
 		<p:column>
 			<f:facet name="header">Ver Atendimentos</f:facet>
-			<p:commandButton icon="ui-icon-list-alt" actionListener="#{atendimentoBean.pegarPaciente}"
-			oncomplete="PF('dialogAtendimentos').show()" value="Atendimentos" update=":mensagem, formConsultas:tableConsultas"  process="@form">
-			<f:attribute name="pegarPaciente"  value="#{paciente}"/>
+			<p:commandButton icon="ui-icon-list-alt" action="#{cadastroPacienteBean.carregarAtendimentos()}"
+			oncomplete="PF('dialogAtendimentos').show()" value="Atendimentos" update=":mensagem, formConsultas:tableConsultas, formAtendimentos"  process="@form">
+				<f:setPropertyActionListener value="#{paciente}" target="#{cadastroPacienteBean.pacienteSelecionado}" />
 			</p:commandButton>			
 						
 		</p:column>
@@ -77,11 +77,12 @@
 	 	 <h:panelGrid cellpadding="10" columns="3">
 	 	 
 	 	 
-	 	 <p:column> <p:commandButton value="Adulto"  oncomplete="PF('dialogCadAdulto').show();"/> </p:column>
+	 	 <p:column> <p:commandButton value="Adulto"  oncomplete="PF('dialogCadAdulto').show();" /> </p:column>
 	 	 
 	 	  <p:column> <p:commandButton value="Gestante" oncomplete="PF('dialogCadGestante').show();" /> </p:column>
 	 	 
-	 	 <p:column> <p:commandButton value="Criança"  oncomplete="PF('dialogCadCrianca').show();" /> </p:column>
+	 	 <p:column> <p:commandButton value="Criança"  oncomplete="PF('dialogCadCrianca').show();" 
+	 	 action="#{cadastroPacienteCriancaBean.limpar()}" update="dialogCrianca" process="@form"/> </p:column>
 	 	  
 	 		 	 
 	 	 </h:panelGrid>
@@ -235,7 +236,7 @@ draggable="false" resizable="false" modal="true" showEffect="slide" hideEffect="
 <!-- =======================DIALOG CRIANCA============================================= --> 
 
 
-<p:dialog  header="Cadastro - Paciente Criança" widgetVar="dialogCadCrianca" 
+<p:dialog  header="Cadastro - Paciente Criança" widgetVar="dialogCadCrianca"
 draggable="false" resizable="false" modal="true" showEffect="slide" hideEffect="slide"> 
 
 <h:form id="dialogCrianca">
@@ -298,7 +299,7 @@ draggable="false" resizable="false" modal="true" showEffect="slide" hideEffect="
                 
               <p:commandButton actionListener="#{cadastroPacienteCriancaBean.salvar()}" value="Salvar" 
                 update=":mensagem :formConsultas:tableConsultas :dialogCrianca:tableIdentificacao" 
-                process="@form" oncomplete="PF('dialogCadCrianca').hide();" /> 
+                process="@form" oncomplete="PF('dialogCadCrianca').hide();"/> 
                 
                 <p:commandButton value="Fechar" oncomplete="PF('dialogCadCrianca').hide();" />               	
                 	                
@@ -317,9 +318,9 @@ draggable="false" resizable="false" modal="true" showEffect="slide" hideEffect="
 <p:dialog  header="Atendimentos" widgetVar="dialogAtendimentos" 
 draggable="false" resizable="false" modal="true" showEffect="slide" hideEffect="slide"> 
 
-
-<p:dataTable style="max-width: 550px; min-width: 550px" value="#{atendimentoBean.atendimentos}" var="atend"
-	paginator="true" id="tableAtendimentos"  emptyMessage="Nenhum Atendimento Cadastrado!" rows="5">
+<h:form id="formAtendimentos">
+	<p:dataTable style="max-width: 550px; min-width: 550px" value="#{cadastroPacienteBean.atendimentos}" var="atend"
+		paginator="true" id="tableAtendimentos"  emptyMessage="Nenhum Atendimento Cadastrado!" rows="5">
 		
 			
 		<p:column>
@@ -331,12 +332,14 @@ draggable="false" resizable="false" modal="true" showEffect="slide" hideEffect="
 			<h:outputText value="#{atend.descricao}" />
 		</p:column>		
 			
-						 
-		 <p:commandButton value="Fechar" oncomplete="PF('dialogCadAtendimentos').hide();" />
 		
 		
 	</p:dataTable> 
-
+	
+	<p:column>				 
+		 <p:commandButton value="Novo Atendimento" action="#{cadastroPacienteBean.chamarAtendimento()}" ajax="false"/>
+	</p:column>
+</h:form>
 
 
 

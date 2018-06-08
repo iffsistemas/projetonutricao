@@ -6,7 +6,6 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 
-import modelo.CadastroPaciente;
 import modelo.CadastroPacienteAdulto;
 import service.CadastroPacienteAdultoService;
 
@@ -14,7 +13,7 @@ import service.CadastroPacienteAdultoService;
 
 @ViewScoped
 @ManagedBean
-public class CadastroPacienteAdultoBean {
+public class CadastroPacienteAdultoBean extends PacienteGenericoBean {
 	
 	
 	@EJB
@@ -59,6 +58,8 @@ public class CadastroPacienteAdultoBean {
 
 
 	
+	
+	
 	public void salvar() {
 		String msg="Paciente gravado com sucesso";
 		
@@ -69,6 +70,7 @@ public class CadastroPacienteAdultoBean {
 		if(getCadastroPacienteAdulto().getId()==null){ 
 			cadastroPacienteAdultoService.create(cadastroPacienteAdulto);
 			setCadastroPacienteAdulto(new CadastroPacienteAdulto());
+			atualizarPacientes();
 			FacesContext.getCurrentInstance().addMessage("menssagem", new FacesMessage("Parabéns!", msg));
 		
 		
@@ -77,7 +79,7 @@ public class CadastroPacienteAdultoBean {
 	} catch (RuntimeException erro) {
 		
 		FacesContext.getCurrentInstance().addMessage("menssagem", new FacesMessage("ERRO!", "Ocorreu um erro Inesperado"));
-	
+		erro.printStackTrace();
 				
 	}	}
 	

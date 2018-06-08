@@ -13,7 +13,7 @@ import service.CadastroPacienteCriancaService;
 
 @ViewScoped
 @ManagedBean
-public class CadastroPacienteCriancaBean {
+public class CadastroPacienteCriancaBean extends PacienteGenericoBean{
 	
 
 
@@ -69,6 +69,7 @@ public class CadastroPacienteCriancaBean {
 		if(getCadastroPacienteCrianca().getId()==null){ 
 			cadastroPacienteCriancaService.create(cadastroPacienteCrianca);
 			setCadastroPacienteCrianca(new CadastroPacienteCrianca());
+			atualizarPacientes();
 			FacesContext.getCurrentInstance().addMessage("menssagem", new FacesMessage("Parabéns!", msg));
 		
 		
@@ -77,14 +78,16 @@ public class CadastroPacienteCriancaBean {
 	} catch (RuntimeException erro) {
 		
 		FacesContext.getCurrentInstance().addMessage("menssagem", new FacesMessage("ERRO!", "Ocorreu um erro Inesperado"));
-	
+		erro.printStackTrace();
 				
 	}	}
 	
 	
 	
 	
-	
+	public void limpar() {
+		setCadastroPacienteCrianca(new CadastroPacienteCrianca());
+	}
 	
 	
 	
