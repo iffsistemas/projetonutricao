@@ -16,7 +16,6 @@ import javax.persistence.TemporalType;
 public class Atendimento {
 	
 	
-	
 	@Id @GeneratedValue
 	private Long id;
 	

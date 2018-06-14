@@ -37,6 +37,7 @@ public class ExamesLaboratoriais {
 	private Double magnesio;
 	private Double manganes;
 	private Double potassio;
+	
 	private Double selenio;
 	private Double sodio;
 	private Double zinco;
