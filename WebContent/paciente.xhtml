@@ -288,7 +288,8 @@ draggable="false" resizable="false" modal="true" showEffect="slide" hideEffect="
                 <h:panelGrid columns="2">
                  
 			         <h:outputText value="Frequenta Escola/Creche" />
-			        <p:selectBooleanCheckbox value="#{pacienteBean.pacienteCrianca.escolaridade}" />
+			        <!--  <p:selectBooleanCheckbox value="#{pacienteBean.pacienteCrianca.escolaridade}" /> -->
+			        <p:selectBooleanButton value="#{pacienteBean.pacienteCrianca.escolaridade}" onLabel="SIM" offLabel="NÂO" onIcon="ui-icon-check" offIcon="ui-icon-close"/>
 			             
 			       			                 
 			          <h:outputText value="Período: " for="periodo"/>
