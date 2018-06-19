@@ -42,7 +42,7 @@
 			<f:facet  name="header">Nome do Paciente</f:facet>
 			<p:outputLabel value="#{paciente.nome}" />
 		</p:column>
-		<p:column>
+		<p:column sortBy="#{paciente.dataNascimento}" >
 			<f:facet name="header">Nascimento</f:facet>
 			<p:outputLabel value="#{paciente.dataNascimento}">
 			<f:convertDateTime pattern="dd/MM/yyyy" />

@@ -22,7 +22,7 @@
 		<p:row>
 		<p:column><h:outputText value="Alimento:" for="alimento"/></p:column>
 		
-        <p:column><h:inputText id="alimento" value="#{tacoBean.taco.nome}" /></p:column>
+        <p:column><h:inputText id="alimento" value="#{tacoBean.taco.nome}" required="true" requiredMessage="Nome do Alimento Obrigatório!"/></p:column>
         
         </p:row>
         </p:panelGrid>
@@ -54,7 +54,7 @@
         	
         	
         		
-	    <p:column> <h:inputText styleClass="input-taco" id="umidade" value="#{tacoBean.taco.umidade}"/></p:column>
+	    <p:column> <h:inputText styleClass="input-taco" id="umidade" value="#{tacoBean.taco.umidade}" required="true" requiredMessage="Valor da Umidade Obrigatório!"/></p:column>
             <p:column> <h:inputText styleClass="input-taco" id="kcal" value="#{tacoBean.taco.kcal}"/></p:column>
             <p:column> <h:inputText styleClass="input-taco" id="kj" value="#{tacoBean.taco.kj}"/></p:column>
             <p:column> <h:inputText styleClass="input-taco" id="proteina" value="#{tacoBean.taco.proteina}"/></p:column>
