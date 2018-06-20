@@ -7,6 +7,8 @@ import java.util.Date;
 import javax.persistence.ElementCollection;
 import javax.persistence.FetchType;
 
+import modelo.MotivoAtendimento;
+
 
 public class Paciente {
 	

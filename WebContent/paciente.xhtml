@@ -96,12 +96,17 @@
 <p:dialog  header="Cadastro - Paciente Adulto" widgetVar="dialogCadAdulto" 
 draggable="false" resizable="false" modal="true" showEffect="slide" hideEffect="slide"> 
 
+
+
+
 <h:form id="dialogAdulto">
 	
 	
+	<p:tabView >
 	
-     
-        <h:panelGrid id="tableIdentificacao" columns="2">
+	<p:tab title="Identificação">
+	
+	 <h:panelGrid columns="2">
              	<p:outputLabel value="Nome" for="nome"/>
                 <p:inputText id="nome" value="#{pacienteBean.pacienteAdulto.nome}" required="true" requiredMessage="Nome Obrigatório!"/>
  
@@ -109,6 +114,9 @@ draggable="false" resizable="false" modal="true" showEffect="slide" hideEffect="
 				<p:calendar locale="pt" id="dataNascimento"
                             value="#{pacienteBean.pacienteAdulto.dataNascimento}" effect="slide"
                             pattern="dd/MM/yyyy" mask="true"/>
+                            
+                <p:outputLabel value="Teste Idade:" />
+                <p:commandButton action="#{pacienteBean.calcularIdade()}" />         
                 
                 <p:outputLabel value="Idade:" for="idade"/>
                 <p:inputText id="idade" value="#{pacienteBean.pacienteAdulto.idade}" />
@@ -144,17 +152,109 @@ draggable="false" resizable="false" modal="true" showEffect="slide" hideEffect="
                  	<p:outputLabel value="Profissão:" for="profissao"/>
                 	<p:inputText id="profissao" value="#{pacienteBean.pacienteAdulto.profissão}" />
                 	
+                                      	
+                	                
+                 </h:panelGrid>  		 </p:fieldset> 			</p:tab>
+                 
+                 
+               <p:tab title="Motivos">  
+               
+               
+              <h4>Qual o motivo do Atendimento?</h4> 
+        
+       
+    	<p:fieldset legend="Motivos" id="fieldMotivos"> 
+   <p:selectManyCheckbox id="teste" value="#{pacienteBean.motivosSelecionados}" layout="responsive" columns="2">
+				<f:selectItems value="#{pacienteBean.motivosAtendimento()}" var="motivo" itemLabel="#{motivo.descricao}" itemValue="#{motivo}"/>
+			</p:selectManyCheckbox>
+			<br />
+   
+    <h4>Outros Motivos:</h4> 
+    <p:inputTextarea value="#{pacienteBean.pacienteAdulto.outrosMotivos}" rows="3" cols="80" counter="display" maxlength="300" counterTemplate="{0} restantes" autoResize="false" />
+    <br /><h:outputText id="display" />
+      
+     	</p:fieldset>  </p:tab>
+     	
+     	
+     	
+     	<p:tab title="Saúde">
+     	
+     	<h:panelGrid columns="2">
+     	
+     	<p:outputLabel value="Problemas de Saúde:" for="problemasSaude"/>
+     	<p:inputTextarea id="problemasSaude" value="#{pacienteBean.pacienteAdulto.problemaDeSaude}"  rows="4" cols="60" autoResize="false" />
+     	
+     	</h:panelGrid>
+     	
+     	
+     	
+     	<p:fieldset>
+     	
+     	<p:commandButton value="Adicionar Medicamento" icon="ui-icon-plus" oncomplete="PF('AddMedicamento').show();"/>   
+     	
+     	<p:dataTable style="max-width: 600px; min-width: 600px" value="#{#}" var="med"
+	paginator="true" id="tableMedicamentos"  emptyMessage="Nenhum Medicamento Cadastrado!" rows="5">
+		<p:column>
+			<f:facet name="header">Nome</f:facet>
+			<h:outputText value="#{med.nome}" />
+		</p:column>
+		<p:column>
+			<f:facet name="header">Posologia</f:facet>
+			<h:outputText value="#{med.umidade}" />
+		</p:column>		
+		<p:column>
+			<f:facet name="header">Ação</f:facet>
+			<p:commandButton value="Excluir" icon="ui-icon-trash" />   
+		</p:column>	
+		</p:dataTable>
+		
+		
+		
+		<p:dialog  header="Adicionar Medicamentos" widgetVar="AddMedicamento" 
+draggable="false" resizable="false" showEffect="slide" hideEffect="slide">
+
+		<h:panelGrid columns="2">
+     	
+     	<p:outputLabel value="Nome:" for="nomeMed"/>
+     	<p:inputTextarea id="nomeMed" value="#{#}"  rows="2" cols="20" autoResize="false" />
+     	
+     	<p:outputLabel value="Posologia" for="posologia"/>
+     	<p:inputTextarea id="posologia" value="#{#}"  rows="2" cols="20" autoResize="false" />
+     	
+     	<p:commandButton value="Salvar" icon="ui-icon-disk" action="#{#}"/> 
+     	
+		
+
+		</h:panelGrid>
+
+		</p:dialog>
+     	       	
+     	
+     	</p:fieldset>
+     	
+     	
+     	
+     	
+     	</p:tab>  
+               
+               
+               
+               
+               
                 	
-                
-              <p:commandButton actionListener="#{pacienteBean.salvarPacienteAdulto()}" value="Salvar" 
-                update=":mensagem :formConsultas:tableConsultas :dialogAdulto:tableIdentificacao" 
+	
+	
+	
+	
+	</p:tabView>
+
+     
+ <p:commandButton actionListener="#{pacienteBean.salvarPacienteAdulto()}" value="Salvar" 
+                update=":mensagem :formConsultas:tableConsultas  :dialogAdulto" 
                 process="@form" oncomplete="PF('dialogCadAdulto').hide();" /> 
                 
-                <p:commandButton value="Fechar" oncomplete="PF('dialogCadAdulto').hide();" />               	
-                	                
-                 </h:panelGrid>    
-                
-                </p:fieldset>
+                <p:commandButton value="Fechar" oncomplete="PF('dialogCadAdulto').hide();" />                  
+       
 </h:form>
 </p:dialog>
 

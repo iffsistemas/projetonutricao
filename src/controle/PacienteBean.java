@@ -2,6 +2,9 @@ package controle;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -12,6 +15,8 @@ import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 
 import modelo.Atendimento;
+import modelo.Medicamento;
+import modelo.MotivoAtendimento;
 import modelo.Paciente;
 import modelo.PacienteAdulto;
 import modelo.PacienteCrianca;
@@ -44,6 +49,20 @@ public class PacienteBean {
 	PacienteGestante pacienteGestante = new  PacienteGestante();
 	PacienteCrianca pacienteCrianca = new  PacienteCrianca();
 	PacienteAdulto pacienteAdulto = new  PacienteAdulto();
+	
+	private MotivoAtendimento[] motivosSelecionados;	
+	
+	public List<MotivoAtendimento> getMotivosAtendimento(){
+		List<MotivoAtendimento> lista = Arrays.asList(MotivoAtendimento.values());
+		return lista;
+	}
+	
+	List<Medicamento> medicamentos = new ArrayList<Medicamento>();
+	
+	
+	
+	
+	
 	Paciente paciente = new Paciente();
 	Paciente pacienteSelecionado = new Paciente();
 	private String nome;
@@ -158,6 +177,25 @@ public class PacienteBean {
 	public void setPacienteGestante(PacienteGestante pacienteGestante) {
 		this.pacienteGestante = pacienteGestante;
 	}
+	
+		
+
+	public MotivoAtendimento[] getMotivosSelecionados() {
+		return motivosSelecionados;
+	}
+
+	public void setMotivosSelecionados(MotivoAtendimento[] motivosSelecionados) {
+		this.motivosSelecionados = motivosSelecionados;
+	}
+	
+	
+	public List<Medicamento> getMedicamentos() {
+		return medicamentos;
+	}
+
+	public void setMedicamentos(List<Medicamento> medicamentos) {
+		this.medicamentos = medicamentos;
+	}
 
 	@PostConstruct
 	public void init(){
@@ -187,7 +225,9 @@ public class PacienteBean {
 		String msg="Paciente gravado com sucesso";
 	try {
 		if(getPacienteAdulto().getId()==null){ 
+			getPacienteAdulto().getMotivos().addAll(Arrays.asList(motivosSelecionados));
 			pacienteAdultoService.create(pacienteAdulto);
+			Arrays.fill(motivosSelecionados, null);
 			setPacienteAdulto(new PacienteAdulto());
 			atualizarPacientes();
 			FacesContext.getCurrentInstance().addMessage("menssagem", new FacesMessage("Parabéns!", msg));
@@ -198,6 +238,17 @@ public class PacienteBean {
 		erro.printStackTrace();
 				
 	}	}
+	
+	
+	/*	
+	public void editarMotivos(){
+		setPaciente(pacienteService.obtemPorId(getId()));
+		
+		motivosSelecionados = getPaciente().getMotivos().toArray(new MotivoAtendimento[getPaciente().getMotivos().size()]);
+	}
+	
+	*/
+	
 	
 	
 	public void salvarPacienteCrianca() {
@@ -243,6 +294,29 @@ public class PacienteBean {
 		erro.printStackTrace();
 				
 	}	}
+	
+	
+public int calcularIdade() {
+		
+		Calendar dateOfBirth = new GregorianCalendar();
+		
+		dateOfBirth.setTime(getPaciente().getDataNascimento());
+		Calendar today = Calendar.getInstance();
+		
+		int age = today.get(Calendar.YEAR) - dateOfBirth.get(Calendar.YEAR);
+		dateOfBirth.add(Calendar.YEAR, age);
+	
+		
+		if (today.before(dateOfBirth)) {
+
+			age--;
+
+	
+			}
+		
+		return age;
+		
+			}
 	
 	
 	

@@ -22,7 +22,7 @@ public enum MotivoAtendimento {
 	PREVENÇÃOANEMIA("Prevenção e/ou recuperação da anemia"),  
 	CONTROLEOSTEOPOROSE("Controle da Osteoporose"),
 	CIRURGIASONCOLOGICAS("Pré ou pós cirurgias oncológicas"), 
-	NUTRICAOOESTETICA("Nutrição estética – controle da celulite, acne, flacidez"),
+	NUTRICAOOESTETICA("Nutrição estética (celulite, acne, flacidez)"),
 	INTOLERÂNCIALACTOSE("Intolerância à lactose"),  
 	DOENÇACELIACA("Alimentação para doença celíaca"),
 	NOREXIA("Anorexia/bulimia nervosa"),  
