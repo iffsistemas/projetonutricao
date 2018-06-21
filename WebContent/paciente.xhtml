@@ -187,20 +187,20 @@ draggable="false" resizable="false" modal="true" showEffect="slide" hideEffect="
      	</h:panelGrid>
      	
      	
-     	
      	<p:fieldset>
+     	     	
+     	<p:commandButton value="Adicionar Medicamento" icon="ui-icon-plus" oncomplete="PF('AddMedicamento').show();"/>
+     		   
      	
-     	<p:commandButton value="Adicionar Medicamento" icon="ui-icon-plus" oncomplete="PF('AddMedicamento').show();"/>   
-     	
-     	<p:dataTable style="max-width: 600px; min-width: 600px" value="#{#}" var="med"
+     	<p:dataTable style="max-width: 600px; min-width: 600px" value="#{pacienteBean.medicamentos}" var="med"
 	paginator="true" id="tableMedicamentos"  emptyMessage="Nenhum Medicamento Cadastrado!" rows="5">
 		<p:column>
 			<f:facet name="header">Nome</f:facet>
-			<h:outputText value="#{#}" />
+			<h:outputText value="#{med.nome}" />
 		</p:column>
 		<p:column>
 			<f:facet name="header">Posologia</f:facet>
-			<h:outputText value="#{#}" />
+			<h:outputText value="#{med.posologia}" />
 		</p:column>		
 		<p:column>
 			<f:facet name="header">Ação</f:facet>
@@ -208,30 +208,10 @@ draggable="false" resizable="false" modal="true" showEffect="slide" hideEffect="
 		</p:column>	
 		</p:dataTable>
 		
+		</p:fieldset>
 		
-		
-		<p:dialog  header="Adicionar Medicamentos" widgetVar="AddMedicamento" 
-draggable="false" resizable="false"  showEffect="slide" hideEffect="slide">
-
-		<h:panelGrid columns="2">
-     	
-     	<p:outputLabel value="Nome:" for="nomeMed"/>
-     	<p:inputTextarea id="nomeMed" value="#{#}"  rows="2" cols="20" autoResize="false" />
-     	
-     	<p:outputLabel value="Posologia" for="posologia"/>
-     	<p:inputTextarea id="posologia" value="#{#}"  rows="2" cols="20" autoResize="false" />
-     	
-     	<p:commandButton value="Salvar" icon="ui-icon-disk" action="#{#}"/> 
-     	
-		
-
-		</h:panelGrid>
-
-		</p:dialog>
-     	       	
-     	
-     	</p:fieldset>
-     	
+		 	     	
+         	
      	
      	
      	
@@ -259,6 +239,29 @@ draggable="false" resizable="false"  showEffect="slide" hideEffect="slide">
 </p:dialog>
 
 
+
+<h:form id="dialogMedicamento">
+<p:dialog  header="Adicionar Medicamentos" widgetVar="AddMedicamento" draggable="false" 
+     	resizable="false"  showEffect="slide" hideEffect="slide" modal="true" >
+
+		<h:panelGrid columns="2">
+     	
+     	<p:outputLabel value="Nome:" for="nomeMed"/>
+     	<p:inputTextarea id="nomeMed" value="#{pacienteBean.medicamento.nome}"  rows="2" cols="20" autoResize="false" />
+     	
+     	<p:outputLabel value="Posologia:" for="posologia"/>
+     	<p:inputTextarea id="posologia" value="#{pacienteBean.medicamento.posologia}"  rows="2" cols="20" autoResize="false" />
+     	
+     	<p:commandButton value="Cadastrar" icon="ui-icon-disk" action="#{pacienteBean.adicionarMedicamento()}"
+     	update=":mensagem :dialogMedicamento" oncomplete="PF('AddMedicamento').hide();"/> 
+     	
+		<p:commandButton value="Fechar" icon="ui-icon-close" oncomplete="PF('AddMedicamento').hide();"/>
+
+		</h:panelGrid>
+		
+		
+		</p:dialog>
+</h:form>
 
 
 <!-- =================Dialog Gestante===================================== --> 

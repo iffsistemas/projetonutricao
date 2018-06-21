@@ -57,7 +57,8 @@ public class PacienteBean {
 		return lista;
 	}
 	
-	//List<Medicamento> medicamentos = new ArrayList<Medicamento>();
+	Medicamento medicamento = new Medicamento();
+	List<Medicamento> medicamentos = new ArrayList<Medicamento>();
 	
 	
 	
@@ -188,8 +189,23 @@ public class PacienteBean {
 		this.motivosSelecionados = motivosSelecionados;
 	}
 	
-	
-	
+		
+	public Medicamento getMedicamento() {
+		return medicamento;
+	}
+
+	public void setMedicamento(Medicamento medicamento) {
+		this.medicamento = medicamento;
+	}
+
+	public List<Medicamento> getMedicamentos() {
+		return medicamentos;
+	}
+
+	public void setMedicamentos(List<Medicamento> medicamentos) {
+		this.medicamentos = medicamentos;
+	}
+
 	@PostConstruct
 	public void init(){
 		atualizarPacientes();
@@ -241,6 +257,22 @@ public class PacienteBean {
 	}
 	
 	*/
+	
+	
+	public void adicionarMedicamento() {
+		
+		
+		medicamentos.add(medicamento);
+		FacesContext.getCurrentInstance().addMessage("menssagem", new FacesMessage("Parabéns!", "Medicamento Cadastrado com Sucesso"));
+		
+		for(Medicamento  m : medicamentos) {
+		System.out.println(m.getNome());
+		 
+		}
+	}
+	
+	
+	
 	
 	
 	
