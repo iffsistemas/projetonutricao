@@ -57,7 +57,7 @@ public class PacienteBean {
 		return lista;
 	}
 	
-	List<Medicamento> medicamentos = new ArrayList<Medicamento>();
+	//List<Medicamento> medicamentos = new ArrayList<Medicamento>();
 	
 	
 	
@@ -189,14 +189,7 @@ public class PacienteBean {
 	}
 	
 	
-	public List<Medicamento> getMedicamentos() {
-		return medicamentos;
-	}
-
-	public void setMedicamentos(List<Medicamento> medicamentos) {
-		this.medicamentos = medicamentos;
-	}
-
+	
 	@PostConstruct
 	public void init(){
 		atualizarPacientes();

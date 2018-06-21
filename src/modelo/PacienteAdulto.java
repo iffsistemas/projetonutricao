@@ -2,6 +2,7 @@ package modelo;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
@@ -21,7 +22,8 @@ public class PacienteAdulto extends Paciente {
 	private String outrosMotivos;
 	private String problemaDeSaude;
 	@OneToMany
-	private Medicamento medicamento;
+	private List<Medicamento> medicamentos = new ArrayList<Medicamento>();
+	
 	
 	
 	
@@ -58,14 +60,15 @@ public void setProblemaDeSaude(String problemaDeSaude) {
 	this.problemaDeSaude = problemaDeSaude;
 }
 
-public Medicamento getMedicamento() {
-	return medicamento;
+public List<Medicamento> getMedicamentos() {
+	return medicamentos;
 }
 
-public void setMedicamento(Medicamento medicamento) {
-	this.medicamento = medicamento;
+public void setMedicamentos(List<Medicamento> medicamentos) {
+	this.medicamentos = medicamentos;
 }
-  
+
+
 
   
 	
