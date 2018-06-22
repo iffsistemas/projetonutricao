@@ -25,15 +25,15 @@ public class Paciente {
 	private Date dataNascimento;
 	
 	@Column(length=3)
-	private Integer idade=30;
+	private Integer idade;
 
 	@Column(length=30)
 	private String email="pac1@email.com";
 	
-	@Column(length=10)
+	@Column(length=15)
 	private String telefoneRes="2212331256";
 	
-	@Column(length=11)
+	@Column(length=15)
 	private String telefoneCel="22999998558";
 	
 	

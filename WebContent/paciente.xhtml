@@ -14,7 +14,7 @@
 
 <ui:define name="conteudo">
 	
-		
+<p:fieldset legend="Meus Pacientes">		
 <h:form id="buscarAtendimento">			
 				
 		<p:panelGrid align="center" id="tableBuscarAtendimento" columns="3" > 
@@ -35,6 +35,8 @@
 
 
 
+
+
 <h:form id="formConsultas">
 	<p:dataTable value="#{pacienteBean.pacientes}" var="paciente"
 	paginator="true" id="tableConsultas"  emptyMessage="Nenhum registro encontrado!" rows="5">
@@ -49,11 +51,29 @@
 			</p:outputLabel>
 		</p:column>		
 		<p:column>
-			<f:facet name="header">Ver Atendimentos</f:facet>
-			<p:commandButton icon="ui-icon-list-alt" action="#{pacienteBean.carregarAtendimentos()}"
-			oncomplete="PF('dialogAtendimentos').show()" value="Atendimentos" update=":mensagem, formConsultas:tableConsultas, formAtendimentos"  process="@form">
+			<f:facet name="header">Atendimentos</f:facet>
+			<p:commandButton icon="ui-icon-extlink" action="#{pacienteBean.carregarAtendimentos()}"
+			oncomplete="PF('dialogAtendimentos').show()"  update=":mensagem, formConsultas:tableConsultas, formAtendimentos"  process="@form">
 				<f:setPropertyActionListener value="#{paciente}" target="#{pacienteBean.pacienteSelecionado}" />
-			</p:commandButton>			
+			</p:commandButton>	
+			
+			</p:column>
+			
+			<p:column>
+			<f:facet name="header">Editar</f:facet>
+			<p:commandButton icon="ui-icon-pencil" action="#{#}"
+			 update=":mensagem, formConsultas:tableConsultas, formAtendimentos"  process="@form">
+				<f:setPropertyActionListener value="#{paciente}" target="#{pacienteBean.pacienteSelecionado}" />
+			</p:commandButton>	
+			
+			</p:column>		
+			
+			<p:column>
+			<f:facet name="header">Excluir</f:facet>
+			<p:commandButton icon="ui-icon-trash" action="#{#}"
+			 update=":mensagem, formConsultas:tableConsultas, formAtendimentos"  process="@form">
+				<f:setPropertyActionListener value="#{paciente}" target="#{pacienteBean.pacienteSelecionado}" />
+			</p:commandButton>					
 						
 		</p:column>
 		
@@ -65,7 +85,7 @@
 	
  </h:form>
 
-	
+</p:fieldset>	
 
 <br></br><br></br>
 
@@ -93,11 +113,13 @@
 
                   
 
-<p:dialog  header="Cadastro - Paciente Adulto" widgetVar="dialogCadAdulto" position="center center"
-draggable="false" resizable="false" modal="true" showEffect="slide" hideEffect="slide"> 
+<p:dialog  header="Cadastro - Paciente Adulto" widgetVar="dialogCadAdulto" width="700" height="500"
+ draggable="false" resizable="false" modal="true" showEffect="shake" hideEffect="slide"> 
 <h:form id="dialogAdulto">
-	<p:tabView id="tableView">
 	
+	
+	
+	 <p:accordionPanel id="tableView" >
 	<p:tab title="Identificação">
 	
 	 <h:panelGrid columns="2">
@@ -114,7 +136,7 @@ draggable="false" resizable="false" modal="true" showEffect="slide" hideEffect="
                 </p:calendar>
  
                 <p:outputLabel value="Idade:" for="idade"/>
-                <p:inputText id="idade" value="#{pacienteBean.pacienteAdulto.idade}" disabled="true" />
+                <p:inputText id="idade" value="#{pacienteBean.pacienteAdulto.idade}"  disabled="true" />
                 
        </h:panelGrid>
                 
@@ -129,10 +151,10 @@ draggable="false" resizable="false" modal="true" showEffect="slide" hideEffect="
                 	<p:inputText id="email" value="#{pacienteBean.pacienteAdulto.email}" />
                 
                 	<p:outputLabel value="Tel. Residencial:" for="telefoneRes"/>
-                    <p:inputText id="telefoneRes"  value="#{pacienteBean.pacienteAdulto.telefoneRes}" />
+                    <p:inputMask id="telefoneRes"  value="#{pacienteBean.pacienteAdulto.telefoneRes}" mask="(99) 9999-9999"/>
                 
                     <p:outputLabel value="Celular:" for="telefoneCel"/>
-                    <p:inputText id="telefoneCel" value="#{pacienteBean.pacienteAdulto.telefoneCel}" />
+                    <p:inputMask id="telefoneCel" value="#{pacienteBean.pacienteAdulto.telefoneCel}" mask="(99) 99999-9999"/>
                 
                  </h:panelGrid>    
                 
@@ -188,7 +210,7 @@ draggable="false" resizable="false" modal="true" showEffect="slide" hideEffect="
      		   
      	
      	<p:dataTable style="max-width: 600px; min-width: 600px" value="#{pacienteBean.pacienteAdulto.medicamentos}" var="med"
-	paginator="true" id="tableMedicamentos"  emptyMessage="Nenhum Medicamento Cadastrado!" rows="5" >
+	paginator="true" id="tableMedicamentos"  emptyMessage="Nenhum Medicamento Cadastrado!" rows="4" >
 		<p:column>
 			<f:facet name="header">Nome</f:facet>
 			<h:outputText value="#{med.nome}" />
@@ -200,7 +222,7 @@ draggable="false" resizable="false" modal="true" showEffect="slide" hideEffect="
 		<p:column>
 			<f:facet name="header">Ação</f:facet>
 			<p:commandButton value="Excluir" icon="ui-icon-trash" action="#{pacienteBean.excluirMedicamento(med)}" 
-			update="tableMedicamentos" process="tableMedicamentos" />   
+			update=":mensagem, tableMedicamentos" process="tableMedicamentos" />   
 		</p:column>	
 		</p:dataTable>
 		
@@ -210,8 +232,9 @@ draggable="false" resizable="false" modal="true" showEffect="slide" hideEffect="
      </p:tab>  
          	
 	
-	</p:tabView>
+	</p:accordionPanel>
 
+<p:separator />
      
  <p:commandButton actionListener="#{pacienteBean.salvarPacienteAdulto()}" value="Salvar" 
                 update=":mensagem :formConsultas:tableConsultas, dialogAdulto" 
@@ -223,8 +246,8 @@ draggable="false" resizable="false" modal="true" showEffect="slide" hideEffect="
        
 
 <h:form id="formTeste">
- 	<p:dialog  header="Adicionar Medicamentos" widgetVar="AddMedicamento" draggable="false" 
-     	resizable="false"  showEffect="slide" hideEffect="slide" modal="true" >
+ 	<p:dialog  header="Adicionar Medicamentos" widgetVar="AddMedicamento" resizable="false" 
+ 		draggable="false" modal="true" showEffect="slide" hideEffect="slide"  >
 
 		<h:panelGrid columns="2">
      	
@@ -235,7 +258,7 @@ draggable="false" resizable="false" modal="true" showEffect="slide" hideEffect="
      	<p:inputTextarea id="posologia" value="#{pacienteBean.medicamento.posologia}"  rows="2" cols="20" autoResize="false" />
      	
      	<p:commandButton value="Cadastrar" icon="ui-icon-disk" action="#{pacienteBean.adicionarMedicamento()}"
-     	update=":dialogAdulto:tableView:tableMedicamentos,formTeste" process="formTeste" oncomplete="PF('AddMedicamento').hide();"/> 
+     	update=":mensagem :dialogAdulto:tableView:tableMedicamentos,formTeste" process="formTeste" oncomplete="PF('AddMedicamento').hide();"/> 
      	
 		<p:commandButton value="Fechar" icon="ui-icon-close" oncomplete="PF('AddMedicamento').hide();"/>
 
@@ -419,13 +442,22 @@ draggable="false" resizable="false" modal="true" showEffect="slide" hideEffect="
 			<f:facet name="header">Descrição</f:facet>
 			<h:outputText value="#{atend.descricao}" />
 		</p:column>		
+		
+		<p:column>
+		<f:facet name="header">Ação</f:facet>
+		<p:commandButton icon="ui-icon-list" action="#{#}"
+			 value="Ver Informações" update=":mensagem, formConsultas:tableConsultas, formAtendimentos"  process="@form">
+				<f:setPropertyActionListener value="#{#}" target="#{#}" />
+			</p:commandButton>	
+		</p:column>	
 			
 		
 		
 	</p:dataTable> 
 	
 	<p:column>				 
-		 <p:commandButton value="Novo Atendimento" action="#{pacienteBean.chamarAtendimento()}" ajax="false"/>
+		 <p:commandButton value="Novo Atendimento"  icon="ui-icon-plus" 
+		 			action="#{pacienteBean.chamarAtendimento()}" ajax="false"/>
 	</p:column>
 </h:form>
 

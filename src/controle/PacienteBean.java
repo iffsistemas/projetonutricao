@@ -251,14 +251,24 @@ public class PacienteBean {
 	
 	public void adicionarMedicamento() {
 		
+		if(getPacienteAdulto().getMedicamentos().contains(medicamento)) {
+			medicamento= new Medicamento();
+            FacesMessage msg = new FacesMessage("Duplicidade!", "Este Medicamento já foi Adicionado!");
+            FacesContext.getCurrentInstance().addMessage(null, msg);
+            
+        } 
+        else {
+        	getPacienteAdulto().getMedicamentos().add(medicamento);	
+    		medicamento= new Medicamento();
+    		FacesContext.getCurrentInstance().addMessage("menssagem", new FacesMessage("Parabéns!", "Medicamento Cadastrado com Sucesso"));
+        }
 		
-		getPacienteAdulto().getMedicamentos().add(medicamento);	
-		medicamento= new Medicamento();
-		FacesContext.getCurrentInstance().addMessage("menssagem", new FacesMessage("Parabéns!", "Medicamento Cadastrado com Sucesso"));
+	
 	}
 	
 	public void excluirMedicamento(Medicamento medAtual) {
 		getPacienteAdulto().getMedicamentos().remove(medAtual);
+		FacesContext.getCurrentInstance().addMessage("menssagem", new FacesMessage("Parabéns!", "Medicamento Excluído com Sucesso"));
 	}
 	
 	
