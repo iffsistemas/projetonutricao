@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
@@ -21,13 +22,11 @@ public class PacienteAdulto extends Paciente {
 	
 	private String outrosMotivos;
 	private String problemaDeSaude;
-	@OneToMany
+	
+	@OneToMany(cascade=CascadeType.ALL)
 	private List<Medicamento> medicamentos = new ArrayList<Medicamento>();
 	
 	
-	
-	
-
 public String getProfissão() {
 	return profissão;
 }

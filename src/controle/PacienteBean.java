@@ -14,6 +14,8 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 
+import org.primefaces.context.RequestContext;
+
 import modelo.Atendimento;
 import modelo.Medicamento;
 import modelo.MotivoAtendimento;
@@ -55,13 +57,8 @@ public class PacienteBean {
 	public List<MotivoAtendimento> getMotivosAtendimento(){
 		List<MotivoAtendimento> lista = Arrays.asList(MotivoAtendimento.values());
 		return lista;
-	}
-	
+	}	
 	Medicamento medicamento = new Medicamento();
-	List<Medicamento> medicamentos = new ArrayList<Medicamento>();
-	
-	
-	
 	
 	
 	Paciente paciente = new Paciente();
@@ -198,14 +195,6 @@ public class PacienteBean {
 		this.medicamento = medicamento;
 	}
 
-	public List<Medicamento> getMedicamentos() {
-		return medicamentos;
-	}
-
-	public void setMedicamentos(List<Medicamento> medicamentos) {
-		this.medicamentos = medicamentos;
-	}
-
 	@PostConstruct
 	public void init(){
 		atualizarPacientes();
@@ -240,6 +229,7 @@ public class PacienteBean {
 			setPacienteAdulto(new PacienteAdulto());
 			atualizarPacientes();
 			FacesContext.getCurrentInstance().addMessage("menssagem", new FacesMessage("Parabéns!", msg));
+			RequestContext.getCurrentInstance().execute("PF('dialogCadAdulto').hide();");
 	}
 		
 	} catch (RuntimeException erro) {
@@ -262,18 +252,14 @@ public class PacienteBean {
 	public void adicionarMedicamento() {
 		
 		
-		medicamentos.add(medicamento);
+		getPacienteAdulto().getMedicamentos().add(medicamento);	
+		medicamento= new Medicamento();
 		FacesContext.getCurrentInstance().addMessage("menssagem", new FacesMessage("Parabéns!", "Medicamento Cadastrado com Sucesso"));
-		
-		for(Medicamento  m : medicamentos) {
-		System.out.println(m.getNome());
-		 
-		}
 	}
 	
-	
-	
-	
+	public void excluirMedicamento(Medicamento medAtual) {
+		getPacienteAdulto().getMedicamentos().remove(medAtual);
+	}
 	
 	
 	public void salvarPacienteCrianca() {
@@ -321,27 +307,22 @@ public class PacienteBean {
 	}	}
 	
 	
-public int calcularIdade() {
+public void calcularIdade() {
+		Calendar dataNasci = new GregorianCalendar();
 		
-		Calendar dateOfBirth = new GregorianCalendar();
+		dataNasci.setTime(getPacienteAdulto().getDataNascimento());
+		Calendar hoje = Calendar.getInstance();
 		
-		dateOfBirth.setTime(getPaciente().getDataNascimento());
-		Calendar today = Calendar.getInstance();
-		
-		int age = today.get(Calendar.YEAR) - dateOfBirth.get(Calendar.YEAR);
-		dateOfBirth.add(Calendar.YEAR, age);
+		int idade = hoje.get(Calendar.YEAR) - dataNasci.get(Calendar.YEAR);
+		dataNasci.add(Calendar.YEAR, idade);
 	
 		
-		if (today.before(dateOfBirth)) {
-
-			age--;
-
-	
-			}
+		if (hoje.before(dataNasci)) {
+			idade--;
+		}
 		
-		return age;
-		
-			}
+		pacienteAdulto.setIdade(idade);		
+}
 	
 	
 	
