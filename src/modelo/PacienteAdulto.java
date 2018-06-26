@@ -26,6 +26,24 @@ public class PacienteAdulto extends Paciente {
 	@OneToMany(cascade=CascadeType.ALL)
 	private List<Medicamento> medicamentos = new ArrayList<Medicamento>();
 	
+
+	//List Cirurgia
+	
+	private String qualCirurgia;
+	
+	private String quandoCirurgia;
+	
+	//List Hereditariedade
+	
+	private String outraHereditariedade;
+	
+	private String ativVezPorSem;
+	private String atvhoras;
+	private String atvDuracao;
+	
+	private Boolean comeDevagar;
+	private Boolean mastigaBemOsAlimentos;
+	
 	
 public String getProfissão() {
 	return profissão;
@@ -66,6 +84,74 @@ public List<Medicamento> getMedicamentos() {
 public void setMedicamentos(List<Medicamento> medicamentos) {
 	this.medicamentos = medicamentos;
 }
+
+
+
+public String getQualCirurgia() {
+	return qualCirurgia;
+}
+
+public void setQualCirurgia(String qualCirurgia) {
+	this.qualCirurgia = qualCirurgia;
+}
+
+public String getQuandoCirurgia() {
+	return quandoCirurgia;
+}
+
+public void setQuandoCirurgia(String quandoCirurgia) {
+	this.quandoCirurgia = quandoCirurgia;
+}
+
+public String getOutraHereditariedade() {
+	return outraHereditariedade;
+}
+
+public void setOutraHereditariedade(String outraHereditariedade) {
+	this.outraHereditariedade = outraHereditariedade;
+}
+
+public String getAtivVezPorSem() {
+	return ativVezPorSem;
+}
+
+public void setAtivVezPorSem(String ativVezPorSem) {
+	this.ativVezPorSem = ativVezPorSem;
+}
+
+public String getAtvhoras() {
+	return atvhoras;
+}
+
+public void setAtvhoras(String atvhoras) {
+	this.atvhoras = atvhoras;
+}
+
+public String getAtvDuracao() {
+	return atvDuracao;
+}
+
+public void setAtvDuracao(String atvDuracao) {
+	this.atvDuracao = atvDuracao;
+}
+
+public Boolean getComeDevagar() {
+	return comeDevagar;
+}
+
+public void setComeDevagar(Boolean comeDevagar) {
+	this.comeDevagar = comeDevagar;
+}
+
+public Boolean getMastigaBemOsAlimentos() {
+	return mastigaBemOsAlimentos;
+}
+
+public void setMastigaBemOsAlimentos(Boolean mastigaBemOsAlimentos) {
+	this.mastigaBemOsAlimentos = mastigaBemOsAlimentos;
+}
+
+
 
 
 
