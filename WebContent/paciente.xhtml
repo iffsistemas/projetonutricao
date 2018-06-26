@@ -44,13 +44,13 @@
 			<f:facet  name="header">Nome do Paciente</f:facet>
 			<p:outputLabel value="#{paciente.nome}" />
 		</p:column>
-		<p:column sortBy="#{paciente.dataNascimento}" >
+		<p:column style="width:80px">
 			<f:facet name="header">Nascimento</f:facet>
 			<p:outputLabel value="#{paciente.dataNascimento}">
 			<f:convertDateTime pattern="dd/MM/yyyy" />
 			</p:outputLabel>
 		</p:column>		
-		<p:column>
+		<p:column style="width:80px">
 			<f:facet name="header">Atendimentos</f:facet>
 			<p:commandButton icon="ui-icon-extlink" action="#{pacienteBean.carregarAtendimentos()}"
 			oncomplete="PF('dialogAtendimentos').show()"  update=":mensagem, formConsultas:tableConsultas, formAtendimentos"  process="@form">
@@ -59,7 +59,7 @@
 			
 			</p:column>
 			
-			<p:column>
+			<p:column style="width:55px">
 			<f:facet name="header">Editar</f:facet>
 			<p:commandButton icon="ui-icon-pencil" action="#{#}"
 			 update=":mensagem, formConsultas:tableConsultas, formAtendimentos"  process="@form">
@@ -68,7 +68,7 @@
 			
 			</p:column>		
 			
-			<p:column>
+			<p:column style="width:55px">
 			<f:facet name="header">Excluir</f:facet>
 			<p:commandButton icon="ui-icon-trash" action="#{#}"
 			 update=":mensagem, formConsultas:tableConsultas, formAtendimentos"  process="@form">
