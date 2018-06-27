@@ -54,7 +54,7 @@
         	
         	
         		
-	    <p:column> <h:inputText styleClass="input-taco" id="umidade" value="#{tacoBean.taco.umidade}" required="true" requiredMessage="Valor da Umidade Obrigatório!"/></p:column>
+	    <p:column> <h:inputText styleClass="input-taco" id="umidade" value="#{tacoBean.taco.umidade}"/></p:column>
             <p:column> <h:inputText styleClass="input-taco" id="kcal" value="#{tacoBean.taco.kcal}"/></p:column>
             <p:column> <h:inputText styleClass="input-taco" id="kj" value="#{tacoBean.taco.kj}"/></p:column>
             <p:column> <h:inputText styleClass="input-taco" id="proteina" value="#{tacoBean.taco.proteina}"/></p:column>
@@ -160,35 +160,35 @@
 			<f:facet name="header">Nome</f:facet>
 			<h:outputText value="#{alim.nome}" />
 		</p:column>
-		<p:column>
+		<p:column style="width:55px">
 			<f:facet name="header">Umidade</f:facet>
 			<h:outputText value="#{alim.umidade}" />
 		</p:column>		
-		<p:column>
+		<p:column style="width:55px">
 			<f:facet name="header">Kcal</f:facet>
 			<h:outputText value="#{alim.kcal}" />
 		</p:column>	
-		<p:column>
+		<p:column style="width:55px">
 			<f:facet name="header">Editar</f:facet>
 			<p:commandButton icon="ui-icon-pencil" action="#{tacoBean.editarAlimeto(alim)}"
 			update=":mensagem, :formCadAlimentos" process="@form"/>
 		</p:column>
 		
-		<p:column>
-			<f:facet name="header">Deletar</f:facet>
+		<p:column style="width:55px">
+			<f:facet name="header">Excluir</f:facet>
 			<p:commandButton icon="ui-icon-trash" action="#{tacoBean.removerAlimento(alim)}"
 			 update=":mensagem, :formCadAlimentos, :formListaAlimentos" process="@form" >
 			<p:confirm header="Confirmação" message="Deseja excluir alimento?" icon="ui-icon-alert" />
 			</p:commandButton>
 			
-			<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+			<p:confirmDialog global="true" showEffect="slide" hideEffect="slide">
         <p:commandButton value="Sim" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
         <p:commandButton value="Não" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
         </p:confirmDialog>
 						 
 		</p:column>
 		
-		<p:column>
+		<p:column style="width:55px">
 			<f:facet name="header">Ver</f:facet>
 			<p:commandButton update="formTabeAlimento:panelAlimento" 
 			icon="ui-icon-extlink" oncomplete="PF('dialogVerAlimento').show()">

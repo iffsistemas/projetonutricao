@@ -17,6 +17,7 @@ import javax.faces.context.FacesContext;
 import org.primefaces.context.RequestContext;
 
 import modelo.Atendimento;
+import modelo.AvaliacaoDaAlimentacao;
 import modelo.Medicamento;
 import modelo.MotivoAtendimento;
 import modelo.Paciente;
@@ -59,6 +60,7 @@ public class PacienteBean {
 		return lista;
 	}	
 	Medicamento medicamento = new Medicamento();
+	AvaliacaoDaAlimentacao alimentacao = new AvaliacaoDaAlimentacao();
 	
 	
 	Paciente paciente = new Paciente();
@@ -272,6 +274,32 @@ public class PacienteBean {
 	}
 	
 	
+public void adicionarRefeicao() {
+		
+		if(getPacienteAdulto().getAlimentacoes().contains(alimentacao)) {
+			alimentacao= new AvaliacaoDaAlimentacao();
+            FacesMessage msg = new FacesMessage("Duplicidade!", "Esta Refeicão já foi Adicionada!");
+            FacesContext.getCurrentInstance().addMessage(null, msg);
+            
+        } 
+        else {
+        	getPacienteAdulto().getAlimentacoes().add(alimentacao);	
+        	alimentacao= new AvaliacaoDaAlimentacao();
+    		FacesContext.getCurrentInstance().addMessage("menssagem", new FacesMessage("Parabéns!", "Refeicão Cadastrada com Sucesso"));
+        }
+		
+	
+	}
+	
+	public void excluirRefeicao(AvaliacaoDaAlimentacao refeicaoAtual) {
+		getPacienteAdulto().getAlimentacoes().remove(refeicaoAtual);
+		FacesContext.getCurrentInstance().addMessage("menssagem", new FacesMessage("Parabéns!", "Refeicão Excluída com Sucesso"));
+	}
+	
+	
+	
+	
+	
 	public void salvarPacienteCrianca() {
 		String msg="Paciente gravado com sucesso";
 		 		
@@ -335,6 +363,20 @@ public void calcularIdade() {
 }
 	
 	
+	public void ecluirPaciente(Paciente paciente) {
+		String msg="Paciente exluído com sucesso";
+ 		
+		try {
+				pacienteService.remove(paciente);
+				atualizarPacientes();
+				FacesContext.getCurrentInstance().addMessage("menssagem", new FacesMessage("Parabéns!", msg));
+		} catch (RuntimeException erro) {
+				FacesContext.getCurrentInstance().addMessage("menssagem", new FacesMessage("ERRO!", "Ocorreu um erro Inesperado"));
+				erro.printStackTrace();
+					
+		}	
+	
+	}
 	
 	
 	
