@@ -213,7 +213,7 @@ public class AtendimentoBean {
 		
 		try {
 			if(getAtendimentoAdulto().getId()==null){ 
-				paciente = pacienteService.obtemPorId(getTeste());	
+				//paciente = pacienteService.obtemPorId(getTeste());	
 				atendimentoAdulto.setExamesLaboratoriais(examesLaboratoriais);	
 				//atendimentoAdulto.setPaciente(paciente);
 				atendimentoAdultoService.create(atendimentoAdulto);
