@@ -47,7 +47,7 @@ public class AtendimentoAdulto {
      private Double valorCalorico;
      private String conclusao;
     
-    
+    //passar para outra classe
     
 
 	public Long getId() {

@@ -179,6 +179,7 @@ public class AtendimentoBean {
 	@PostConstruct
 	public void init(){
 		atualizarAtendimentos();
+		//Paciente Enviado de outro pagina
 		PacienteAdulto pacEnviado = (PacienteAdulto) FacesContext.getCurrentInstance().getExternalContext().getFlash().get("pacienteAdulto");
 		System.out.println("Enviado: "+pacEnviado.getNome());
 		getAtendimentoAdulto().setPaciente(pacEnviado);
