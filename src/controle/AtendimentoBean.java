@@ -17,6 +17,7 @@ import modelo.AtendimentoCrianca;
 import modelo.AtendimentoGestante;
 import modelo.ExamesLaboratoriais;
 import modelo.Paciente;
+import modelo.PacienteAdulto;
 import service.AtendimentoAdultoService;
 import service.AtendimentoCriancaService;
 import service.AtendimentoGestanteService;
@@ -178,6 +179,10 @@ public class AtendimentoBean {
 	@PostConstruct
 	public void init(){
 		atualizarAtendimentos();
+		PacienteAdulto pacEnviado = (PacienteAdulto) FacesContext.getCurrentInstance().getExternalContext().getFlash().get("pacienteAdulto");
+		System.out.println("Enviado: "+pacEnviado.getNome());
+		getAtendimentoAdulto().setPaciente(pacEnviado);
+		
 	}
 	
 	public void atualizarAtendimentos(){
@@ -209,7 +214,7 @@ public class AtendimentoBean {
 			if(getAtendimentoAdulto().getId()==null){ 
 				paciente = pacienteService.obtemPorId(getTeste());	
 				atendimentoAdulto.setExamesLaboratoriais(examesLaboratoriais);	
-				atendimentoAdulto.setPaciente(paciente);
+				//atendimentoAdulto.setPaciente(paciente);
 				atendimentoAdultoService.create(atendimentoAdulto);
 				setAtendimentoAdulto(new AtendimentoAdulto());
 				FacesContext.getCurrentInstance().addMessage("menssagem", new FacesMessage("Parabéns!", msg));

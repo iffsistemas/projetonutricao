@@ -411,6 +411,7 @@ public void calcularIdade() {
 	public void chamarAtendimento() throws IOException {
 		//formularioAdulto?faces-redirect=true
 		if(pacienteSelecionado instanceof PacienteAdulto) {
+			FacesContext.getCurrentInstance().getExternalContext().getFlash().put("pacienteAdulto", pacienteSelecionado);
 			FacesContext.getCurrentInstance().getExternalContext().redirect("atendimentoAdulto.xhtml");
 		}else
 		if(pacienteSelecionado instanceof PacienteCrianca) {
