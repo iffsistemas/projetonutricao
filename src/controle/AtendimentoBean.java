@@ -1,11 +1,9 @@
 package controle;
 
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.GregorianCalendar;
 import java.util.List;
 
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
@@ -14,7 +12,14 @@ import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
 
 import modelo.Atendimento;
+import modelo.AtendimentoAdulto;
+import modelo.AtendimentoCrianca;
+import modelo.AtendimentoGestante;
+import modelo.ExamesLaboratoriais;
 import modelo.Paciente;
+import service.AtendimentoAdultoService;
+import service.AtendimentoCriancaService;
+import service.AtendimentoGestanteService;
 import service.AtendimentoService;
 import service.PacienteService;
 
@@ -26,28 +31,57 @@ public class AtendimentoBean {
 	
 	
 	@EJB
-	AtendimentoService atendimentoService;
-	
+	AtendimentoAdultoService atendimentoAdultoService;
+	@EJB
+	AtendimentoCriancaService atendimentoCriancaService;
+	@EJB
+	AtendimentoGestanteService atendimentoGestanteService;
 	@EJB
 	PacienteService pacienteService;
+	@EJB
+	AtendimentoService atendimentoService;
+	
+	Paciente paciente = new Paciente();
+	
+	AtendimentoAdulto atendimentoAdulto = new AtendimentoAdulto();
+	AtendimentoCrianca atendimentoCrianca = new AtendimentoCrianca();
+	AtendimentoGestante atendimentoGestante = new AtendimentoGestante();
+	
+	ExamesLaboratoriais examesLaboratoriais = new ExamesLaboratoriais();
 	
 	List<Paciente> pacientes = new ArrayList<Paciente>();
 	List<Atendimento> atendimentos = new ArrayList<Atendimento>();
-	Paciente paciente = new Paciente();
-	Atendimento atendimento = new Atendimento();
+	
+	Paciente pacienteSelecionado = new Paciente();
+	
+	
 	private Long teste = 1L;
 	
 	
-	
-	public AtendimentoService getAtendimentoService() {
-		return atendimentoService;
+	public AtendimentoAdultoService getAtendimentoAdultoService() {
+		return atendimentoAdultoService;
+	}
+
+	public void setAtendimentoAdultoService(AtendimentoAdultoService atendimentoAdultoService) {
+		this.atendimentoAdultoService = atendimentoAdultoService;
+	}
+
+	public AtendimentoCriancaService getAtendimentoCriancaService() {
+		return atendimentoCriancaService;
 	}
 
 
-	public void setAtendimentoService(AtendimentoService atendimentoService) {
-		this.atendimentoService = atendimentoService;
+	public void setAtendimentoCriancaService(AtendimentoCriancaService atendimentoCriancaService) {
+		this.atendimentoCriancaService = atendimentoCriancaService;
 	}
 
+	public AtendimentoGestanteService getAtendimentoGestanteService() {
+		return atendimentoGestanteService;
+	}
+
+	public void setAtendimentoGestanteService(AtendimentoGestanteService atendimentoGestanteService) {
+		this.atendimentoGestanteService = atendimentoGestanteService;
+	}
 
 	public PacienteService getPacienteService() {
 		return pacienteService;
@@ -55,6 +89,40 @@ public class AtendimentoBean {
 
 	public void setPacienteService(PacienteService pacienteService) {
 		this.pacienteService = pacienteService;
+	}
+
+
+	public Paciente getPaciente() {
+		return paciente;
+	}
+
+	public void setPaciente(Paciente paciente) {
+		this.paciente = paciente;
+	}
+
+	public AtendimentoAdulto getAtendimentoAdulto() {
+		return atendimentoAdulto;
+	}
+
+
+	public void setAtendimentoAdulto(AtendimentoAdulto atendimentoAdulto) {
+		this.atendimentoAdulto = atendimentoAdulto;
+	}
+
+	public AtendimentoCrianca getAtendimentoCrianca() {
+		return atendimentoCrianca;
+	}
+
+	public void setAtendimentoCrianca(AtendimentoCrianca atendimentoCrianca) {
+		this.atendimentoCrianca = atendimentoCrianca;
+	}
+
+	public AtendimentoGestante getAtendimentoGestante() {
+		return atendimentoGestante;
+	}
+
+	public void setAtendimentoGestante(AtendimentoGestante atendimentoGestante) {
+		this.atendimentoGestante = atendimentoGestante;
 	}
 
 	public List<Paciente> getPacientes() {
@@ -73,44 +141,77 @@ public class AtendimentoBean {
 		this.atendimentos = atendimentos;
 	}
 
-	public Paciente getPaciente() {
-		return paciente;
-	}
-
-	public void setPaciente(Paciente paciente) {
-		this.paciente = paciente;
-	}
-
-		
-	public Atendimento getAtendimento() {
-		return atendimento;
-	}
-
-
-	public void setAtendimento(Atendimento atendimento) {
-		this.atendimento = atendimento;
-	}
-
-
 	public Long getTeste() {
 		return teste;
 	}
 
-
 	public void setTeste(Long teste) {
 		this.teste = teste;
 	}
-
-
-	public void salvar() {
+	
 		
-		String msg="Atendimento criado com sucesso";
+	public ExamesLaboratoriais getExamesLaboratoriais() {
+		return examesLaboratoriais;
+	}
+
+	public void setExamesLaboratoriais(ExamesLaboratoriais examesLaboratoriais) {
+		this.examesLaboratoriais = examesLaboratoriais;
+	}
+	
+		
+	public AtendimentoService getAtendimentoService() {
+		return atendimentoService;
+	}
+
+	public void setAtendimentoService(AtendimentoService atendimentoService) {
+		this.atendimentoService = atendimentoService;
+	}
+
+	public Paciente getPacienteSelecionado() {
+		return pacienteSelecionado;
+	}
+
+	public void setPacienteSelecionado(Paciente pacienteSelecionado) {
+		this.pacienteSelecionado = pacienteSelecionado;
+	}
+
+	@PostConstruct
+	public void init(){
+		atualizarAtendimentos();
+	}
+	
+	public void atualizarAtendimentos(){
+		getAtendimentos().clear();
+		getAtendimentos().addAll(atendimentoService.listAll());
+	}
+	
+	
+	public void carregarAtendimentos() {
+		atendimentos.clear();
+		atendimentos.addAll(atendimentoService.obtemAtendimentoPorPaciente(pacienteSelecionado));
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+	public void salvarAtendimentoAdulto() {
+		
+		String msg="Atendimento salvo com sucesso";
+		
 		try {
-			if(getAtendimento().getId()==null){ 
+			if(getAtendimentoAdulto().getId()==null){ 
 				paciente = pacienteService.obtemPorId(getTeste());	
-				atendimento.setPaciente(paciente);
-				atendimentoService.create(atendimento);
-				setAtendimento(new Atendimento());
+				atendimentoAdulto.setExamesLaboratoriais(examesLaboratoriais);	
+				atendimentoAdulto.setPaciente(paciente);
+				atendimentoAdultoService.create(atendimentoAdulto);
+				setAtendimentoAdulto(new AtendimentoAdulto());
 				FacesContext.getCurrentInstance().addMessage("menssagem", new FacesMessage("Parabéns!", msg));
 					
 		}
@@ -138,7 +239,7 @@ public class AtendimentoBean {
 		
 		paciente = (Paciente) evento.getComponent().getAttributes().get("pegarPaciente");	
 		
-	//	atendimentos = atendimentoService.obtemPorId(paciente.getId());	
+	//	atendimentos = atendimentoAdultoService.obtemPorId(paciente.getId());	
 			
 			
 			

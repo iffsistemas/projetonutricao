@@ -28,7 +28,7 @@ public class ExamesLaboratoriais {
 	private Double hdl;
 	private Double vldl;
 	private Double ldl;
-	private Double triglicerídeos;
+	private Double triglicerideos;
 	private Double calcio;
 	private Double cloro;
 	private Double cobre;
@@ -176,11 +176,12 @@ public class ExamesLaboratoriais {
 	public void setLdl(Double ldl) {
 		this.ldl = ldl;
 	}
-	public Double getTriglicerídeos() {
-		return triglicerídeos;
+	
+	public Double getTriglicerideos() {
+		return triglicerideos;
 	}
-	public void setTriglicerídeos(Double triglicerídeos) {
-		this.triglicerídeos = triglicerídeos;
+	public void setTriglicerideos(Double triglicerideos) {
+		this.triglicerideos = triglicerideos;
 	}
 	public Double getCalcio() {
 		return calcio;

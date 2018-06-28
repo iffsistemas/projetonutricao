@@ -71,6 +71,12 @@ public class PacienteAdulto extends Paciente {
 	private String consumoDoces;
 	private String ingestaoHidrica;
 	
+	private String efCabeca;
+	private String efPescoco;
+	private String efAbdomem;
+	private String efMmii;
+	private String efMmss;
+	private String efEdema;
 	
 public String getProfissão() {
 	return profissão;
@@ -328,6 +334,54 @@ public String getIngestaoHidrica() {
 
 public void setIngestaoHidrica(String ingestaoHidrica) {
 	this.ingestaoHidrica = ingestaoHidrica;
+}
+
+public String getEfCabeca() {
+	return efCabeca;
+}
+
+public void setEfCabeca(String efCabeca) {
+	this.efCabeca = efCabeca;
+}
+
+public String getEfPescoco() {
+	return efPescoco;
+}
+
+public void setEfPescoco(String efPescoco) {
+	this.efPescoco = efPescoco;
+}
+
+public String getEfAbdomem() {
+	return efAbdomem;
+}
+
+public void setEfAbdomem(String efAbdomem) {
+	this.efAbdomem = efAbdomem;
+}
+
+public String getEfMmii() {
+	return efMmii;
+}
+
+public void setEfMmii(String efMmii) {
+	this.efMmii = efMmii;
+}
+
+public String getEfMmss() {
+	return efMmss;
+}
+
+public void setEfMmss(String efMmss) {
+	this.efMmss = efMmss;
+}
+
+public String getEfEdema() {
+	return efEdema;
+}
+
+public void setEfEdema(String efEdema) {
+	this.efEdema = efEdema;
 }
 
 

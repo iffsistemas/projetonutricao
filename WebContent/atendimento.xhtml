@@ -23,11 +23,11 @@
        <h:panelGrid columns="2"> 
        
         <h:outputText value="Descrição do Atendimento: " for="descricaoAtndimento"/>
-        <h:inputTextarea id="descricaoAtndimento"  value="#{atendimentoBean.atendimento.descricao}" rows="3" cols="60" autoResize="false" />
+        <h:inputTextarea id="descricaoAtndimento"  value="#{#}" rows="3" cols="60" autoResize="false" />
        
        </h:panelGrid> 
        
-        <p:commandButton action="#{atendimentoBean.salvar()}" value="Gravar" 
+        <p:commandButton action="#{atendimentoBean.salvarAtendimentoAdulto()}" value="Salvar" 
                 update=":mensagem :formNovoAtendimento" />
 
 </h:form>

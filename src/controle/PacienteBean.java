@@ -16,7 +16,7 @@ import javax.faces.context.FacesContext;
 
 import org.primefaces.context.RequestContext;
 
-import modelo.Atendimento;
+import modelo.AtendimentoAdulto;
 import modelo.AvaliacaoDaAlimentacao;
 import modelo.Medicamento;
 import modelo.MotivoAtendimento;
@@ -24,7 +24,7 @@ import modelo.Paciente;
 import modelo.PacienteAdulto;
 import modelo.PacienteCrianca;
 import modelo.PacienteGestante;
-import service.AtendimentoService;
+import service.AtendimentoAdultoService;
 import service.PacienteAdultoService;
 import service.PacienteCriancaService;
 import service.PacienteGestanteService;
@@ -40,7 +40,7 @@ public class PacienteBean {
 	@EJB
 	PacienteService pacienteService;
 	@EJB
-	AtendimentoService atendimentoService;
+	AtendimentoAdultoService atendimentoAdultoService;
 	@EJB
 	PacienteAdultoService pacienteAdultoService;	
 	@EJB
@@ -70,7 +70,7 @@ public class PacienteBean {
 	
 	
 	List<Paciente> pacientes = new ArrayList<Paciente>();
-	List<Atendimento> atendimentos = new ArrayList<Atendimento>();	
+	List<AtendimentoAdulto> atendimentosAdulto = new ArrayList<AtendimentoAdulto>();	
 	
 		
 	public PacienteService getPacienteService() {
@@ -81,12 +81,14 @@ public class PacienteBean {
 		this.pacienteService = pacienteService;
 	}
 
-	public AtendimentoService getAtendimentoService() {
-		return atendimentoService;
+	
+
+	public AtendimentoAdultoService getAtendimentoAdultoService() {
+		return atendimentoAdultoService;
 	}
 
-	public void setAtendimentoService(AtendimentoService atendimentoService) {
-		this.atendimentoService = atendimentoService;
+	public void setAtendimentoAdultoService(AtendimentoAdultoService atendimentoAdultoService) {
+		this.atendimentoAdultoService = atendimentoAdultoService;
 	}
 
 	public Paciente getPaciente() {
@@ -121,12 +123,14 @@ public class PacienteBean {
 		this.pacientes = pacientes;
 	}
 
-	public List<Atendimento> getAtendimentos() {
-		return atendimentos;
+	
+
+	public List<AtendimentoAdulto> getAtendimentosAdulto() {
+		return atendimentosAdulto;
 	}
 
-	public void setAtendimentos(List<Atendimento> atendimentos) {
-		this.atendimentos = atendimentos;
+	public void setAtendimentosAdulto(List<AtendimentoAdulto> atendimentosAdulto) {
+		this.atendimentosAdulto = atendimentosAdulto;
 	}
 
 	public PacienteAdultoService getPacienteAdultoService() {
@@ -196,6 +200,15 @@ public class PacienteBean {
 	public void setMedicamento(Medicamento medicamento) {
 		this.medicamento = medicamento;
 	}
+	
+	
+	public AvaliacaoDaAlimentacao getAlimentacao() {
+		return alimentacao;
+	}
+
+	public void setAlimentacao(AvaliacaoDaAlimentacao alimentacao) {
+		this.alimentacao = alimentacao;
+	}
 
 	@PostConstruct
 	public void init(){
@@ -208,9 +221,24 @@ public class PacienteBean {
 	}
 	
 	
-	public void carregarAtendimentos() {
-		atendimentos.clear();
-		atendimentos.addAll(atendimentoService.obtemAtendimentoPorPaciente(pacienteSelecionado));
+	public void carregarAtendimentos() throws IOException { {
+		
+				
+			if(pacienteSelecionado instanceof PacienteAdulto) {
+				atendimentosAdulto.clear();
+				atendimentosAdulto.addAll(atendimentoAdultoService.obtemAtendimentoAdultoPorPaciente(pacienteSelecionado));
+				
+			}else
+			if(pacienteSelecionado instanceof PacienteCrianca) {
+				FacesContext.getCurrentInstance().getExternalContext().redirect("formularioCrianca.xhtml");
+			} else
+			if(pacienteSelecionado instanceof PacienteGestante) {
+				FacesContext.getCurrentInstance().getExternalContext().redirect("formularioGestante.xhtml");
+			}	
+		}
+		
+		
+		
 	}
 	
 	
@@ -383,7 +411,7 @@ public void calcularIdade() {
 	public void chamarAtendimento() throws IOException {
 		//formularioAdulto?faces-redirect=true
 		if(pacienteSelecionado instanceof PacienteAdulto) {
-			FacesContext.getCurrentInstance().getExternalContext().redirect("formularioAdulto.xhtml");
+			FacesContext.getCurrentInstance().getExternalContext().redirect("atendimentoAdulto.xhtml");
 		}else
 		if(pacienteSelecionado instanceof PacienteCrianca) {
 			FacesContext.getCurrentInstance().getExternalContext().redirect("formularioCrianca.xhtml");
