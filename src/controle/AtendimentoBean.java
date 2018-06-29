@@ -182,7 +182,7 @@ public class AtendimentoBean {
 		//Paciente Enviado de outro pagina
 		PacienteAdulto pacEnviado = (PacienteAdulto) FacesContext.getCurrentInstance().getExternalContext().getFlash().get("pacienteAdulto");
 		System.out.println("Enviado: "+pacEnviado.getNome());
-		getAtendimentoAdulto().setPaciente(pacEnviado);
+		//getAtendimentoAdulto().setPaciente(pacEnviado);
 		
 	}
 	

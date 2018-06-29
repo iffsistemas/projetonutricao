@@ -2,12 +2,14 @@ package modelo;
 
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -27,8 +29,6 @@ public class Paciente {
 	@Column(length=3)
 	private Integer idade;
 
-	@Column(length=30)
-	private String email="pac1@email.com";
 	
 	@Column(length=15)
 	private String telefoneRes="2212331256";
@@ -36,66 +36,77 @@ public class Paciente {
 	@Column(length=15)
 	private String telefoneCel="22999998558";
 	
-	
-	
-	
-	
-	
-	
+	@OneToOne(cascade=CascadeType.ALL)
+	AnamneseAlimentar anamneseAlimentar = new AnamneseAlimentar();
+
+
 	public Long getId() {
 		return id;
 	}
+
 
 	public void setId(Long id) {
 		this.id = id;
 	}
 
+
 	public String getNome() {
 		return nome;
 	}
+
 
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
 
+
 	public Date getDataNascimento() {
 		return dataNascimento;
 	}
+
 
 	public void setDataNascimento(Date dataNascimento) {
 		this.dataNascimento = dataNascimento;
 	}
 
+
 	public Integer getIdade() {
 		return idade;
 	}
+
 
 	public void setIdade(Integer idade) {
 		this.idade = idade;
 	}
 
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
 
 	public String getTelefoneRes() {
 		return telefoneRes;
 	}
 
+
 	public void setTelefoneRes(String telefoneRes) {
 		this.telefoneRes = telefoneRes;
 	}
+
 
 	public String getTelefoneCel() {
 		return telefoneCel;
 	}
 
+
 	public void setTelefoneCel(String telefoneCel) {
 		this.telefoneCel = telefoneCel;
+	}
+
+
+	public AnamneseAlimentar getAnamneseAlimentar() {
+		return anamneseAlimentar;
+	}
+
+
+	public void setAnamneseAlimentar(AnamneseAlimentar anamneseAlimentar) {
+		this.anamneseAlimentar = anamneseAlimentar;
 	}
 	
 	

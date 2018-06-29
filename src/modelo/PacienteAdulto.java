@@ -9,386 +9,398 @@ import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
 @Entity
 public class PacienteAdulto extends Paciente {
 	
-	@Column(length=50)
-  private String profissão="Professor";
+	private String email="pac1@email.com";
+	private String profissão="Professor";
+	private String outrosMotivos;
+	private String problemaDeSaude;
+	private Boolean feitoExameDeSangue;
+	private String qualCirurgia;
+	private String quandoCirurgia;
+	private String outrasDoencas;
+	private String examesFisicos;
+	private String qualAtividade;
+	private String vezesPorSemanaDaAtividadeFisica;
+	private String quantidadeDeHorasPorSemanaDaAtividade;
+	private String duracaoDaAtividadeFisica;
+	private String deslocamentoParaAsAtividades;
+	private Boolean comeDevagar;
+	private Boolean mastigaBemOsAlimentos;
+	private String alergiaAQualAlimento;
+	private String intoleranciaAlimentar;
+	private String alimentoPreferido;
+	private String horarioDeMaisFome;
+	private String aversoesAlimentares;
+	private String horaAcorda;
+	private String horaDorme; 
+	private String comQuemMora;
+	private Boolean preparaAlimento;
+	private String quemCozinhaNaCasa;
+	private String horarioQueEstuda;
+	private String horarioQueTrabalha;
+	private Boolean maiorParteSentado;
+	private Boolean desconfortosIntestinais;
+	private String alteracaoDeApetiteAnsiedade;
+	private Boolean temTPM;
+	private String consumoDeDoces;
+	private Boolean etilista;
+	private Boolean tabagista;
+	private String ingestaoHidrica; 
+	
 	
 	@ElementCollection(fetch = FetchType.EAGER)
 	private Collection<MotivoAtendimento> motivos  = new ArrayList<MotivoAtendimento>();
 	
-	private String outrosMotivos;
-	private String problemaDeSaude;
-	
 	@OneToMany(cascade=CascadeType.ALL)
 	private List<Medicamento> medicamentos = new ArrayList<Medicamento>();
 	
-
-	//List Cirurgia
 	
-	private String qualCirurgia;
+	//ENEM Hereditariedade
+	//ENUM Cirurgia
 	
-	private String quandoCirurgia;
 	
-	//List Hereditariedade
 	
-	private String outraHereditariedade;
 	
-	private String atividadeVezPorSem;
-	private String atividadeHoras;
-	private String atividadeDuracao;
 	
-	private Boolean comeDevagar;
-	private Boolean mastigaBemOsAlimentos;
+
+	public String getEmail() {
+		return email;
+	}
+
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getProfissão() {
+		return profissão;
+	}
+
+	public void setProfissão(String profissão) {
+		this.profissão = profissão;
+	}
+
+	public String getOutrosMotivos() {
+		return outrosMotivos;
+	}
+
+	public void setOutrosMotivos(String outrosMotivos) {
+		this.outrosMotivos = outrosMotivos;
+	}
+
+	public String getProblemaDeSaude() {
+		return problemaDeSaude;
+	}
+
+	public void setProblemaDeSaude(String problemaDeSaude) {
+		this.problemaDeSaude = problemaDeSaude;
+	}
+
+	public Boolean getFeitoExameDeSangue() {
+		return feitoExameDeSangue;
+	}
+
+	public void setFeitoExameDeSangue(Boolean feitoExameDeSangue) {
+		this.feitoExameDeSangue = feitoExameDeSangue;
+	}
+
+	public String getQualCirurgia() {
+		return qualCirurgia;
+	}
+
+	public void setQualCirurgia(String qualCirurgia) {
+		this.qualCirurgia = qualCirurgia;
+	}
+
+	public String getQuandoCirurgia() {
+		return quandoCirurgia;
+	}
+
+	public void setQuandoCirurgia(String quandoCirurgia) {
+		this.quandoCirurgia = quandoCirurgia;
+	}
+
+	public String getOutrasDoencas() {
+		return outrasDoencas;
+	}
+
+	public void setOutrasDoencas(String outrasDoencas) {
+		this.outrasDoencas = outrasDoencas;
+	}
+
+	public String getExamesFisicos() {
+		return examesFisicos;
+	}
+
+	public void setExamesFisicos(String examesFisicos) {
+		this.examesFisicos = examesFisicos;
+	}
+
+	public String getQualAtividade() {
+		return qualAtividade;
+	}
+
+	public void setQualAtividade(String qualAtividade) {
+		this.qualAtividade = qualAtividade;
+	}
+
+	public String getVezesPorSemanaDaAtividadeFisica() {
+		return vezesPorSemanaDaAtividadeFisica;
+	}
+
+	public void setVezesPorSemanaDaAtividadeFisica(String vezesPorSemanaDaAtividadeFisica) {
+		this.vezesPorSemanaDaAtividadeFisica = vezesPorSemanaDaAtividadeFisica;
+	}
+
+	public String getQuantidadeDeHorasPorSemanaDaAtividade() {
+		return quantidadeDeHorasPorSemanaDaAtividade;
+	}
+
+	public void setQuantidadeDeHorasPorSemanaDaAtividade(String quantidadeDeHorasPorSemanaDaAtividade) {
+		this.quantidadeDeHorasPorSemanaDaAtividade = quantidadeDeHorasPorSemanaDaAtividade;
+	}
+
+	public String getDuracaoDaAtividadeFisica() {
+		return duracaoDaAtividadeFisica;
+	}
+
+	public void setDuracaoDaAtividadeFisica(String duracaoDaAtividadeFisica) {
+		this.duracaoDaAtividadeFisica = duracaoDaAtividadeFisica;
+	}
+
 	
-	private Boolean etilista;
-	private Boolean tabagista;
+
+	public String getDeslocamentoParaAsAtividades() {
+		return deslocamentoParaAsAtividades;
+	}
+
+	public void setDeslocamentoParaAsAtividades(String deslocamentoParaAsAtividades) {
+		this.deslocamentoParaAsAtividades = deslocamentoParaAsAtividades;
+	}
+
+	public Boolean getComeDevagar() {
+		return comeDevagar;
+	}
+
+	public void setComeDevagar(Boolean comeDevagar) {
+		this.comeDevagar = comeDevagar;
+	}
+
+	public Boolean getMastigaBemOsAlimentos() {
+		return mastigaBemOsAlimentos;
+	}
+
+	public void setMastigaBemOsAlimentos(Boolean mastigaBemOsAlimentos) {
+		this.mastigaBemOsAlimentos = mastigaBemOsAlimentos;
+	}
+
+	public String getAlergiaAQualAlimento() {
+		return alergiaAQualAlimento;
+	}
+
+	public void setAlergiaAQualAlimento(String alergiaAQualAlimento) {
+		this.alergiaAQualAlimento = alergiaAQualAlimento;
+	}
+
+	public String getIntoleranciaAlimentar() {
+		return intoleranciaAlimentar;
+	}
+
+	public void setIntoleranciaAlimentar(String intoleranciaAlimentar) {
+		this.intoleranciaAlimentar = intoleranciaAlimentar;
+	}
+
+	public String getAlimentoPreferido() {
+		return alimentoPreferido;
+	}
+
+	public void setAlimentoPreferido(String alimentoPreferido) {
+		this.alimentoPreferido = alimentoPreferido;
+	}
+
+	public String getHorarioDeMaisFome() {
+		return horarioDeMaisFome;
+	}
+
+	public void setHorarioDeMaisFome(String horarioDeMaisFome) {
+		this.horarioDeMaisFome = horarioDeMaisFome;
+	}
+
+	public String getAversoesAlimentares() {
+		return aversoesAlimentares;
+	}
+
+	public void setAversoesAlimentares(String aversoesAlimentares) {
+		this.aversoesAlimentares = aversoesAlimentares;
+	}
+
+	public String getHoraAcorda() {
+		return horaAcorda;
+	}
+
+	public void setHoraAcorda(String horaAcorda) {
+		this.horaAcorda = horaAcorda;
+	}
+
+	public String getHoraDorme() {
+		return horaDorme;
+	}
+
+	public void setHoraDorme(String horaDorme) {
+		this.horaDorme = horaDorme;
+	}
+
+	public String getComQuemMora() {
+		return comQuemMora;
+	}
+
+	public void setComQuemMora(String comQuemMora) {
+		this.comQuemMora = comQuemMora;
+	}
+
+	public Boolean getPreparaAlimento() {
+		return preparaAlimento;
+	}
+
+	public void setPreparaAlimento(Boolean preparaAlimento) {
+		this.preparaAlimento = preparaAlimento;
+	}
+
+	public String getQuemCozinhaNaCasa() {
+		return quemCozinhaNaCasa;
+	}
+
+	public void setQuemCozinhaNaCasa(String quemCozinhaNaCasa) {
+		this.quemCozinhaNaCasa = quemCozinhaNaCasa;
+	}
+
+	public String getHorarioQueEstuda() {
+		return horarioQueEstuda;
+	}
+
+	public void setHorarioQueEstuda(String horarioQueEstuda) {
+		this.horarioQueEstuda = horarioQueEstuda;
+	}
+
+	public String getHorarioQueTrabalha() {
+		return horarioQueTrabalha;
+	}
+
+	public void setHorarioQueTrabalha(String horarioQueTrabalha) {
+		this.horarioQueTrabalha = horarioQueTrabalha;
+	}
+
+	public Boolean getMaiorParteSentado() {
+		return maiorParteSentado;
+	}
+
+	public void setMaiorParteSentado(Boolean maiorParteSentado) {
+		this.maiorParteSentado = maiorParteSentado;
+	}
+
+	public Boolean getDesconfortosIntestinais() {
+		return desconfortosIntestinais;
+	}
+
+	public void setDesconfortosIntestinais(Boolean desconfortosIntestinais) {
+		this.desconfortosIntestinais = desconfortosIntestinais;
+	}
+
+	public String getAlteracaoDeApetiteAnsiedade() {
+		return alteracaoDeApetiteAnsiedade;
+	}
+
+	public void setAlteracaoDeApetiteAnsiedade(String alteracaoDeApetiteAnsiedade) {
+		this.alteracaoDeApetiteAnsiedade = alteracaoDeApetiteAnsiedade;
+	}
+
+	public Boolean getTemTPM() {
+		return temTPM;
+	}
+
+	public void setTemTPM(Boolean temTPM) {
+		this.temTPM = temTPM;
+	}
+
+	public String getConsumoDeDoces() {
+		return consumoDeDoces;
+	}
+
+	public void setConsumoDeDoces(String consumoDeDoces) {
+		this.consumoDeDoces = consumoDeDoces;
+	}
+
+	public Boolean getEtilista() {
+		return etilista;
+	}
+
+	public void setEtilista(Boolean etilista) {
+		this.etilista = etilista;
+	}
+
+	public Boolean getTabagista() {
+		return tabagista;
+	}
+
+	public void setTabagista(Boolean tabagista) {
+		this.tabagista = tabagista;
+	}
+
+	public String getIngestaoHidrica() {
+		return ingestaoHidrica;
+	}
+
+	public void setIngestaoHidrica(String ingestaoHidrica) {
+		this.ingestaoHidrica = ingestaoHidrica;
+	}
+
+	public Collection<MotivoAtendimento> getMotivos() {
+		return motivos;
+	}
+
+	public void setMotivos(Collection<MotivoAtendimento> motivos) {
+		this.motivos = motivos;
+	}
+
+	public List<Medicamento> getMedicamentos() {
+		return medicamentos;
+	}
+
+	public void setMedicamentos(List<Medicamento> medicamentos) {
+		this.medicamentos = medicamentos;
+	}
 	
-	private String alergiaAlimentar;
-	private String intoleranciaAlimentar;
-	private String horarioDeMaisFome;
-	private String alimentosPreferidos;
-	private String aversaoAlimentar;
 	
-	@OneToMany(cascade=CascadeType.ALL)
-	private List<AvaliacaoDaAlimentacao> alimentacoes = new ArrayList<AvaliacaoDaAlimentacao>();
 	
-	private String moraCom;
-	private String manipuladorAlimento;
 	
-	private String horarioQueEstuda;
-	private String horarioQueTrabalha;
 	
-	private Boolean maiorParteSentado;
-	private Boolean desconfortoIntestinal;
-	private Boolean temTPM;
 	
-	private String deslocamentoAtividade;
-	private String alteracaoApetite;
-	private String consumoDoces;
-	private String ingestaoHidrica;
 	
-	private String efCabeca;
-	private String efPescoco;
-	private String efAbdomem;
-	private String efMmii;
-	private String efMmss;
-	private String efEdema;
 	
-public String getProfissão() {
-	return profissão;
-}
-
-public void setProfissão(String profissão) {
-	this.profissão = profissão;
-}
-
-public String getOutrosMotivos() {
-	return outrosMotivos;
-}
-
-public void setOutrosMotivos(String outrosMotivos) {
-	this.outrosMotivos = outrosMotivos;
-}
-
-public Collection<MotivoAtendimento> getMotivos() {
-	return motivos;
-}
-
-public void setMotivos(Collection<MotivoAtendimento> motivos) {
-	this.motivos = motivos;
-}
-
-public String getProblemaDeSaude() {
-	return problemaDeSaude;
-}
-
-public void setProblemaDeSaude(String problemaDeSaude) {
-	this.problemaDeSaude = problemaDeSaude;
-}
-
-public List<Medicamento> getMedicamentos() {
-	return medicamentos;
-}
-
-public void setMedicamentos(List<Medicamento> medicamentos) {
-	this.medicamentos = medicamentos;
-}
-
-public String getQualCirurgia() {
-	return qualCirurgia;
-}
-
-public void setQualCirurgia(String qualCirurgia) {
-	this.qualCirurgia = qualCirurgia;
-}
-
-public String getQuandoCirurgia() {
-	return quandoCirurgia;
-}
-
-public void setQuandoCirurgia(String quandoCirurgia) {
-	this.quandoCirurgia = quandoCirurgia;
-}
-
-public String getOutraHereditariedade() {
-	return outraHereditariedade;
-}
-
-public void setOutraHereditariedade(String outraHereditariedade) {
-	this.outraHereditariedade = outraHereditariedade;
-}
-
-
-public String getAtividadeVezPorSem() {
-	return atividadeVezPorSem;
-}
-
-public void setAtividadeVezPorSem(String atividadeVezPorSem) {
-	this.atividadeVezPorSem = atividadeVezPorSem;
-}
-
-public String getAtividadeHoras() {
-	return atividadeHoras;
-}
-
-public void setAtividadeHoras(String atividadeHoras) {
-	this.atividadeHoras = atividadeHoras;
-}
-
-public String getAtividadeDuracao() {
-	return atividadeDuracao;
-}
-
-public void setAtividadeDuracao(String atividadeDuracao) {
-	this.atividadeDuracao = atividadeDuracao;
-}
-
-public Boolean getComeDevagar() {
-	return comeDevagar;
-}
-
-public void setComeDevagar(Boolean comeDevagar) {
-	this.comeDevagar = comeDevagar;
-}
-
-public Boolean getMastigaBemOsAlimentos() {
-	return mastigaBemOsAlimentos;
-}
-
-public void setMastigaBemOsAlimentos(Boolean mastigaBemOsAlimentos) {
-	this.mastigaBemOsAlimentos = mastigaBemOsAlimentos;
-}
-
-public Boolean getEtilista() {
-	return etilista;
-}
-
-public void setEtilista(Boolean etilista) {
-	this.etilista = etilista;
-}
-
-public Boolean getTabagista() {
-	return tabagista;
-}
-
-public void setTabagista(Boolean tabagista) {
-	this.tabagista = tabagista;
-}
-
-public String getAlergiaAlimentar() {
-	return alergiaAlimentar;
-}
-
-public void setAlergiaAlimentar(String alergiaAlimentar) {
-	this.alergiaAlimentar = alergiaAlimentar;
-}
-
-public String getIntoleranciaAlimentar() {
-	return intoleranciaAlimentar;
-}
-
-public void setIntoleranciaAlimentar(String intoleranciaAlimentar) {
-	this.intoleranciaAlimentar = intoleranciaAlimentar;
-}
-
-public String getHorarioDeMaisFome() {
-	return horarioDeMaisFome;
-}
-
-public void setHorarioDeMaisFome(String horarioDeMaisFome) {
-	this.horarioDeMaisFome = horarioDeMaisFome;
-}
-
-public String getAlimentosPreferidos() {
-	return alimentosPreferidos;
-}
-
-public void setAlimentosPreferidos(String alimentosPreferidos) {
-	this.alimentosPreferidos = alimentosPreferidos;
-}
-
-public String getAversaoAlimentar() {
-	return aversaoAlimentar;
-}
-
-public void setAversaoAlimentar(String aversaoAlimentar) {
-	this.aversaoAlimentar = aversaoAlimentar;
-}
-
-
-public List<AvaliacaoDaAlimentacao> getAlimentacoes() {
-	return alimentacoes;
-}
-
-public void setAlimentacoes(List<AvaliacaoDaAlimentacao> alimentacoes) {
-	this.alimentacoes = alimentacoes;
-}
-
-public String getMoraCom() {
-	return moraCom;
-}
-
-public void setMoraCom(String moraCom) {
-	this.moraCom = moraCom;
-}
-
-public String getManipuladorAlimento() {
-	return manipuladorAlimento;
-}
-
-public void setManipuladorAlimento(String manipuladorAlimento) {
-	this.manipuladorAlimento = manipuladorAlimento;
-}
-
-public String getHorarioQueEstuda() {
-	return horarioQueEstuda;
-}
-
-public void setHorarioQueEstuda(String horarioQueEstuda) {
-	this.horarioQueEstuda = horarioQueEstuda;
-}
-
-public String getHorarioQueTrabalha() {
-	return horarioQueTrabalha;
-}
-
-public void setHorarioQueTrabalha(String horarioQueTrabalha) {
-	this.horarioQueTrabalha = horarioQueTrabalha;
-}
-
-public Boolean getMaiorParteSentado() {
-	return maiorParteSentado;
-}
-
-public void setMaiorParteSentado(Boolean maiorParteSentado) {
-	this.maiorParteSentado = maiorParteSentado;
-}
-
-public Boolean getDesconfortoIntestinal() {
-	return desconfortoIntestinal;
-}
-
-public void setDesconfortoIntestinal(Boolean desconfortoIntestinal) {
-	this.desconfortoIntestinal = desconfortoIntestinal;
-}
-
-public Boolean getTemTPM() {
-	return temTPM;
-}
-
-public void setTemTPM(Boolean temTPM) {
-	this.temTPM = temTPM;
-}
-
-public String getDeslocamentoAtividade() {
-	return deslocamentoAtividade;
-}
-
-public void setDeslocamentoAtividade(String deslocamentoAtividade) {
-	this.deslocamentoAtividade = deslocamentoAtividade;
-}
-
-public String getAlteracaoApetite() {
-	return alteracaoApetite;
-}
-
-public void setAlteracaoApetite(String alteracaoApetite) {
-	this.alteracaoApetite = alteracaoApetite;
-}
-
-public String getConsumoDoces() {
-	return consumoDoces;
-}
-
-public void setConsumoDoces(String consumoDoces) {
-	this.consumoDoces = consumoDoces;
-}
-
-public String getIngestaoHidrica() {
-	return ingestaoHidrica;
-}
-
-public void setIngestaoHidrica(String ingestaoHidrica) {
-	this.ingestaoHidrica = ingestaoHidrica;
-}
-
-public String getEfCabeca() {
-	return efCabeca;
-}
-
-public void setEfCabeca(String efCabeca) {
-	this.efCabeca = efCabeca;
-}
-
-public String getEfPescoco() {
-	return efPescoco;
-}
-
-public void setEfPescoco(String efPescoco) {
-	this.efPescoco = efPescoco;
-}
-
-public String getEfAbdomem() {
-	return efAbdomem;
-}
-
-public void setEfAbdomem(String efAbdomem) {
-	this.efAbdomem = efAbdomem;
-}
-
-public String getEfMmii() {
-	return efMmii;
-}
-
-public void setEfMmii(String efMmii) {
-	this.efMmii = efMmii;
-}
-
-public String getEfMmss() {
-	return efMmss;
-}
-
-public void setEfMmss(String efMmss) {
-	this.efMmss = efMmss;
-}
-
-public String getEfEdema() {
-	return efEdema;
-}
-
-public void setEfEdema(String efEdema) {
-	this.efEdema = efEdema;
-}
-
-
-
-
-
-
+	
+	
+	
+	 
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+	
+	
+	
+	
 
 
 

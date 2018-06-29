@@ -16,14 +16,15 @@ import javax.faces.context.FacesContext;
 
 import org.primefaces.context.RequestContext;
 
+import modelo.AnamneseAlimentar;
 import modelo.AtendimentoAdulto;
-import modelo.AvaliacaoDaAlimentacao;
 import modelo.Medicamento;
 import modelo.MotivoAtendimento;
 import modelo.Paciente;
 import modelo.PacienteAdulto;
 import modelo.PacienteCrianca;
 import modelo.PacienteGestante;
+import modelo.Refeicao;
 import service.AtendimentoAdultoService;
 import service.PacienteAdultoService;
 import service.PacienteCriancaService;
@@ -60,7 +61,8 @@ public class PacienteBean {
 		return lista;
 	}	
 	Medicamento medicamento = new Medicamento();
-	AvaliacaoDaAlimentacao alimentacao = new AvaliacaoDaAlimentacao();
+	AnamneseAlimentar anamneseAlimentar = new AnamneseAlimentar();
+	Refeicao refeicao = new Refeicao();
 	
 	
 	Paciente paciente = new Paciente();
@@ -201,13 +203,23 @@ public class PacienteBean {
 		this.medicamento = medicamento;
 	}
 	
+		
 	
-	public AvaliacaoDaAlimentacao getAlimentacao() {
-		return alimentacao;
+
+	public AnamneseAlimentar getAnamneseAlimentar() {
+		return anamneseAlimentar;
 	}
 
-	public void setAlimentacao(AvaliacaoDaAlimentacao alimentacao) {
-		this.alimentacao = alimentacao;
+	public void setAnamneseAlimentar(AnamneseAlimentar anamneseAlimentar) {
+		this.anamneseAlimentar = anamneseAlimentar;
+	}
+
+	public Refeicao getRefeicao() {
+		return refeicao;
+	}
+
+	public void setRefeicao(Refeicao refeicao) {
+		this.refeicao = refeicao;
 	}
 
 	@PostConstruct
@@ -301,30 +313,30 @@ public class PacienteBean {
 		FacesContext.getCurrentInstance().addMessage("menssagem", new FacesMessage("Parabéns!", "Medicamento Excluído com Sucesso"));
 	}
 	
-	
+
 public void adicionarRefeicao() {
 		
-		if(getPacienteAdulto().getAlimentacoes().contains(alimentacao)) {
-			alimentacao= new AvaliacaoDaAlimentacao();
+		if(getPacienteAdulto().getAnamneseAlimentar().getRefeicoes().contains(refeicao)) {
+			refeicao= new Refeicao();
             FacesMessage msg = new FacesMessage("Duplicidade!", "Esta Refeicão já foi Adicionada!");
             FacesContext.getCurrentInstance().addMessage(null, msg);
             
         } 
         else {
-        	getPacienteAdulto().getAlimentacoes().add(alimentacao);	
-        	alimentacao= new AvaliacaoDaAlimentacao();
+        	getPacienteAdulto().getAnamneseAlimentar().getRefeicoes().add(refeicao);	
+        	refeicao= new Refeicao();
     		FacesContext.getCurrentInstance().addMessage("menssagem", new FacesMessage("Parabéns!", "Refeicão Cadastrada com Sucesso"));
         }
 		
 	
 	}
 	
-	public void excluirRefeicao(AvaliacaoDaAlimentacao refeicaoAtual) {
-		getPacienteAdulto().getAlimentacoes().remove(refeicaoAtual);
+	public void excluirRefeicao(Refeicao refeicaoAtual) {
+		getPacienteAdulto().getAnamneseAlimentar().getRefeicoes().remove(refeicaoAtual);
 		FacesContext.getCurrentInstance().addMessage("menssagem", new FacesMessage("Parabéns!", "Refeicão Excluída com Sucesso"));
 	}
 	
-	
+
 	
 	
 	
@@ -388,6 +400,9 @@ public void calcularIdade() {
 		}
 		
 		pacienteAdulto.setIdade(idade);		
+		
+		
+		
 }
 	
 	

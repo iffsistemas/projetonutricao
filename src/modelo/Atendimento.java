@@ -2,10 +2,13 @@ package modelo;
 
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -13,6 +16,7 @@ import javax.persistence.TemporalType;
 
 
 @Entity
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public class Atendimento {
 	
 	
@@ -22,12 +26,14 @@ public class Atendimento {
 	@Column(length=100)
 	private String descricao;
 	
-	
 	@Temporal(TemporalType.DATE)
 	private Date dataAtendimento = new Date();
 	
-	@OneToOne
+	@OneToOne(cascade=CascadeType.ALL)
 	private Paciente paciente;
+	
+	@OneToOne(cascade=CascadeType.ALL)
+	ExamesLaboratoriais examesLaboratoriais;
 
 	public Long getId() {
 		return id;
@@ -36,9 +42,6 @@ public class Atendimento {
 	public void setId(Long id) {
 		this.id = id;
 	}
-
-	
-	
 
 	public String getDescricao() {
 		return descricao;
@@ -63,6 +66,17 @@ public class Atendimento {
 	public void setPaciente(Paciente paciente) {
 		this.paciente = paciente;
 	}
+
+	public ExamesLaboratoriais getExamesLaboratoriais() {
+		return examesLaboratoriais;
+	}
+
+	public void setExamesLaboratoriais(ExamesLaboratoriais examesLaboratoriais) {
+		this.examesLaboratoriais = examesLaboratoriais;
+	}
+	
+	
+	
 	
 	
 	

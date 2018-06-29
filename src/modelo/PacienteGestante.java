@@ -6,8 +6,13 @@ import javax.persistence.Entity;
 @Entity
 public class PacienteGestante extends Paciente {
 	
+	
+	private String email="pac1@email.com";
+	
 	@Column(length=20)
   private String profissão="Destista";
+	
+	
 
 public String getProfissão() {
 	return profissão;
@@ -15,6 +20,14 @@ public String getProfissão() {
 
 public void setProfissão(String profissão) {
 	this.profissão = profissão;
+}
+
+public String getEmail() {
+	return email;
+}
+
+public void setEmail(String email) {
+	this.email = email;
 }
   
   

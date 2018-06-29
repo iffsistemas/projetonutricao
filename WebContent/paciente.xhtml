@@ -250,9 +250,9 @@
 		<h:panelGrid columns="4">
      	
 		     	<p:outputLabel value="Cirurgia:" for="qualCirurgia"/>
-		     	<p:inputTextarea id="qualCirurgia" value="#{pacienteBean.pacienteAdulto.qualCirurgia}"  rows="3" cols="30" autoResize="false" />
+		     	<p:inputTextarea id="qualCirurgia" value="#{pacienteBean.pacienteAdulto.qualCirurgia}"  rows="3" cols="20" autoResize="false" />
 		     	<p:outputLabel value="Quando:" for="quandoCirurgia"/>
-		     	<p:inputTextarea id="quandoCirurgia" value="#{pacienteBean.pacienteAdulto.quandoCirurgia}"  rows="3" cols="30" autoResize="false" />
+		     	<p:inputTextarea id="quandoCirurgia" value="#{pacienteBean.pacienteAdulto.quandoCirurgia}"  rows="3" cols="20" autoResize="false" />
 		     	   	
      	</h:panelGrid> 	   	</p:fieldset>
      	
@@ -272,8 +272,8 @@
         
         <h:panelGrid columns="2">
      	
-		     	<p:outputLabel value="Outros:" for="outraHereditariedade"/>
-		     	<p:inputTextarea id="outraHereditariedade" value="#{pacienteBean.pacienteAdulto.outraHereditariedade}"  rows="3" cols="30" autoResize="false" />
+		     	<p:outputLabel value="Outros:" for="outrasDoencas"/>
+		     	<p:inputTextarea id="outrasDoencas" value="#{pacienteBean.pacienteAdulto.outrasDoencas}"  rows="3" cols="30" autoResize="false" />
 		 
 		</h:panelGrid> </p:fieldset> 
 		
@@ -281,51 +281,34 @@
 		
 		<h:panelGrid columns="2">
 		
-		
-				<p:outputLabel value="Vezes Por Semana:" for="atvVezesPorSem"/>
-		     	<p:inputTextarea id="atvVezesPorSem" value="#{pacienteBean.pacienteAdulto.atividadeVezPorSem}"  rows="3" cols="20" autoResize="false" />
-		     	<p:outputLabel value="Que Horas (DE/A):" for="atvhoras"/>
-		     	<p:inputTextarea id="atvhoras" value="#{pacienteBean.pacienteAdulto.atividadeHoras}"  rows="3" cols="20" autoResize="false" />
-		     	<p:outputLabel value="Duração:" for="atvDuracao"/>
-		     	<p:inputTextarea id="atvDuracao" value="#{pacienteBean.pacienteAdulto.atividadeDuracao}"  rows="3" cols="20" autoResize="false" />
+			<p:outputLabel value="Qual Atividade:" for="qualAtividade"/>
+		     	<p:inputTextarea id="qualAtividade" value="#{pacienteBean.pacienteAdulto.qualAtividade}"  rows="3" cols="20" autoResize="false" />
+				<p:outputLabel value="Vezes Por Semana:" for="vezesPorSemanaDaAtividadeFisica"/>
+		     	<p:inputTextarea id="vezesPorSemanaDaAtividadeFisica" value="#{pacienteBean.pacienteAdulto.vezesPorSemanaDaAtividadeFisica}"  rows="3" cols="20" autoResize="false" />
+		     	<p:outputLabel value="Que Horas (DE/A):" for="quantidadeDeHorasPorSemanaDaAtividade"/>
+		     	<p:inputTextarea id="quantidadeDeHorasPorSemanaDaAtividade" value="#{pacienteBean.pacienteAdulto.quantidadeDeHorasPorSemanaDaAtividade}"  rows="3" cols="20" autoResize="false" />
+		     	<p:outputLabel value="Duração:" for="duracaoDaAtividadeFisica"/>
+		     	<p:inputTextarea id="duracaoDaAtividadeFisica" value="#{pacienteBean.pacienteAdulto.duracaoDaAtividadeFisica}"  rows="3" cols="20" autoResize="false" />
 				
 		</h:panelGrid> </p:fieldset>
 		
 		
 		<h:panelGrid columns="2">
-                 
+		
+		
+       		 <h:outputText value="Tem feito Exame de Sangue:" />
+		       <p:selectBooleanButton value="#{pacienteBean.pacienteAdulto.feitoExameDeSangue}" onLabel="SIM" offLabel="NÂO" onIcon="ui-icon-check" offIcon="ui-icon-close"/>         
 			   <h:outputText value="Etilista:" />
 		       <p:selectBooleanButton value="#{pacienteBean.pacienteAdulto.etilista}" onLabel="SIM" offLabel="NÂO" onIcon="ui-icon-check" offIcon="ui-icon-close"/>
 	     	   <h:outputText value="Tabagista:" />
 		       <p:selectBooleanButton value="#{pacienteBean.pacienteAdulto.tabagista}" onLabel="SIM" offLabel="NÂO" onIcon="ui-icon-check" offIcon="ui-icon-close"/>
+     		<h:outputText value="Exames Físicos:" for="examesFisicos"/>
+       		<p:inputTextarea id="examesFisicos"  value="#{pacienteBean.pacienteAdulto.examesFisicos}" rows="4" cols="40" autoResize="false" />
+     	
      	
      	</h:panelGrid>  </p:tab> 
 		
-		
-		<p:tab title="Exames Fisícos">     	  
-  
-            <h:panelGrid columns="2">
-      		<h:outputText value="Cabeça: " for="cabeca"/>
-       		<p:inputTextarea id="cabeca"  value="#{pacienteBean.pacienteAdulto.efCabeca}" rows="4" cols="40" autoResize="false" />
-       		
-       		<h:outputText value="Pescoço " for="pescoco"/>
-       		<p:inputTextarea id="pescoco"  value="#{pacienteBean.pacienteAdulto.efPescoco}" rows="4" cols="40" autoResize="false" />
-       		
-       		<h:outputText value="Abdômem: " for="abdomem"/>
-       		<p:inputTextarea id="abdomem"  value="#{pacienteBean.pacienteAdulto.efAbdomem}" rows="4" cols="40" autoResize="false" />
-       		
-       		<h:outputText value="MMII: " for="mmii"/>
-       		<p:inputTextarea id="mmii"  value="#{pacienteBean.pacienteAdulto.efMmii}" rows="4" cols="40" autoResize="false" />
-       		
-       		<h:outputText value="MMSS: " for="mmss"/>
-       		<p:inputTextarea id="mmss"  value="#{pacienteBean.pacienteAdulto.efMmss}" rows="4" cols="40" autoResize="false" />
-       		
-       		<h:outputText value="Edema: " for="edema"/>
-       		<p:inputTextarea id="edema"  value="#{pacienteBean.pacienteAdulto.efEdema}" rows="4" cols="40" autoResize="false" />
-        	       	 
-          </h:panelGrid> </p:tab>
-          
-        
+		   
      
      	<p:tab title="Alimentação/Refeição">
      	
@@ -338,7 +321,7 @@
 		       	<p:selectBooleanButton value="#{pacienteBean.pacienteAdulto.mastigaBemOsAlimentos}" onLabel="SIM" offLabel="NÂO" onIcon="ui-icon-check" offIcon="ui-icon-close"/>
 	     	
 	     		<p:outputLabel value="Alergia Alimentar:" for="alergiaAlimentar"/>
-	     	    <p:inputTextarea id="alergiaAlimentar" value="#{pacienteBean.pacienteAdulto.alergiaAlimentar}"  rows="3" cols="30" autoResize="false" />
+	     	    <p:inputTextarea id="alergiaAlimentar" value="#{pacienteBean.pacienteAdulto.alergiaAQualAlimento}"  rows="3" cols="30" autoResize="false" />
 	     	
 	     		<p:outputLabel value="Intolorância Alimentar:" for="intoleranciaAlimentar"/>
 	     	    <p:inputTextarea id="intoleranciaAlimentar" value="#{pacienteBean.pacienteAdulto.intoleranciaAlimentar}"  rows="3" cols="30" autoResize="false" />
@@ -347,11 +330,17 @@
 	     	    <p:inputTextarea id="horarioDeMaisFome" value="#{pacienteBean.pacienteAdulto.horarioDeMaisFome}"  rows="3" cols="30" autoResize="false" />
 	     	     	
 	     		<p:outputLabel value="Alimentos Preferidos:" for="alimentosPreferidos"/>
-	     	    <p:inputTextarea id="alimentosPreferidos" value="#{pacienteBean.pacienteAdulto.alimentosPreferidos}"  rows="3" cols="30" autoResize="false" />
+	     	    <p:inputTextarea id="alimentosPreferidos" value="#{pacienteBean.pacienteAdulto.alimentoPreferido}"  rows="3" cols="30" autoResize="false" />
 	     		
 	     		<p:outputLabel value="Aversões Alimentares:" for="aversaoAlimentar"/>
-	     	    <p:inputTextarea id="aversaoAlimentar" value="#{pacienteBean.pacienteAdulto.aversaoAlimentar}"  rows="3" cols="30" autoResize="false" />
+	     	    <p:inputTextarea id="aversaoAlimentar" value="#{pacienteBean.pacienteAdulto.aversoesAlimentares}"  rows="3" cols="30" autoResize="false" />
 	     		
+	     		<p:outputLabel value="Você prepara os seus alimentos?" />
+		        <p:selectBooleanButton value="#{pacienteBean.pacienteAdulto.preparaAlimento}" onLabel="SIM" offLabel="NÂO" onIcon="ui-icon-check" offIcon="ui-icon-close"/>
+     			
+     			<p:outputLabel value="Manipulador do Alimento:" for="manipuladorAlimento"/>
+		     	<p:inputTextarea id="manipuladorAlimento" value="#{pacienteBean.pacienteAdulto.quemCozinhaNaCasa}"  rows="3" cols="30" autoResize="false" />
+     			
      			</h:panelGrid>
      			
   	<p:fieldset legend="Avaliação da Alimentação" id="fieldAvalAvaliacao">
@@ -360,11 +349,11 @@
      	<p:commandButton value="Adicionar Refeição" icon="ui-icon-plus" oncomplete="PF('AddAvalAlimentacao').show();"/>
      		   
      	
-     	<p:dataTable style="max-width: 600px; min-width: 600px" value="#{pacienteBean.pacienteAdulto.alimentacoes}" var="alim"
+     	<p:dataTable style="max-width: 600px; min-width: 600px" value="#{pacienteBean.pacienteAdulto.anamneseAlimentar.refeicoes}" var="alim"
 	paginator="true" id="tableAvalAlimentacao"  emptyMessage="Nenhuma Refeicao Cadastrada!" rows="4" >
 			<p:column>
-				<f:facet name="header">Refeição</f:facet>
-				<h:outputText value="#{alim.nome}" />
+				<f:facet name="header">Descrição</f:facet>
+				<h:outputText value="#{alim.descricao}" />
 			</p:column>
 			<p:column>
 				<f:facet name="header">Horários</f:facet>
@@ -375,8 +364,12 @@
 				<h:outputText value="#{alim.local}" />
 			</p:column>		
 			<p:column>
-				<f:facet name="header">Alimentos Consumidos</f:facet>
-				<h:outputText value="#{alim.alimentoConsumido}" />
+				<f:facet name="header">Qtd. Caseira</f:facet>
+				<h:outputText value="#{alim.quantidadeCaseira}" />
+			</p:column>			
+			<p:column>
+				<f:facet name="header">Qtd. Em Gramas</f:facet>
+				<h:outputText value="#{alim.quantidadeEmGramas}" />
 			</p:column>			
 				<p:column style="width:55px">
 				<f:facet name="header">Excluir</f:facet>
@@ -394,37 +387,34 @@
      		<h:panelGrid columns="2">
      		
 	     		<p:outputLabel value="Mora com:" for="moraCom"/>
-		     	<p:inputTextarea id="moraCom" value="#{pacienteBean.pacienteAdulto.moraCom}"  rows="4" cols="30" autoResize="false" />
-     			
-     			<p:outputLabel value="Manipulador do Alimento:" for="manipuladorAlimento"/>
-		     	<p:inputTextarea id="manipuladorAlimento" value="#{pacienteBean.pacienteAdulto.manipuladorAlimento}"  rows="4" cols="30" autoResize="false" />
-     			
+		     	<p:inputTextarea id="moraCom" value="#{pacienteBean.pacienteAdulto.comQuemMora}"  rows="3" cols="30" autoResize="false" />
+     			     			     			
      			<p:outputLabel value="Horário que estuda:" for="horarioQueEstuda"/>
-		     	<p:inputTextarea id="horarioQueEstuda" value="#{pacienteBean.pacienteAdulto.horarioQueEstuda}"  rows="4" cols="30" autoResize="false" />
+		     	<p:inputTextarea id="horarioQueEstuda" value="#{pacienteBean.pacienteAdulto.horarioQueEstuda}"  rows="3" cols="30" autoResize="false" />
 		     	
 		     	<p:outputLabel value="Horário que trabalha:" for="horarioQueTrabalha"/>
-		     	<p:inputTextarea id="horarioQueTrabalha" value="#{pacienteBean.pacienteAdulto.horarioQueTrabalha}"  rows="4" cols="30" autoResize="false" />
+		     	<p:inputTextarea id="horarioQueTrabalha" value="#{pacienteBean.pacienteAdulto.horarioQueTrabalha}"  rows="3" cols="30" autoResize="false" />
      		
      			<p:outputLabel value="Deslocamento para as Atividades:" for="deslocamentoAtividade"/>
-		     	<p:inputTextarea id="deslocamentoAtividade" value="#{pacienteBean.pacienteAdulto.deslocamentoAtividade}"  rows="4" cols="30" autoResize="false" />
+		     	<p:inputTextarea id="deslocamentoAtividade" value="#{pacienteBean.pacienteAdulto.deslocamentoParaAsAtividades}"  rows="3" cols="30" autoResize="false" />
 		     	
 		     	<p:outputLabel value="Alterações no Apetite em ansiedade:" for="alteracaoApetite"/>
-		     	<p:inputTextarea id="alteracaoApetite" value="#{pacienteBean.pacienteAdulto.alteracaoApetite}"  rows="4" cols="30" autoResize="false" />
+		     	<p:inputTextarea id="alteracaoApetite" value="#{pacienteBean.pacienteAdulto.alteracaoDeApetiteAnsiedade}"  rows="3" cols="30" autoResize="false" />
 		     	
 		     	<p:outputLabel value="Consumo de doces:" for="consumoDoces"/>
-		     	<p:inputTextarea id="consumoDoces" value="#{pacienteBean.pacienteAdulto.consumoDoces}"  rows="4" cols="30" autoResize="false" />
+		     	<p:inputTextarea id="consumoDoces" value="#{pacienteBean.pacienteAdulto.consumoDeDoces}"  rows="3" cols="30" autoResize="false" />
 		     	
      			<p:outputLabel value="Maior Parte do tempo sentado?" />
 		        <p:selectBooleanButton value="#{pacienteBean.pacienteAdulto.maiorParteSentado}" onLabel="SIM" offLabel="NÂO" onIcon="ui-icon-check" offIcon="ui-icon-close"/>
 	     	 
 	     		<p:outputLabel value="Sente desconforto Intestinal?" />
-		       	<p:selectBooleanButton value="#{pacienteBean.pacienteAdulto.desconfortoIntestinal}" onLabel="SIM" offLabel="NÂO" onIcon="ui-icon-check" offIcon="ui-icon-close"/>
+		       	<p:selectBooleanButton value="#{pacienteBean.pacienteAdulto.desconfortosIntestinais}" onLabel="SIM" offLabel="NÂO" onIcon="ui-icon-check" offIcon="ui-icon-close"/>
 	     	
 	     		<p:outputLabel value="Tem TPM?" />
 		        <p:selectBooleanButton value="#{pacienteBean.pacienteAdulto.temTPM}" onLabel="SIM" offLabel="NÂO" onIcon="ui-icon-check" offIcon="ui-icon-close"/>
 	     	
 	     		<p:outputLabel value="Ingestão Hidrica:" for="ingestaoHidrica"/>
-		     	<p:inputTextarea id="ingestaoHidrica" value="#{pacienteBean.pacienteAdulto.ingestaoHidrica}"  rows="4" cols="30" autoResize="false" />
+		     	<p:inputTextarea id="ingestaoHidrica" value="#{pacienteBean.pacienteAdulto.ingestaoHidrica}"  rows="3" cols="30" autoResize="false" />
 	     	
      		
      		
@@ -481,17 +471,20 @@
 		<h:panelGrid columns="2">
      	
      	<p:outputLabel value="Refeição:" for="refeicao"/>
-     	<p:inputTextarea id="refeicao" value="#{pacienteBean.alimentacao.nome}"  rows="2" cols="20" autoResize="false" />
+     	<p:inputTextarea id="refeicao" value="#{pacienteBean.refeicao.descricao}"  rows="2" cols="20" autoResize="false" />
      	
      	     	
      	<p:outputLabel value="Horário:" for="horario"/>
-     	<p:inputTextarea id="horario" value="#{pacienteBean.alimentacao.horario}"  rows="2" cols="20" autoResize="false" />
+     	<p:inputTextarea id="horario" value="#{pacienteBean.refeicao.horario}"  rows="2" cols="20" autoResize="false" />
      	
      	<p:outputLabel value="Local:" for="local"/>
-     	<p:inputTextarea id="local" value="#{pacienteBean.alimentacao.local}"  rows="2" cols="20" autoResize="false" />
+     	<p:inputTextarea id="local" value="#{pacienteBean.refeicao.local}"  rows="2" cols="20" autoResize="false" />
      	
-     	<p:outputLabel value="Alimentos:" for="alimentos"/>
-     	<p:inputTextarea id="alimentos" value="#{pacienteBean.alimentacao.alimentoConsumido}"  rows="2" cols="20" autoResize="false" />
+     	<p:outputLabel value="Quantidade Caseira" for="quantidadeCaseira"/>
+     	<p:inputTextarea id="quantidadeCaseira" value="#{pacienteBean.refeicao.quantidadeCaseira}"  rows="2" cols="20" autoResize="false" />
+     	
+     	<p:outputLabel value="Quantidade em Gramas" for="quantidadeEmGramas"/>
+     	<p:inputTextarea id="quantidadeEmGramas" value="#{pacienteBean.refeicao.quantidadeEmGramas}"  rows="2" cols="20" autoResize="false" />
      	
      	<p:commandButton value="Adicionar" icon="ui-icon-disk" action="#{pacienteBean.adicionarRefeicao()}"
      	update=":mensagem :dialogAdulto:tableView:tableAvalAlimentacao,formAvalicaoAlimentacao" process="formAvalicaoAlimentacao" oncomplete="PF('AddAvalAlimentacao').hide();"/> 
@@ -610,9 +603,7 @@ draggable="false" resizable="false" modal="true" showEffect="slide" hideEffect="
                
                 <h:panelGrid columns="2">
                  
-                 	<p:outputLabel value="Email:" for="email"/>
-                	<p:inputText id="email" value="#{pacienteBean.pacienteCrianca.email}" />
-                
+                 	                
                 	<p:outputLabel value="Tel. Residencial:" for="telefoneRes"/>
                     <p:inputText id="telefoneRes"  value="#{pacienteBean.pacienteCrianca.telefoneRes}" />
                 
