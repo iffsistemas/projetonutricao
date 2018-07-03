@@ -16,6 +16,7 @@ public class AtendimentoAdulto extends Atendimento {
     private Double gastoEnergeticoDiario;
     private Double metabolismoBasal;
     private Double valorCaloricoEscolhido;
+    private String classificacaoIMC;
     private String conclusao;
 	
      @OneToOne(cascade=CascadeType.ALL)
@@ -90,6 +91,12 @@ public class AtendimentoAdulto extends Atendimento {
 	}
 	public void setPregaCutanea(PregaCutanea pregaCutanea) {
 		this.pregaCutanea = pregaCutanea;
+	}
+	public String getClassificacaoIMC() {
+		return classificacaoIMC;
+	}
+	public void setClassificacaoIMC(String classificacaoIMC) {
+		this.classificacaoIMC = classificacaoIMC;
 	}
     
 	

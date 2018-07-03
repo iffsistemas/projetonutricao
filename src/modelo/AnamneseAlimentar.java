@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 @Entity
 public class AnamneseAlimentar {
@@ -23,6 +24,8 @@ public class AnamneseAlimentar {
 	@OneToMany(cascade=CascadeType.ALL)
 	private List<Refeicao> refeicoes = new ArrayList<Refeicao>();
 
+	
+	
 	public Long getId() {
 		return id;
 	}

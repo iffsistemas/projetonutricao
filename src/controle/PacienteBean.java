@@ -60,6 +60,7 @@ public class PacienteBean {
 		List<MotivoAtendimento> lista = Arrays.asList(MotivoAtendimento.values());
 		return lista;
 	}	
+	
 	Medicamento medicamento = new Medicamento();
 	AnamneseAlimentar anamneseAlimentar = new AnamneseAlimentar();
 	Refeicao refeicao = new Refeicao();
