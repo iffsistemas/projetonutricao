@@ -1,6 +1,7 @@
 package controle;
 
-import java.text.DecimalFormat;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -134,7 +135,12 @@ public class AtendimentoAdultoBean {
 	public void calcularIMC() {
 		 
 	Double imc = atendimentoAdulto.getPesoAtual()/(atendimentoAdulto.getAltura() * atendimentoAdulto.getAltura());
-	atendimentoAdulto.setIndiceMassaCorporal(imc);
+	BigDecimal imcConverter = new BigDecimal(imc).setScale(2, RoundingMode.HALF_EVEN);
+	
+	atendimentoAdulto.setIndiceMassaCorporal(imcConverter.doubleValue());
+
+	
+	
 	}
 	
 	public void classificacaoIMC() {
@@ -148,7 +154,7 @@ public class AtendimentoAdultoBean {
 	            }else if(atendimentoAdulto.getIndiceMassaCorporal() > 27.3 && atendimentoAdulto.getIndiceMassaCorporal() <= 32.3) {
 	            	atendimentoAdulto.setClassificacaoIMC(" Obesidade Grau I");
 	            }else {
-	            	atendimentoAdulto.setClassificacaoIMC(" Mórbida");
+	            	atendimentoAdulto.setClassificacaoIMC(" Obesidade Grau II");
 	            }            
 	        
 	        }

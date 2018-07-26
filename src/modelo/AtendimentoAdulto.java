@@ -13,7 +13,7 @@ public class AtendimentoAdulto extends Atendimento {
     private Double pesoAtual; 
     private Double pesoObjetivo; 
     private Double indiceMassaCorporal; 
-    private Double gastoEnergeticoDiario;
+    private Double fatorDeAtividade;
     private Double metabolismoBasal;
     private Double valorCaloricoEscolhido;
     private String classificacaoIMC;
@@ -62,11 +62,11 @@ public class AtendimentoAdulto extends Atendimento {
 	public void setCircunferencia(Circuferencia circunferencia) {
 		this.circunferencia = circunferencia;
 	}
-	public Double getGastoEnergeticoDiario() {
-		return gastoEnergeticoDiario;
+	public Double getFatorDeAtividade() {
+		return fatorDeAtividade;
 	}
-	public void setGastoEnergeticoDiario(Double gastoEnergeticoDiario) {
-		this.gastoEnergeticoDiario = gastoEnergeticoDiario;
+	public void setFatorDeAtividade(Double fatorDeAtividade) {
+		this.fatorDeAtividade = fatorDeAtividade;
 	}
 	public Double getMetabolismoBasal() {
 		return metabolismoBasal;

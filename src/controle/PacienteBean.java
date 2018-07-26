@@ -408,7 +408,7 @@ public void calcularIdade() {
 	
 	
 	public void ecluirPaciente(Paciente paciente) {
-		String msg="Paciente exluído com sucesso";
+		String msg="Paciente desativado com sucesso";
  		
 		try {
 				pacienteService.remove(paciente);
@@ -419,6 +419,8 @@ public void calcularIdade() {
 				erro.printStackTrace();
 					
 		}	
+		
+		//paciente.setStatusPaciente(Boolean.FALSE);
 	
 	}
 	

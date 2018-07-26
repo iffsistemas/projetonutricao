@@ -20,8 +20,10 @@ public class Paciente {
 	@Id @GeneratedValue
 	private Long id;
 	
-	@Column(length=100, nullable= false)
+	@Column(length=150, nullable= false)
 	private String nome;
+	
+	private Boolean sexo;
 	
 	@Temporal(TemporalType.DATE)
 	private Date dataNascimento;
@@ -39,6 +41,7 @@ public class Paciente {
 	@OneToOne(cascade=CascadeType.ALL)
 	AnamneseAlimentar anamneseAlimentar = new AnamneseAlimentar();
 
+	private Boolean statusPaciente = Boolean.TRUE;
 
 	public Long getId() {
 		return id;
@@ -108,6 +111,27 @@ public class Paciente {
 	public void setAnamneseAlimentar(AnamneseAlimentar anamneseAlimentar) {
 		this.anamneseAlimentar = anamneseAlimentar;
 	}
+
+
+	public Boolean getSexo() {
+		return sexo;
+	}
+
+
+	public void setSexo(Boolean sexo) {
+		this.sexo = sexo;
+	}
+
+
+	public Boolean getStatusPaciente() {
+		return statusPaciente;
+	}
+
+
+	public void setStatusPaciente(Boolean statusPaciente) {
+		this.statusPaciente = statusPaciente;
+	}
+	
 	
 	
 	

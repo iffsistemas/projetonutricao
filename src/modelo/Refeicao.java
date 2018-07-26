@@ -10,6 +10,7 @@ public class Refeicao {
 	
 	@Id @GeneratedValue
 	private Long id;
+	private String nomeRefeicao;
 	private String descricao;
 	private String horario;
 	private String preparacao;
@@ -23,6 +24,12 @@ public class Refeicao {
 	}
 	public void setId(Long id) {
 		this.id = id;
+	}
+	public String getNomeRefeicao() {
+		return nomeRefeicao;
+	}
+	public void setNomeRefeicao(String nomeRefeicao) {
+		this.nomeRefeicao = nomeRefeicao;
 	}
 	public String getDescricao() {
 		return descricao;

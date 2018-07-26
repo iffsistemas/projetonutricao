@@ -10,38 +10,38 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 
-import modelo.MedidasCaseiras;
-import service.MedidasCaseirasService;
+import modelo.DescricaoMedidasCaseiras;
+import service.DescricaoMedidasCaseirasService;
 
 
 
 @ViewScoped
 @ManagedBean
-public class MedidasCaseirasBean {
+public class DescricaoMedidasCaseirasBean {
 	
 	
 	@EJB
-	MedidasCaseirasService medidasCaseirasService;
+	DescricaoMedidasCaseirasService medidasCaseirasService;
 	
-	MedidasCaseiras medidasCaseiras = new MedidasCaseiras();
+	DescricaoMedidasCaseiras medidasCaseiras = new DescricaoMedidasCaseiras();
 	
-	List<MedidasCaseiras> alimentos = new ArrayList<MedidasCaseiras>();
+	List<DescricaoMedidasCaseiras> alimentos = new ArrayList<DescricaoMedidasCaseiras>();
 	
 	
 	
-	public MedidasCaseiras getMedidasCaseiras() {
+	public DescricaoMedidasCaseiras getMedidasCaseiras() {
 		return medidasCaseiras;
 	}
 	
-	public void setMedidasCaseiras(MedidasCaseiras medidasCaseiras) {
+	public void setMedidasCaseiras(DescricaoMedidasCaseiras medidasCaseiras) {
 		this.medidasCaseiras = medidasCaseiras;
 	}
 
-	public List<MedidasCaseiras> getAlimentos() {
+	public List<DescricaoMedidasCaseiras> getAlimentos() {
 		return alimentos;
 	}
 
-	public void setAlimentos(List<MedidasCaseiras> alimentos) {
+	public void setAlimentos(List<DescricaoMedidasCaseiras> alimentos) {
 		this.alimentos = alimentos;
 	}
 		
@@ -77,18 +77,18 @@ public class MedidasCaseirasBean {
 	}
 	
 	
-	setMedidasCaseiras(new MedidasCaseiras());
+	setMedidasCaseiras(new DescricaoMedidasCaseiras());
 	FacesContext.getCurrentInstance().addMessage("menssagem", new FacesMessage("Parabéns!", msg));
 	atualizarAlimentos();	
 	}
 
 	
-	public void editarAlimento (MedidasCaseiras alimentoAtual) {
+	public void editarAlimento (DescricaoMedidasCaseiras alimentoAtual) {
 		setMedidasCaseiras(alimentoAtual);
 	}
 	
 	
-	public void removerAlimento(MedidasCaseiras alimento) {
+	public void removerAlimento(DescricaoMedidasCaseiras alimento) {
 		medidasCaseirasService.remove(alimento);
 		//FacesContext.getCurrentInstance().addMessage("menssagem", new FacesMessage("Parabéns!", "Alimento Removido!"));
 		 

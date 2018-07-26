@@ -8,28 +8,28 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Expression;
 import javax.persistence.criteria.Root;
 
-import modelo.Taco;
+import modelo.DescricaoTaco;
 
 @Stateless
-public class TacoService extends GenericService<Taco> {
+public class DescricaoTacoService extends GenericService<DescricaoTaco> {
 
-	public TacoService(){
-		super(Taco.class);
+	public DescricaoTacoService(){
+		super(DescricaoTaco.class);
 	}
 	
 	
 	
 	
-	public List<Taco> obtemAlimentosPorNome(String nome){
+	public List<DescricaoTaco> obtemAlimentosPorNome(String nome){
 		CriteriaBuilder cb = getEntityManager().getCriteriaBuilder();
-		CriteriaQuery<Taco> cquery = cb.createQuery(Taco.class);
-		Root<Taco> root = cquery.from(Taco.class);
+		CriteriaQuery<DescricaoTaco> cquery = cb.createQuery(DescricaoTaco.class);
+		Root<DescricaoTaco> root = cquery.from(DescricaoTaco.class);
 		
 		Expression<String> colunaNome = root.get("nome");
 		
 		cquery.select(root).where(cb.like(colunaNome, "%"+nome+"%"));
 		
-		List<Taco> alimentos = getEntityManager().createQuery(cquery).getResultList();
+		List<DescricaoTaco> alimentos = getEntityManager().createQuery(cquery).getResultList();
 		
 		return alimentos;
 	}

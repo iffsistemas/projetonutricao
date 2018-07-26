@@ -5,7 +5,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 @Entity
-public class Taco {
+public class DescricaoTaco {
 	
 	@Id @GeneratedValue
 	private Long id;

@@ -53,6 +53,12 @@ public class PacienteAdulto extends Paciente {
 	private Boolean tabagista;
 	private String ingestaoHidrica; 
 	
+	private String informacaoAdicional1;
+	private String informacaoAdicional2;
+	private String informacaoAdicional3;
+	private String informacaoAdicional4;
+	private String informacaoAdicional5;
+	
 	
 	@ElementCollection(fetch = FetchType.EAGER)
 	private Collection<MotivoAtendimento> motivos  = new ArrayList<MotivoAtendimento>();
@@ -375,8 +381,58 @@ public class PacienteAdulto extends Paciente {
 	public void setMedicamentos(List<Medicamento> medicamentos) {
 		this.medicamentos = medicamentos;
 	}
-	
-	
+
+
+	public String getInformacaoAdicional1() {
+		return informacaoAdicional1;
+	}
+
+
+	public void setInformacaoAdicional1(String informacaoAdicional1) {
+		this.informacaoAdicional1 = informacaoAdicional1;
+	}
+
+
+	public String getInformacaoAdicional2() {
+		return informacaoAdicional2;
+	}
+
+
+	public void setInformacaoAdicional2(String informacaoAdicional2) {
+		this.informacaoAdicional2 = informacaoAdicional2;
+	}
+
+
+	public String getInformacaoAdicional3() {
+		return informacaoAdicional3;
+	}
+
+
+	public void setInformacaoAdicional3(String informacaoAdicional3) {
+		this.informacaoAdicional3 = informacaoAdicional3;
+	}
+
+
+	public String getInformacaoAdicional4() {
+		return informacaoAdicional4;
+	}
+
+
+	public void setInformacaoAdicional4(String informacaoAdicional4) {
+		this.informacaoAdicional4 = informacaoAdicional4;
+	}
+
+
+	public String getInformacaoAdicional5() {
+		return informacaoAdicional5;
+	}
+
+
+	public void setInformacaoAdicional5(String informacaoAdicional5) {
+		this.informacaoAdicional5 = informacaoAdicional5;
+	}
+
+
 	
 	
 	

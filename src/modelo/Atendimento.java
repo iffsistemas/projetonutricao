@@ -23,8 +23,7 @@ public class Atendimento {
 	@Id @GeneratedValue
 	private Long id;
 	
-	@Column(length=100)
-	private String descricao;
+	private String diagnosticoNutricional;
 	
 	@Temporal(TemporalType.DATE)
 	private Date dataAtendimento = new Date();
@@ -43,12 +42,13 @@ public class Atendimento {
 		this.id = id;
 	}
 
-	public String getDescricao() {
-		return descricao;
+	
+	public String getDiagnosticoNutricional() {
+		return diagnosticoNutricional;
 	}
 
-	public void setDescricao(String descricao) {
-		this.descricao = descricao;
+	public void setDiagnosticoNutricional(String diagnosticoNutricional) {
+		this.diagnosticoNutricional = diagnosticoNutricional;
 	}
 
 	public Date getDataAtendimento() {

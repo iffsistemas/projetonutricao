@@ -3,7 +3,7 @@ package service;
 import javax.ejb.Stateless;
 
 import modelo.PacienteCrianca;
-import modelo.Taco;
+import modelo.DescricaoTaco;
 
 @Stateless
 public class PacienteCriancaService extends GenericService<PacienteCrianca> {
