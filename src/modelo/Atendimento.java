@@ -12,12 +12,14 @@ import javax.persistence.InheritanceType;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.servlet.http.HttpServletResponse;
 
 
 
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public class Atendimento {
+	
 	
 	
 	@Id @GeneratedValue

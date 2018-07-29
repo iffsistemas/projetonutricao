@@ -161,7 +161,10 @@ public class AtendimentoAdultoBean {
 		
 		
 		
- 
+	public void imprimirSubistituicao() {
+		
+		
+	}
 	
 	
 	
