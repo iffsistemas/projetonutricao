@@ -225,7 +225,7 @@ public class PacienteBean {
 
 	@PostConstruct
 	public void init(){
-		atualizarPacientes();
+		//atualizarPacientes();
 	}
 	
 	public void atualizarPacientes(){
@@ -256,7 +256,7 @@ public class PacienteBean {
 	
 	
 	public void buscarNome() {
-		pacientes = pacienteService.obtemPacientePorNome(getNome());
+		pacientes = pacienteService.obtemPacientePorNome(getNome(), Boolean.TRUE);
 				
 	}
 		
@@ -386,6 +386,29 @@ public void adicionarRefeicao() {
 	}	}
 	
 	
+	public void editarPaciente() {
+		if(pacienteSelecionado instanceof PacienteAdulto) {
+			PacienteAdulto pacienteAdultoAtual = (PacienteAdulto) pacienteSelecionado;
+			setPacienteAdulto(pacienteAdultoAtual);
+			
+		}else
+		if(pacienteSelecionado instanceof PacienteCrianca) {
+			
+		} else
+		if(pacienteSelecionado instanceof PacienteGestante) {
+			
+		}	
+	}
+		
+	
+	
+	
+	public void filtrarPacientesInativos() {
+		getPacientes().clear();
+		getPacientes().addAll(pacienteService.obtemPacienteInativo(Boolean.FALSE));
+		
+	}
+	
 public void calcularIdade() {
 		Calendar dataNasci = new GregorianCalendar();
 		
@@ -420,8 +443,30 @@ public void calcularIdade() {
 					
 		}	
 		
-		//paciente.setStatusPaciente(Boolean.FALSE);
+		
 	
+	}
+	
+	
+	
+	
+	public void ativarDesativarPaciente(PacienteAdulto paciente) {
+		
+		if(paciente.getStatusPaciente()) {
+							
+			paciente.setStatusPaciente(Boolean.FALSE);
+			pacienteAdultoService.merge(paciente);	
+			getPacientes().clear();			
+			FacesContext.getCurrentInstance().addMessage("menssagem", new FacesMessage("Parabéns!", "Paciente desativado com sucesso!"));
+					
+		}else {
+			paciente.setStatusPaciente(Boolean.TRUE);
+			pacienteAdultoService.merge(paciente);
+			getPacientes().clear();
+			FacesContext.getCurrentInstance().addMessage("menssagem", new FacesMessage("Parabéns!", "Paciente Ativado com sucesso!"));
+		}
+		
+		
 	}
 	
 	

@@ -10,43 +10,51 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 
-import modelo.DescricaoMedidasCaseiras;
-import service.DescricaoMedidasCaseirasService;
+import modelo.AlimentoMedidasCaseiras;
+import service.AlimentoMedidasCaseirasService;
 
 
 
 @ViewScoped
 @ManagedBean
-public class DescricaoMedidasCaseirasBean {
+public class AlimentoMedidasCaseirasBean {
 	
 	
 	@EJB
-	DescricaoMedidasCaseirasService medidasCaseirasService;
+	AlimentoMedidasCaseirasService medidasCaseirasService;
 	
-	DescricaoMedidasCaseiras medidasCaseiras = new DescricaoMedidasCaseiras();
+	AlimentoMedidasCaseiras medidasCaseiras = new AlimentoMedidasCaseiras();
 	
-	List<DescricaoMedidasCaseiras> alimentos = new ArrayList<DescricaoMedidasCaseiras>();
+	List<AlimentoMedidasCaseiras> alimentos = new ArrayList<AlimentoMedidasCaseiras>();
+	
+	AlimentoMedidasCaseiras alimentoSelecionado = new AlimentoMedidasCaseiras();
 	
 	
-	
-	public DescricaoMedidasCaseiras getMedidasCaseiras() {
+	public AlimentoMedidasCaseiras getMedidasCaseiras() {
 		return medidasCaseiras;
 	}
 	
-	public void setMedidasCaseiras(DescricaoMedidasCaseiras medidasCaseiras) {
+	public void setMedidasCaseiras(AlimentoMedidasCaseiras medidasCaseiras) {
 		this.medidasCaseiras = medidasCaseiras;
 	}
 
-	public List<DescricaoMedidasCaseiras> getAlimentos() {
+	public List<AlimentoMedidasCaseiras> getAlimentos() {
 		return alimentos;
 	}
 
-	public void setAlimentos(List<DescricaoMedidasCaseiras> alimentos) {
+	public void setAlimentos(List<AlimentoMedidasCaseiras> alimentos) {
 		this.alimentos = alimentos;
 	}
-		
 	
 	
+	public AlimentoMedidasCaseiras getAlimentoSelecionado() {
+		return alimentoSelecionado;
+	}
+
+	public void setAlimentoSelecionado(AlimentoMedidasCaseiras alimentoSelecionado) {
+		this.alimentoSelecionado = alimentoSelecionado;
+	}
+
 	@PostConstruct
 	public void init(){
 		atualizarAlimentos();
@@ -77,18 +85,18 @@ public class DescricaoMedidasCaseirasBean {
 	}
 	
 	
-	setMedidasCaseiras(new DescricaoMedidasCaseiras());
+	setMedidasCaseiras(new AlimentoMedidasCaseiras());
 	FacesContext.getCurrentInstance().addMessage("menssagem", new FacesMessage("Parabéns!", msg));
 	atualizarAlimentos();	
 	}
 
 	
-	public void editarAlimento (DescricaoMedidasCaseiras alimentoAtual) {
+	public void editarAlimento (AlimentoMedidasCaseiras alimentoAtual) {
 		setMedidasCaseiras(alimentoAtual);
 	}
 	
 	
-	public void removerAlimento(DescricaoMedidasCaseiras alimento) {
+	public void removerAlimento(AlimentoMedidasCaseiras alimento) {
 		medidasCaseirasService.remove(alimento);
 		//FacesContext.getCurrentInstance().addMessage("menssagem", new FacesMessage("Parabéns!", "Alimento Removido!"));
 		 
@@ -100,13 +108,12 @@ public class DescricaoMedidasCaseirasBean {
 	}
 	
 	
-	public void buscarAlimento(String nome) {
-		 
+	public void buscarAlimento() {
+		 alimentos = medidasCaseirasService.obtemAlimentosPorNome(getMedidasCaseiras().getNome());	
 		
-		
+	
 		
 	}
-	
 	
 	
 	

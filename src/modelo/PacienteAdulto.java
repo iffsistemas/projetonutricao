@@ -5,19 +5,16 @@ import java.util.Collection;
 import java.util.List;
 
 import javax.persistence.CascadeType;
-import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
 @Entity
 public class PacienteAdulto extends Paciente {
 	
-	private String email="pac1@email.com";
-	private String profissão="Professor";
+	private String email;
+	private String profissão;
 	private String outrosMotivos;
 	private String problemaDeSaude;
 	private Boolean feitoExameDeSangue;

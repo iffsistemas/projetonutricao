@@ -13,9 +13,11 @@ import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 
 import modelo.AtendimentoAdulto;
+import modelo.Dieta;
 import modelo.ExamesLaboratoriais;
 import modelo.Paciente;
 import modelo.PacienteAdulto;
+import modelo.Porcao;
 import service.AtendimentoAdultoService;
 
 @ViewScoped
@@ -27,16 +29,15 @@ public class AtendimentoAdultoBean {
 	AtendimentoAdultoService atendimentoAdultoService;
 	
 	AtendimentoAdulto atendimentoAdulto = new  AtendimentoAdulto();
-	
-	List<AtendimentoAdulto> atendimentosAdulto = new ArrayList<AtendimentoAdulto>();
-	
 	ExamesLaboratoriais examesLaboratoriais = new ExamesLaboratoriais();
+	Dieta dieta = new Dieta();
+	Porcao porcao = new Porcao();
 	
 	Paciente pacienteSelecionado = new Paciente();
 	
 	
 	
-	
+	List<AtendimentoAdulto> atendimentosAdulto = new ArrayList<AtendimentoAdulto>();
 
 	public AtendimentoAdultoService getAtendimentoAdultoService() {
 		return atendimentoAdultoService;
@@ -79,6 +80,21 @@ public class AtendimentoAdultoBean {
 
 	public void setPacienteSelecionado(Paciente pacienteSelecionado) {
 		this.pacienteSelecionado = pacienteSelecionado;
+	}
+	
+	public Dieta getDieta() {
+		return dieta;
+	}
+
+	public void setDieta(Dieta dieta) {
+		this.dieta = dieta;
+	}
+	public Porcao getPorcao() {
+		return porcao;
+	}
+
+	public void setPorcao(Porcao porcao) {
+		this.porcao = porcao;
 	}
 
 	@PostConstruct
@@ -158,11 +174,31 @@ public class AtendimentoAdultoBean {
 	            }            
 	        
 	        }
+	
+	public void calculoMetabolismoBasal() {
+		
+		// homem.. 66 + (13,7 x Peso) + (5,0 x Altura em cm) – (6,8 x Idade)
+		// mulher.. 665 + (9,6 x Peso) + (1,8 x Altura em cm) – (4,7 x Idade)
+		
+		if (getAtendimentoAdulto().getPaciente().getSexo()) {
+			
+			
+			
+	//Double calcMetabolismo = 66 + (13,7 * atendimentoAdulto.getPesoAtual()) + (5,0 * atendimentoAdulto.getAltura()) – (6,8 * atendimentoAdulto.getPaciente().getIdade());
+					
+			
+		}else {
+			
+			
+		}
+		
+	}
 		
 		
 		
-	public void imprimirSubistituicao() {
+	public void adicionarPorcao() {
 		
+	//	getAtendimentoAdulto().getDieta().getDietasRefeicoes().
 		
 	}
 	

@@ -8,7 +8,7 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Expression;
 import javax.persistence.criteria.Root;
 
-import modelo.DescricaoTaco;
+import modelo.AlimentoTaco;
 import service.GenericService;
 
 //@Stateless

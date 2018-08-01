@@ -1,0 +1,83 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+
+<ui:composition template="/templates/templates.xhtml"> 
+
+
+<ui:define name="titulo">Pacientes Inativos</ui:define>
+
+
+<ui:define name="conteudo">
+
+<p:column> <p:commandButton action="#{pacienteBean.filtrarPacientesInativos()}" value="Buscar Pacientes Inativos" 
+                update=":mensagem :formConsultas:tableConsultas" icon="ui-icon-search" /> </p:column>	
+
+<p:fieldset legend="Pacientes Inativos">		
+
+
+
+<h:form id="formConsultas">
+	<p:dataTable value="#{pacienteBean.pacientes}" var="paciente"
+	paginator="true" id="tableConsultas"  emptyMessage="Nenhum registro encontrado!" rows="5">
+		<p:column sortBy="#{paciente.nome}">
+			<f:facet  name="header">Nome do Paciente</f:facet>
+			<p:outputLabel value="#{paciente.nome}" />
+		</p:column>
+		<p:column sortBy="#{paciente.dataNascimento}" style="width:120px">
+			<f:facet name="header">Nascimento</f:facet>
+			<p:outputLabel value="#{paciente.dataNascimento}">
+			<f:convertDateTime pattern="dd/MM/yyyy" />
+			</p:outputLabel>
+		</p:column>		
+									
+			<p:column style="width:65px">
+			<f:facet name="header">Ativar</f:facet>
+			<p:commandButton icon="ui-icon-person" action="#{pacienteBean.ativarDesativarPaciente(paciente)}"
+			 update=":mensagem, formConsultas:tableConsultas"  process="@form">
+			 <p:confirm header="Confirmação" message="Deseja Ativar paciente?" icon="ui-icon-alert" />
+				<!-- Exemplo: pegar Paciente atual <f:setPropertyActionListener value="#{paciente}" target="#{pacienteBean.pacienteSelecionado}" />  -->
+			</p:commandButton>	
+			
+			<p:confirmDialog global="true" showEffect="slide" hideEffect="slide">
+        <p:commandButton value="Sim" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+        <p:commandButton value="Não" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+        </p:confirmDialog>				
+						
+		</p:column>
+		
+				
+		
+	</p:dataTable> 
+	
+	
+	
+ </h:form>
+
+</p:fieldset>	
+
+
+
+
+
+  
+</ui:define>	 
+</ui:composition>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</html>

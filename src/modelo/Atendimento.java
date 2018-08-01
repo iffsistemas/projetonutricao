@@ -3,7 +3,6 @@ package modelo;
 import java.util.Date;
 
 import javax.persistence.CascadeType;
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -12,7 +11,6 @@ import javax.persistence.InheritanceType;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.servlet.http.HttpServletResponse;
 
 
 
@@ -35,6 +33,10 @@ public class Atendimento {
 	
 	@OneToOne(cascade=CascadeType.ALL)
 	ExamesLaboratoriais examesLaboratoriais;
+	
+	@OneToOne(cascade=CascadeType.ALL)
+	private Dieta dieta;
+	
 
 	public Long getId() {
 		return id;
@@ -75,6 +77,14 @@ public class Atendimento {
 
 	public void setExamesLaboratoriais(ExamesLaboratoriais examesLaboratoriais) {
 		this.examesLaboratoriais = examesLaboratoriais;
+	}
+
+	public Dieta getDieta() {
+		return dieta;
+	}
+
+	public void setDieta(Dieta dieta) {
+		this.dieta = dieta;
 	}
 	
 	

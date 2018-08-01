@@ -61,8 +61,8 @@
 			
 			<p:column style="width:45px">
 			<f:facet name="header">Editar</f:facet>
-			<p:commandButton icon="ui-icon-pencil" action="#{#}"
-			 update=":mensagem, formConsultas:tableConsultas, formAtendimentos"  process="@form">
+			<p:commandButton icon="ui-icon-pencil" action="#{pacienteBean.editarPaciente()}"
+			 update=":mensagem, formConsultas:tableConsultas, formAtendimentos"  process="@form"  oncomplete="PF('dialogCadAdulto').show();">
 				<f:setPropertyActionListener value="#{paciente}" target="#{pacienteBean.pacienteSelecionado}" />
 			</p:commandButton>	
 			
@@ -70,7 +70,7 @@
 			
 			<p:column style="width:65px">
 			<f:facet name="header">Desativar</f:facet>
-			<p:commandButton icon="ui-icon-person" action="#{pacienteBean.ecluirPaciente(paciente)}"
+			<p:commandButton icon="ui-icon-person" action="#{pacienteBean.ativarDesativarPaciente(paciente)}"
 			 update=":mensagem, formConsultas:tableConsultas, formAtendimentos"  process="@form">
 			 <p:confirm header="Confirmação" message="Deseja desativar paciente?" icon="ui-icon-alert" />
 				<!-- Exemplo: pegar Paciente atual <f:setPropertyActionListener value="#{paciente}" target="#{pacienteBean.pacienteSelecionado}" />  -->
@@ -83,7 +83,7 @@
 						
 		</p:column>
 		
-				
+						
 		
 	</p:dataTable> 
 	

@@ -10,62 +10,63 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 
-import modelo.DescricaoTaco;
-import service.DescricaoTacoService;
+import modelo.AlimentoTaco;
+import modelo.Atendimento;
+import service.AlimentoTacoService;
 
 
 
 @ViewScoped
 @ManagedBean
-public class DescricaoTacoBean {
+public class AlimentoTacoBean  {
 	
 	
 	
 	@EJB
-	DescricaoTacoService tacoService;
+	AlimentoTacoService tacoService;
 	
 	
-	DescricaoTaco alimentoSelecionado = new DescricaoTaco();
+	AlimentoTaco alimentoSelecionado = new AlimentoTaco();
 	
-	DescricaoTaco taco = new DescricaoTaco();
-	
-	
-	List<DescricaoTaco> alimentos = new ArrayList<DescricaoTaco>();
+	AlimentoTaco taco = new AlimentoTaco();
 	
 	
+	List<AlimentoTaco> alimentos = new ArrayList<AlimentoTaco>();
 	
-	public DescricaoTaco getTaco() {
+	
+	
+	public AlimentoTaco getTaco() {
 		return taco;
 	}
 	
-	public void setTaco(DescricaoTaco taco) {
+	public void setTaco(AlimentoTaco taco) {
 		this.taco = taco;
 	}
 	
 		
 	
-	public DescricaoTacoService getTacoService() {
+	public AlimentoTacoService getTacoService() {
 		return tacoService;
 	}
 
-	public void setTacoService(DescricaoTacoService tacoService) {
+	public void setTacoService(AlimentoTacoService tacoService) {
 		this.tacoService = tacoService;
 	}
 
-	public List<DescricaoTaco> getAlimentos() {
+	public List<AlimentoTaco> getAlimentos() {
 		return alimentos;
 	}
 
-	public void setAlimentos(List<DescricaoTaco> alimentos) {
+	public void setAlimentos(List<AlimentoTaco> alimentos) {
 		this.alimentos = alimentos;
 	}
 	
 	
-	public DescricaoTaco getAlimentoSelecionado() {
+	public AlimentoTaco getAlimentoSelecionado() {
 		return alimentoSelecionado;
 	}
 
-	public void setAlimentoSelecionado(DescricaoTaco alimentoSelecionado) {
+	public void setAlimentoSelecionado(AlimentoTaco alimentoSelecionado) {
 		this.alimentoSelecionado = alimentoSelecionado;
 	}
 
@@ -99,18 +100,18 @@ public class DescricaoTacoBean {
 	}
 	
 	
-	setTaco(new DescricaoTaco());
+	setTaco(new AlimentoTaco());
 	FacesContext.getCurrentInstance().addMessage("menssagem", new FacesMessage("Parabéns!", msg));
 	atualizarAlimentos();	
 	}
 
 	
-	public void editarAlimeto (DescricaoTaco alimentoAtual) {
+	public void editarAlimeto (AlimentoTaco alimentoAtual) {
 		setTaco(alimentoAtual);
 	}
 	
 	
-	public void removerAlimento(DescricaoTaco alimento) {
+	public void removerAlimento(AlimentoTaco alimento) {
 		tacoService.remove(alimento);
 		//FacesContext.getCurrentInstance().addMessage("menssagem", new FacesMessage("Parabéns!", "Alimento Removido!"));
 		 
@@ -119,7 +120,7 @@ public class DescricaoTacoBean {
 		
 		
 		atualizarAlimentos();
-		setTaco(new DescricaoTaco());
+		setTaco(new AlimentoTaco());
 	}
 	
 	

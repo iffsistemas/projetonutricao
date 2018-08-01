@@ -302,7 +302,7 @@
      	<p:outputLabel value="Local" for="local"/>
      	<p:inputTextarea id="local" value="#{pacienteBean.refeicao.local}"  rows="2" cols="20" autoResize="false" />
      	     	
-     	<p:commandButton value="Adicionar" icon="ui-icon-disk" action="#{pacienteBean.adicionarRefeicao()}"
+     	<p:commandButton value="Adicionar Refeição" icon="ui-icon-disk" action="#{pacienteBean.adicionarRefeicao()}"
      	update=":mensagem"/> 
      	
 		
@@ -422,24 +422,36 @@
 		<h:panelGrid columns="2">
 					
 		<p:outputLabel value="Alimento: " for="alimento" />
-		<p:selectOneMenu id="alimento" value="#{#}" style="width:150px;">
+		<p:selectOneMenu id="alimento" value="#{atendimentoAdultoBean.porcao.alimentoTabela}" style="width:150px;">
 			<f:selectItem  itemLabel="Selecione..." />
-			<f:selectItems value="#{descricaoTacoBean.alimentos}" var="alim" 
-				 itemLabel="#{alim.nome}" itemValue="#{alim.id}" />
+			<f:selectItems value="#{alimentoTacoBean.alimentos}" var="alim" 
+				 itemLabel="#{alim.nome}" itemValue="#{alim}" />
 		</p:selectOneMenu>		
      	  				
-		<p:outputLabel value="Quantidade Caseira" for="quantidadeCaseira"/>
-     	<p:inputTextarea id="quantidadeCaseira" value="#{#}"  rows="2" cols="20" autoResize="false" />
+		<p:outputLabel value="Descrição:" for="descricao"/>
+     	<p:inputTextarea id="descricao" value="#{atendimentoAdultoBean.porcao.descricao}"  rows="2" cols="20" autoResize="false" />
      	
-     	<p:outputLabel value="Quantidade em Gramas" for="quantidadeEmGramas"/>
-     	<p:inputTextarea id="quantidadeEmGramas" value="#{#}"  rows="2" cols="20" autoResize="false" />
+     	<p:outputLabel value="Quantidade" for="quantidade"/>
+     	<p:inputTextarea id="quantidade" value="#{atendimentoAdultoBean.porcao.quantidade}"  rows="2" cols="20" autoResize="false" />
      					     	
-     	<p:commandButton value="Adicionar" icon="ui-icon-disk" action="#{#}"
+     	<p:commandButton value="Adicionar Alimento" icon="ui-icon-disk" action="#{atendimentoAdultoBean.adicionarPorcao()}"
      	update=":mensagem" oncomplete="PF('AddAlimento').hide();"/> 
      	
 		<p:commandButton value="Fechar" icon="ui-icon-close" oncomplete="PF('AddAlimento').hide();"/>
 
 		</h:panelGrid>	
+	
+	<p:dataList value="#{atendimentoAdultoBean.atendimentoAdulto.dieta.dietasRefeicoes}" var="por"
+	paginator="true"  emptyMessage="Nenhum registro encontrado!" rows="5">
+	
+	<f:facet name="header">
+            Alimentos
+        </f:facet>
+        #{#}, #{#}
+		
+							
+	</p:dataList>
+		
 		
 </p:dialog>
  </h:form> 	

@@ -33,10 +33,10 @@ public class Paciente {
 
 	
 	@Column(length=15)
-	private String telefoneRes="2212331256";
+	private String telefoneRes;
 	
 	@Column(length=15)
-	private String telefoneCel="22999998558";
+	private String telefoneCel;
 	
 	@OneToOne(cascade=CascadeType.ALL)
 	AnamneseAlimentar anamneseAlimentar = new AnamneseAlimentar();

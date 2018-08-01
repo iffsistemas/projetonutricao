@@ -21,7 +21,7 @@
 		<p:row>
 		<p:column><h:outputText value="Alimento:" for="alimento"/></p:column>
 		
-        <p:column><h:inputText id="alimento" value="#{descricaoMedidasCaseirasBean.medidasCaseiras.nome}" /></p:column>
+        <p:column><h:inputText id="alimento" value="#{alimentoMedidasCaseirasBean.medidasCaseiras.nome}" /></p:column>
         
         </p:row>
         </p:panelGrid>
@@ -47,25 +47,25 @@
 	  	 
 	  	  <p:row>
         	
-            <p:column> <h:inputText styleClass="input-taco" id="qtde" value="#{descricaoMedidasCaseirasBean.medidasCaseiras.quantidade}"/></p:column>
-            <p:column> <h:inputText styleClass="input-taco" id="kcal" value="#{descricaoMedidasCaseirasBean.medidasCaseiras.kcal}"/></p:column>
-            <p:column> <h:inputText styleClass="input-taco" id="ptn" value="#{descricaoMedidasCaseirasBean.medidasCaseiras.ptn}"/></p:column>
-            <p:column> <h:inputText styleClass="input-taco" id="gli" value="#{descricaoMedidasCaseirasBean.medidasCaseiras.gli}"/></p:column>
-            <p:column> <h:inputText styleClass="input-taco" id="lip" value="#{descricaoMedidasCaseirasBean.medidasCaseiras.lip}"/></p:column>
-            <p:column> <h:inputText styleClass="input-taco" id="ca" value="#{descricaoMedidasCaseirasBean.medidasCaseiras.ca}"/></p:column>
-            <p:column> <h:inputText styleClass="input-taco" id="fe" value="#{descricaoMedidasCaseirasBean.medidasCaseiras.fe}"/></p:column>
-            <p:column> <h:inputText styleClass="input-taco" id="vitc" value="#{descricaoMedidasCaseirasBean.medidasCaseiras.vitC}"/></p:column>
-            <p:column> <h:inputText styleClass="input-taco" id="vita" value="#{descricaoMedidasCaseirasBean.medidasCaseiras.vitA}"/></p:column>
-            <p:column> <h:inputText styleClass="input-taco" id="fonte" value="#{descricaoMedidasCaseirasBean.medidasCaseiras.fonte}"/></p:column>
+            <p:column> <h:inputText styleClass="input-taco" id="qtde" value="#{alimentoMedidasCaseirasBean.medidasCaseiras.quantidade}"/></p:column>
+            <p:column> <h:inputText styleClass="input-taco" id="kcal" value="#{alimentoMedidasCaseirasBean.medidasCaseiras.kcal}"/></p:column>
+            <p:column> <h:inputText styleClass="input-taco" id="ptn" value="#{alimentoMedidasCaseirasBean.medidasCaseiras.proteina}"/></p:column>
+            <p:column> <h:inputText styleClass="input-taco" id="gli" value="#{alimentoMedidasCaseirasBean.medidasCaseiras.gli}"/></p:column>
+            <p:column> <h:inputText styleClass="input-taco" id="lip" value="#{alimentoMedidasCaseirasBean.medidasCaseiras.lipideos}"/></p:column>
+            <p:column> <h:inputText styleClass="input-taco" id="ca" value="#{alimentoMedidasCaseirasBean.medidasCaseiras.calcio}"/></p:column>
+            <p:column> <h:inputText styleClass="input-taco" id="fe" value="#{alimentoMedidasCaseirasBean.medidasCaseiras.ferro}"/></p:column>
+            <p:column> <h:inputText styleClass="input-taco" id="vitc" value="#{alimentoMedidasCaseirasBean.medidasCaseiras.vitaminaC}"/></p:column>
+            <p:column> <h:inputText styleClass="input-taco" id="vita" value="#{alimentoMedidasCaseirasBean.medidasCaseiras.vitaminaA}"/></p:column>
+            <p:column> <h:inputText styleClass="input-taco" id="fonte" value="#{alimentoMedidasCaseirasBean.medidasCaseiras.fonte}"/></p:column>
             
 	  	 
 		 </p:row>
 		 
 		     		 
-<p:column> <p:commandButton action="#{descricaoMedidasCaseirasBean.salvar()}" value="Gravar" 
-                update=":mensagem, formListaAlimentos:tableAlimentos" /> </p:column>
+<p:column> <p:commandButton action="#{alimentoMedidasCaseirasBean.salvar()}" value="Gravar" 
+                update=":mensagem, formListaAlimentos:tableAlimentos :formCadAlimentos" /> </p:column>
                 
-<p:column> <p:commandButton action="#{#}" value="Buscar" 
+<p:column> <p:commandButton action="#{alimentoMedidasCaseirasBean.buscarAlimento()}" value="Buscar" 
                 update=":mensagem, formListaAlimentos:tableAlimentos" /> </p:column>
         
         </p:panelGrid>
@@ -76,7 +76,7 @@
 
 <br></br><br></br>
 <h:form id="formListaAlimentos">
-	<p:dataTable style="max-width: 600px; min-width: 600px" value="#{descricaoMedidasCaseirasBean.alimentos}" var="alim"
+	<p:dataTable style="max-width: 600px; min-width: 600px" value="#{alimentoMedidasCaseirasBean.alimentos}" var="alim"
 	paginator="true" id="tableAlimentos"  emptyMessage="Nenhum Alimento Cadastrado!" rows="5">
 		<p:column>
 			<f:facet name="header">Nome</f:facet>
@@ -90,23 +90,33 @@
 			<f:facet name="header">Kcal</f:facet>
 			<h:outputText value="#{alim.kcal}" />
 		</p:column>	
-		<p:column>
+		<p:column style="width:55px">
 			<f:facet name="header">Editar</f:facet>
-			<p:commandButton icon="ui-icon-edit" action="#{descricaoMedidasCaseirasBean.editarAlimento(alim)}"
-			value="Editar" update=":mensagem, :formCadAlimentos" process="@form"/>
+			<p:commandButton icon="ui-icon-edit" action="#{alimentoMedidasCaseirasBean.editarAlimento(alim)}"
+			update=":mensagem, :formCadAlimentos" process="@form"/>
 		</p:column>
 		
-		<p:column>
+		<p:column style="width:55px">
 			<f:facet name="header">Deletar</f:facet>
-			<p:commandButton icon="ui-icon-trash" action="#{descricaoMedidasCaseirasBean.removerAlimento(alim)}"
-			value="Deletar" update=":mensagem, :formCadAlimentos" process="@form" >
+			<p:commandButton icon="ui-icon-trash" action="#{alimentoMedidasCaseirasBean.removerAlimento(alim)}"
+			update=":mensagem, :formCadAlimentos" process="@form" >
 			<p:confirm header="Confirmação" message="Deseja excluir alimento?" icon="ui-icon-alert" />
 			</p:commandButton>
+		
 			
 			<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
         <p:commandButton value="Sim" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
         <p:commandButton value="Não" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
         </p:confirmDialog>
+        
+        </p:column>	
+        
+        <p:column style="width:55px">
+			<f:facet name="header">Ver</f:facet>
+			<p:commandButton update="formTabeAlimento:panelAlimento" 
+			icon="ui-icon-extlink" oncomplete="PF('dialogVerAlimento').show()">
+			<f:setPropertyActionListener value="#{alim}" target="#{alimentoMedidasCaseirasBean.alimentoSelecionado}" />
+		</p:commandButton>
 						 
 		</p:column>
 		
@@ -127,7 +137,52 @@
 
 
 
+<p:dialog  header="Tabela Nutricional" widgetVar="dialogVerAlimento" 
+draggable="false" resizable="false" modal="true" showEffect="slide" hideEffect="slide"> 
 
+<h:form id="formTabeAlimento">
+	
+
+<p:panelGrid  columns="2" id="panelAlimento">	
+	
+	
+	<h:outputText value="Alimento:" />
+    <h:outputText value="#{alimentoMedidasCaseirasBean.alimentoSelecionado.nome}" />
+    
+    <h:outputText value="Qtde" />
+    <h:outputText value="#{alimentoMedidasCaseirasBean.alimentoSelecionado.quantidade}" />
+    
+    <h:outputText value="Kcal:" />
+    <h:outputText value="#{alimentoMedidasCaseirasBean.alimentoSelecionado.kcal}" />
+    
+    <h:outputText value="Proteína:" />
+    <h:outputText value="#{alimentoMedidasCaseirasBean.alimentoSelecionado.proteina}" />
+    
+    <h:outputText value="Gli:" />
+    <h:outputText value="#{alimentoMedidasCaseirasBean.alimentoSelecionado.gli}" />
+    
+    <h:outputText value="Lipídeos:" />
+    <h:outputText value="#{alimentoMedidasCaseirasBean.alimentoSelecionado.lipideos}" />
+    
+    <h:outputText value="Cálcio:" />
+    <h:outputText value="#{alimentoMedidasCaseirasBean.alimentoSelecionado.calcio}" />
+    
+    <h:outputText value="Ferro:" />
+    <h:outputText value="#{alimentoMedidasCaseirasBean.alimentoSelecionado.ferro}" />
+    
+    <h:outputText value="Vitamina C:" />
+    <h:outputText value="#{alimentoMedidasCaseirasBean.alimentoSelecionado.vitaminaC}" />
+    
+    <h:outputText value="Vitamina A:" />
+    <h:outputText value="#{alimentoMedidasCaseirasBean.alimentoSelecionado.vitaminaA}" />
+    
+    
+		
+	</p:panelGrid>
+
+</h:form>
+
+</p:dialog>
 
 
   
