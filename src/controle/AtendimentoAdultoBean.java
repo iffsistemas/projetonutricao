@@ -180,17 +180,15 @@ public class AtendimentoAdultoBean {
 		// homem.. 66 + (13,7 x Peso) + (5,0 x Altura em cm) – (6,8 x Idade)
 		// mulher.. 665 + (9,6 x Peso) + (1,8 x Altura em cm) – (4,7 x Idade)
 		
-		if (getAtendimentoAdulto().getPaciente().getSexo()) {
+		
 			
 			
 			
-	//Double calcMetabolismo = 66 + (13,7 * atendimentoAdulto.getPesoAtual()) + (5,0 * atendimentoAdulto.getAltura()) – (6,8 * atendimentoAdulto.getPaciente().getIdade());
-					
-			
-		}else {
-			
-			
-		}
+	Double calculoMetabolismoBasal = 66 + (13.7 * atendimentoAdulto.getPesoAtual())+ (5.0 * (atendimentoAdulto.getAltura() * 100)) + (-6.8 * -atendimentoAdulto.getPaciente().getIdade());
+	BigDecimal metabolismoConverter = new BigDecimal(calculoMetabolismoBasal).setScale(2, RoundingMode.HALF_EVEN);
+	
+	atendimentoAdulto.setMetabolismoBasal(metabolismoConverter.doubleValue());		
+		
 		
 	}
 		

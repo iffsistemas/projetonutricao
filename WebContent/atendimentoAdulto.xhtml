@@ -217,7 +217,7 @@
      	<p:inputTextarea id="pesoAtual" 	value="#{atendimentoAdultoBean.atendimentoAdulto.pesoAtual}"  	rows="1" cols="8" autoResize="false" >
      	<p:ajax listener="#{atendimentoAdultoBean.calcularIMC()}" update="imc" event="change"/>
      	<p:ajax listener="#{atendimentoAdultoBean.classificacaoIMC()}" update="classificacaoIMC" event="change"/>
-     	
+     	<p:ajax listener="#{atendimentoAdultoBean.calculoMetabolismoBasal()}" update="metabolismoBasal" event="change"/>
      	</p:inputTextarea>
      	
      	<p:inputTextarea id="pesoHabitual" 	value="#{atendimentoAdultoBean.atendimentoAdulto.pesoHabitual}"  	rows="1" cols="8" autoResize="false" />
@@ -272,8 +272,12 @@
         
         <p:outputLabel value="Fato de Atividade:"	 		for="fatorDeAtividade"/> 
         <p:inputTextarea id="fatorDeAtividade" 	value="#{atendimentoAdultoBean.atendimentoAdulto.fatorDeAtividade}"	rows="2" cols="10" autoResize="false" />
-        <p:outputLabel value="Metabolismo Basal (KCAL):"	 		for="metabolismoBasal"/> 
-        <p:inputTextarea id="metabolismoBasal" 	value="#{atendimentoAdultoBean.atendimentoAdulto.metabolismoBasal}"	rows="2" cols="10" autoResize="false" />
+        
+        <p:outputLabel value="Metabolismo Basal:"	 		for="metabolismoBasal"/> 
+        <p:outputLabel id="metabolismoBasal" 	value="#{atendimentoAdultoBean.atendimentoAdulto.metabolismoBasal} Kcal"/>
+       
+        
+        
         <p:outputLabel value="Valor calórico para plano alimentar (KCAL):"	 		for="valorCalorico"/> 
         <p:inputTextarea id="valorCalorico" 	value="#{atendimentoAdultoBean.atendimentoAdulto.valorCaloricoEscolhido}"		rows="2" cols="10" autoResize="false" />
        	<p:outputLabel value="Conclusões/Combinado com Cliente:"	 		for="conclusao"/> 
@@ -420,6 +424,10 @@
  		draggable="false" modal="true" showEffect="slide" hideEffect="slide"  >
 
 		<h:panelGrid columns="2">
+		
+		<p:outputLabel value="Metabolismo Basal:"	 		for="metabolismoBasal"/> 
+        <p:outputLabel id="metabolismoBasal" 	value="#{atendimentoAdultoBean.atendimentoAdulto.metabolismoBasal} Kcal"/>	
+			
 					
 		<p:outputLabel value="Alimento: " for="alimento" />
 		<p:selectOneMenu id="alimento" value="#{atendimentoAdultoBean.porcao.alimentoTabela}" style="width:150px;">
