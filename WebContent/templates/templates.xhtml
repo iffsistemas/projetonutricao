@@ -54,39 +54,29 @@
 
 				<p:menubar>
 
-					<p:menuitem value="Atendimento" icon="" url="paciente.xhtml" />
+					<p:menuitem value="Atendimento" icon="ui-icon-document" url="paciente.xhtml" />
 
-					<p:submenu label="Formulários" icon="">
-						<p:menuitem value="Adulto" url="atendimentoAdulto.xhtml" />
-						<p:menuitem value="Gestante" url="formularioGestante.xhtml" />
-						<p:menuitem value="Criança" url="formularioCrianca.xhtml" />
+					
+					<p:submenu label="Tabelas" icon="ui-icon-pencil">
 
-						<p:separator />
-						<p:submenu label="Testar">
-							<p:menuitem value="Atendimento" url="atendimento.xhtml" />
-						</p:submenu>
-
-
-
+						<p:menuitem value="TACO" url="taco.xhtml" icon="ui-icon-pencil" />
+																		
+							<p:submenu label="Medidas Caseiras" icon="ui-icon-pencil">
+								<p:menuitem value="Alimento" url="medidasCaseiras.xhtml" icon="ui-icon-pencil"/>
+								<p:menuitem value="Porção/Alimento" url="porcao.xhtml" icon="ui-icon-pencil" />
+							
+						
+				</p:submenu>
 					</p:submenu>
 
 
-					<p:submenu label="Tabelas" icon="">
-
-						<p:menuitem value="TACO" url="taco.xhtml" />
-						<p:menuitem value="Medidas Caseiras" url="medidasCaseiras.xhtml" />
-
-
-					</p:submenu>
-
-
-					<p:menuitem value="Pacientes Inativos" icon="" url="pacientesInativos.xhtml" />
-					<p:menuitem value="Schedule" icon="" url="schedule.xhtml" />
+					<p:menuitem value="Pacientes Inativos" icon="ui-icon-person" url="pacientesInativos.xhtml" />
+					<p:menuitem value="Schedule" icon="ui-icon-calendar" url="schedule.xhtml" />
 
 
 
 
-					<p:submenu label="Sair" icon=""></p:submenu>
+					<p:submenu label="Sair" icon="ui-icon-power"></p:submenu>
 
 
 				</p:menubar>

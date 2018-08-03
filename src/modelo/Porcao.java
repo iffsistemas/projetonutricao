@@ -15,7 +15,7 @@ public class Porcao {
 		private String descricao;
 		private double quantidade;
 		
-		@ManyToOne(cascade=CascadeType.ALL)
+		@ManyToOne
 		private AlimentoTabela alimentoTabela;
 
 		public Long getId() {

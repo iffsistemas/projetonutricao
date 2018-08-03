@@ -20,7 +20,7 @@ public class AlimentoMedidasCaseirasService extends GenericService<AlimentoMedid
 	
 	
 	
-	public List<AlimentoMedidasCaseiras> obtemAlimentosPorNome(String nome){
+	public List<AlimentoMedidasCaseiras> obtemAlimentosPorNomeOrdenado(String nome){
 		CriteriaBuilder cb = getEntityManager().getCriteriaBuilder();
 		CriteriaQuery<AlimentoMedidasCaseiras> cquery = cb.createQuery(AlimentoMedidasCaseiras.class);
 		Root<AlimentoMedidasCaseiras> root = cquery.from(AlimentoMedidasCaseiras.class);
@@ -28,12 +28,28 @@ public class AlimentoMedidasCaseirasService extends GenericService<AlimentoMedid
 		Expression<String> colunaNome = root.get("nome");
 		
 		cquery.select(root).where(cb.like(colunaNome, "%"+nome+"%"));
+		cquery.orderBy(cb.asc(colunaNome));
 		
 		List<AlimentoMedidasCaseiras> alimentos = getEntityManager().createQuery(cquery).getResultList();
 		
 		return alimentos;
 	}
 	
+	
+	public List<AlimentoMedidasCaseiras> listarAlimentosOrdenados(){
+		CriteriaBuilder cb = getEntityManager().getCriteriaBuilder();
+		CriteriaQuery<AlimentoMedidasCaseiras> cquery = cb.createQuery(AlimentoMedidasCaseiras.class);
+		Root<AlimentoMedidasCaseiras> root = cquery.from(AlimentoMedidasCaseiras.class);
+		
+		Expression<String> colunaNome = root.get("nome");
+		
+		cquery.select(root);
+		cquery.orderBy(cb.asc(colunaNome));
+		
+		List<AlimentoMedidasCaseiras> alimentos = getEntityManager().createQuery(cquery).getResultList();
+		
+		return alimentos;
+	}
 	
 	
 }

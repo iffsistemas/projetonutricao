@@ -1,0 +1,104 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+
+<ui:composition template="/templates/templates.xhtml"> 
+
+
+<ui:define name="titulo"></ui:define>
+
+
+<ui:define name="conteudo">
+
+
+ <h:form id="formPorcao">
+
+	<h:panelGrid id ="talbeAddPorcao" columns="2">
+
+<p:outputLabel value="Alimento: " for="alimento" />
+		<p:selectOneMenu id="alimento" value="#{porcaoBean.alimentoId}" style="width:150px;">
+			<f:selectItem  itemLabel="Selecione..." />
+			<f:selectItems value="#{porcaoBean.alimentos}" var="por" 
+				 itemLabel="#{por.nomeAlimento}" itemValue="#{por.id}" />
+				 <p:ajax event="change" listener="#{porcaoBean.filtrarPorcao()}"
+				  update=":formListarPorcoes:porcoesQuantidadeAtuais" process="alimento"/>	 
+		</p:selectOneMenu>
+
+<p:outputLabel value="Descrição" for="descricao"/>
+     	<p:inputText id="descricao" value="#{porcaoBean.porcao.descricao}"  stepFactor="0.1" min="0"  />
+
+<p:outputLabel value="Quantidade" for="quantidade"/>
+     	<p:spinner id="quantidade" value="#{porcaoBean.porcao.quantidade}"  stepFactor="0.1" min="0"  />
+     	
+     	<p:commandButton value="Adicionar Porção" icon="ui-icon-disk" action="#{porcaoBean.salvarPorcao()}"
+     	update=":mensagem, :formPorcao :formListarPorcoes"/> 
+     	
+     	
+     
+  </h:panelGrid>  
+ </h:form>    
+  
+  <h:form id="formListarPorcoes">    	
+     	
+     	
+          	<p:dataTable value="#{porcaoBean.porcoes}" var="por" style="max-width: 600px; min-width: 600px"
+	paginator="true"  emptyMessage="Nenhum registro encontrado!" rows="5" id="porcoesQuantidadeAtuais" >
+	
+		<p:column headerText="Alimento">
+			<h:outputText value="#{por.alimentoTabela.nomeAlimento}" />
+		</p:column>
+		<p:column headerText="Porção">
+			<h:outputText value="#{por.descricao} (#{por.quantidade}g)" />
+		</p:column>
+		
+		<p:column style="width:55px" headerText="Editar">
+					<p:commandButton action="#{porcaoBean.editarPorcao(por)}" icon="ui-icon-pencil" 
+					update=":mensagem :formPorcao:talbeAddPorcao :formListarPorcoes" process="@form" />
+				</p:column>	
+		
+		
+		<p:column style="width:55px"  headerText="Excluir">
+			<p:commandButton icon="ui-icon-trash" action="#{porcaoBean.excluirPorcao(por)}"
+			 update=":mensagem :formListarPorcoes"  process="formListarPorcoes">
+			 <p:confirm header="Confirmação" message="Deseja excluir porcão?" icon="ui-icon-alert" />
+			</p:commandButton>
+			
+			<p:confirmDialog global="true" showEffect="size" hideEffect="size">
+        <p:commandButton value="Sim" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+        <p:commandButton value="Não" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+        </p:confirmDialog>	
+			
+			</p:column>	
+				
+		
+		
+							
+	</p:dataTable>
+  </h:form>
+
+
+
+
+
+
+  
+</ui:define>	 
+</ui:composition>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</html>

@@ -62,7 +62,7 @@ public class AlimentoMedidasCaseirasBean {
 	
 	protected void atualizarAlimentos(){
 		getAlimentos().clear();
-		getAlimentos().addAll(medidasCaseirasService.listAll());
+		getAlimentos().addAll(medidasCaseirasService.listarAlimentosOrdenados());
 	}
 	
 	
@@ -74,6 +74,7 @@ public class AlimentoMedidasCaseirasBean {
 		String msg;
 		
 	if(getMedidasCaseiras().getId()==null)	{
+		medidasCaseiras.setQuantidade(100D);
 		medidasCaseirasService.create(medidasCaseiras);
 		msg="Alimento Cadastrado!!!";	
 
@@ -100,7 +101,7 @@ public class AlimentoMedidasCaseirasBean {
 		medidasCaseirasService.remove(alimento);
 		//FacesContext.getCurrentInstance().addMessage("menssagem", new FacesMessage("Parabéns!", "Alimento Removido!"));
 		 
-		FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Alimento", "excluído com sucesso");
+		FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Parabens", "Alimento excluído com sucesso");
 		FacesContext.getCurrentInstance().addMessage(null, message);
 		
 		
@@ -109,8 +110,9 @@ public class AlimentoMedidasCaseirasBean {
 	
 	
 	public void buscarAlimento() {
-		 alimentos = medidasCaseirasService.obtemAlimentosPorNome(getMedidasCaseiras().getNome());	
+		 alimentos = medidasCaseirasService.obtemAlimentosPorNomeOrdenado(getMedidasCaseiras().getNome());	
 		
+		 
 	
 		
 	}
