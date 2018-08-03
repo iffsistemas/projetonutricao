@@ -1,8 +1,6 @@
 package modelo;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
 
 @Entity
 public class AlimentoTaco extends AlimentoTabela {
@@ -154,8 +152,15 @@ public class AlimentoTaco extends AlimentoTabela {
 	}
 	
 	
-	
-	
+	@Override
+	public String getNomeAlimento() {
+		StringBuilder sb = new StringBuilder();
+		sb.append(getNome());
+		sb.append(" (TACO)");
+		
+		return sb.toString();
+		
+	}
 	
 
 }

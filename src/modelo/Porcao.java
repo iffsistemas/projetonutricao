@@ -48,6 +48,12 @@ public class Porcao {
 
 		public void setAlimentoTabela(AlimentoTabela alimentoTabela) {
 			this.alimentoTabela = alimentoTabela;
+		}
+
+		@Override
+		public String toString() {
+			return "Porcao [descricao=" + descricao + ", quantidade=" + quantidade + ", alimentoTabela="
+					+ alimentoTabela + "]";
 		}	
 		
 		

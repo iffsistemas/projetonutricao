@@ -18,6 +18,8 @@ public class Dieta {
 		
 		@OneToMany(cascade=CascadeType.ALL)
 		private List<DietaRefeicao> dietasRefeicoes = new ArrayList<DietaRefeicao>();
+		
+		private Double metabolismoBasalDieta = 0D;
 
 		public Long getId() {
 			return id;
@@ -34,7 +36,13 @@ public class Dieta {
 		public void setDietasRefeicoes(List<DietaRefeicao> dietasRefeicoes) {
 			this.dietasRefeicoes = dietasRefeicoes;
 		}
-		
-			    
 
+		public Double getMetabolismoBasalDieta() {
+			return metabolismoBasalDieta;
+		}
+
+		public void setMetabolismoBasalDieta(Double metabolismoBasalDieta) {
+			this.metabolismoBasalDieta = metabolismoBasalDieta;
+		}
+		
 }

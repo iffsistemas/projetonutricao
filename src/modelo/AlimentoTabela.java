@@ -80,8 +80,9 @@ public class AlimentoTabela {
 		this.vitaminaC = vitaminaC;
 	}
 	
-	
-	
+	public String getNomeAlimento() {		
+		return getNome();		
+	}
 	
 
 }

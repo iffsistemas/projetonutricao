@@ -1,7 +1,6 @@
 package modelo;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -17,10 +16,13 @@ public class DietaRefeicao {
 		@Id @GeneratedValue
 		private Long id;
 		private String descricao;
-		private Date hora;
+		
+		private String hora;
+		
+		private String local;
 		
 		@ManyToMany(cascade=CascadeType.ALL)
-		private List<Porcao> porcoes = new ArrayList<Porcao>();
+		private List<QuantidadePorcao> quantidadePorcoes = new ArrayList<QuantidadePorcao>();
 		
 		
 		
@@ -36,23 +38,25 @@ public class DietaRefeicao {
 		public void setDescricao(String descricao) {
 			this.descricao = descricao;
 		}
-		public Date getHora() {
+		public String getHora() {
 			return hora;
 		}
-		public void setHora(Date hora) {
+		public void setHora(String hora) {
 			this.hora = hora;
 		}
-		public List<Porcao> getPorcoes() {
-			return porcoes;
+		public String getLocal() {
+			return local;
 		}
-		public void setPorcoes(List<Porcao> porcoes) {
-			this.porcoes = porcoes;
+		public void setLocal(String local) {
+			this.local = local;
 		}
+		public List<QuantidadePorcao> getQuantidadePorcoes() {
+			return quantidadePorcoes;
+		}
+		public void setQuantidadePorcoes(List<QuantidadePorcao> quantidadePorcoes) {
+			this.quantidadePorcoes = quantidadePorcoes;
+		}
+		  
 		
-		
-		
-		
-		
-	    
 
 }

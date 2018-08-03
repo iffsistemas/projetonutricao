@@ -35,7 +35,7 @@ public class Atendimento {
 	ExamesLaboratoriais examesLaboratoriais;
 	
 	@OneToOne(cascade=CascadeType.ALL)
-	private Dieta dieta;
+	private Dieta dieta = new Dieta();
 	
 
 	public Long getId() {

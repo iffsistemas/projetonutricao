@@ -292,22 +292,24 @@
     <p:tab title="Dieta ">
   
      
-    <h:panelGrid columns="2">
+    <h:panelGrid columns="2" id="teste">
 		
-		<p:outputLabel value="Nome da Refeição" for="nomeRefeicao"/>
-     	<p:inputTextarea id="nomeRefeicao" value="#{pacienteBean.refeicao.nomeRefeicao}"  rows="2" cols="20" autoResize="false" />
-     	 
-     	 <p:outputLabel value="Alimento:" for="addAlimento"/>
-     	 <p:commandButton id="addAlimento" value="Adicionar Alimento" icon="ui-icon-plus" oncomplete="PF('AddAlimento').show();"/>    		    	
+		<p:outputLabel value="Nome da Refeição:" for="nomeRefeicao"/>
+     	<p:inputTextarea id="nomeRefeicao" value="#{atendimentoAdultoBean.dietaRefeicaoAtual.descricao}"  rows="2" cols="20" autoResize="false" />
      	
      	<p:outputLabel value="Horário" for="horario"/>
-     	<p:inputTextarea id="horario" value="#{pacienteBean.refeicao.horario}"  rows="2" cols="20" autoResize="false" />
+     	<p:inputText id="horario" value="#{atendimentoAdultoBean.dietaRefeicaoAtual.hora}" />
      	
      	<p:outputLabel value="Local" for="local"/>
-     	<p:inputTextarea id="local" value="#{pacienteBean.refeicao.local}"  rows="2" cols="20" autoResize="false" />
+     	<p:inputText id="local" value="#{atendimentoAdultoBean.dietaRefeicaoAtual.local}" /> 
+     	 
+     	<p:outputLabel value="Alimentos e porções:" for="addAlimento"/>
+     	<p:commandButton id="addAlimento" value="Adicionar Alimento" icon="ui-icon-plus" oncomplete="PF('AddAlimento').show();" update=":formAddAlimento"/>    		    	
+     	
+     	
      	     	
-     	<p:commandButton value="Adicionar Refeição" icon="ui-icon-disk" action="#{pacienteBean.adicionarRefeicao()}"
-     	update=":mensagem"/> 
+     	<p:commandButton value="Adicionar Refeição" icon="ui-icon-disk" action="#{atendimentoAdultoBean.adicionarRefeicao()}"
+     	update=":mensagem, tableDieta, teste" process="teste"/> 
      	
 		
 
@@ -315,24 +317,24 @@
   
     
    
-    <p:dataTable value="#{pacienteBean.pacienteAdulto.anamneseAlimentar.refeicoes}" var="alim"
+    <p:dataTable value="#{atendimentoAdultoBean.atendimentoAdulto.dieta.dietasRefeicoes}" var="dietRef"
 	paginator="true" id="tableDieta"  emptyMessage="Nenhuma Refeicao Cadastrada!" rows="4" >
 			<p:column>
 				<f:facet name="header">Refeição</f:facet>
-				<h:outputText value="#{alim.nomeRefeicao}" />	
+				<h:outputText value="#{dietRef.descricao}" />	
 			</p:column>	
 			
 			<p:column>
 				<f:facet name="header">Horário</f:facet>
-				<h:outputText value="#{alim.horario}" />
+				<h:outputText value="#{dietRef.hora}" />
 			</p:column>		
 			<p:column>
 				<f:facet name="header">Local</f:facet>
-				<h:outputText value="#{alim.local}" />
+				<h:outputText value="#{dietRef.local}" />
 			</p:column>	
 			<p:column>
 				<f:facet name="header">Alimentos</f:facet>
-				<h:outputText value="#{alim.nomeRefeicao}" />	
+				<h:outputText value="#{dietRef.quantidadePorcoes}" />	
 			</p:column>				
 		</p:dataTable>
 	
@@ -425,40 +427,52 @@
 
 		<h:panelGrid columns="2">
 		
-		<p:outputLabel value="Metabolismo Basal:"	 		for="metabolismoBasal"/> 
-        <p:outputLabel id="metabolismoBasal" 	value="#{atendimentoAdultoBean.atendimentoAdulto.metabolismoBasal} Kcal"/>	
-			
+		<p:outputLabel value="Metabolismo Basal:" for="metabolismoBasal"/> 
+        <p:outputLabel id="metabolismoBasal" value="#{atendimentoAdultoBean.atendimentoAdulto.metabolismoBasal} Kcal"/>	
+		
+		<p:outputLabel value="Metabolismo Basa Restantel:" for="metabolismoBasalRes"/> 
+        <p:outputLabel id="metabolismoBasalRes" value="#{atendimentoAdultoBean.atendimentoAdulto.dieta.metabolismoBasalDieta} Kcal"/>		
 					
 		<p:outputLabel value="Alimento: " for="alimento" />
-		<p:selectOneMenu id="alimento" value="#{atendimentoAdultoBean.porcao.alimentoTabela}" style="width:150px;">
+		<p:selectOneMenu id="alimento" value="#{atendimentoAdultoBean.alimentoId}" style="width:150px;">
 			<f:selectItem  itemLabel="Selecione..." />
-			<f:selectItems value="#{alimentoTacoBean.alimentos}" var="alim" 
-				 itemLabel="#{alim.nome}" itemValue="#{alim}" />
+			<f:selectItems value="#{atendimentoAdultoBean.alimentos}" var="alim" 
+				 itemLabel="#{alim.nomeAlimento}" itemValue="#{alim.id}" />
+				 
+				 <p:ajax event="change" listener="#{atendimentoAdultoBean.filtrarPorcao()}" update="porcao" process="alimento"/>
 		</p:selectOneMenu>		
      	  				
-		<p:outputLabel value="Descrição:" for="descricao"/>
-     	<p:inputTextarea id="descricao" value="#{atendimentoAdultoBean.porcao.descricao}"  rows="2" cols="20" autoResize="false" />
+		<p:outputLabel value="Porção" for="porcao"/>
+     	<p:selectOneMenu id="porcao" value="#{atendimentoAdultoBean.porcaoId}" style="width:150px;">
+			<f:selectItems value="#{atendimentoAdultoBean.porcoes}" var="porco" 
+				 itemLabel="#{porco.descricao}" itemValue="#{porco.id}" />
+		</p:selectOneMenu>	
      	
      	<p:outputLabel value="Quantidade" for="quantidade"/>
-     	<p:inputTextarea id="quantidade" value="#{atendimentoAdultoBean.porcao.quantidade}"  rows="2" cols="20" autoResize="false" />
+     	<p:spinner id="quantidade" value="#{atendimentoAdultoBean.quantidadePorcaoAtual}"  stepFactor="0.1" min="0"  />
      					     	
      	<p:commandButton value="Adicionar Alimento" icon="ui-icon-disk" action="#{atendimentoAdultoBean.adicionarPorcao()}"
-     	update=":mensagem" oncomplete="PF('AddAlimento').hide();"/> 
+     	update=":mensagem, porcoesQuantidadeAtuais"/> 
      	
 		<p:commandButton value="Fechar" icon="ui-icon-close" oncomplete="PF('AddAlimento').hide();"/>
 
 		</h:panelGrid>	
 	
-	<p:dataList value="#{atendimentoAdultoBean.atendimentoAdulto.dieta.dietasRefeicoes}" var="por"
-	paginator="true"  emptyMessage="Nenhum registro encontrado!" rows="5">
+	<p:dataTable value="#{atendimentoAdultoBean.porcoesQuantidadeAtuais}" var="por" style="max-width: 600px; min-width: 600px"
+	paginator="true"  emptyMessage="Nenhum registro encontrado!" rows="5" id="porcoesQuantidadeAtuais" >
 	
-	<f:facet name="header">
-            Alimentos
-        </f:facet>
-        #{#}, #{#}
+		<p:column headerText="Alimento">
+			<h:outputText value="#{por.porcao.alimentoTabela.nomeAlimento}" />
+		</p:column>
+		<p:column headerText="Porção">
+			<h:outputText value="#{por.porcao.descricao} (#{por.porcao.quantidade}g)" />
+		</p:column>
+		<p:column headerText="Quantidade a ser consumida">
+			<h:outputText value="#{por.quantidade}" />
+		</p:column>
 		
 							
-	</p:dataList>
+	</p:dataTable>
 		
 		
 </p:dialog>

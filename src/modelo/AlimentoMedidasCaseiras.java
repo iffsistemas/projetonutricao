@@ -34,7 +34,15 @@ public class AlimentoMedidasCaseiras extends AlimentoTabela {
 		this.fonte = fonte;
 	}
 	
-	
+	@Override
+	public String getNomeAlimento() {
+		StringBuilder sb = new StringBuilder();
+		sb.append(getNome());
+		sb.append(" (CASEIRA)");
+		
+		return sb.toString();
+		
+	}
 	
 	
 	
