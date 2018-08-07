@@ -67,7 +67,7 @@ public class porcaoBean  {
 	}
 	@PostConstruct
 	public void init(){
-		atualizarPorcoes();
+		//atualizarPorcoes();
 		
 		setAlimentos(alimentoMedidasCaseirasService.listarAlimentosOrdenados());
 		

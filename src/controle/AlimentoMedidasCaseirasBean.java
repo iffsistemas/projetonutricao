@@ -11,7 +11,9 @@ import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 
 import modelo.AlimentoMedidasCaseiras;
+import modelo.Porcao;
 import service.AlimentoMedidasCaseirasService;
+import service.PorcaoService;
 
 
 
@@ -22,14 +24,27 @@ public class AlimentoMedidasCaseirasBean {
 	
 	@EJB
 	AlimentoMedidasCaseirasService medidasCaseirasService;
+	@EJB
+	PorcaoService porcaoService;
+	
 	
 	AlimentoMedidasCaseiras medidasCaseiras = new AlimentoMedidasCaseiras();
+	Porcao porcaoPadrao = new Porcao();
 	
 	List<AlimentoMedidasCaseiras> alimentos = new ArrayList<AlimentoMedidasCaseiras>();
 	
 	AlimentoMedidasCaseiras alimentoSelecionado = new AlimentoMedidasCaseiras();
 	
 	
+	
+	public Porcao getPorcaoPadrao() {
+		return porcaoPadrao;
+	}
+
+	public void setPorcaoPadrao(Porcao porcaoPadrao) {
+		this.porcaoPadrao = porcaoPadrao;
+	}
+
 	public AlimentoMedidasCaseiras getMedidasCaseiras() {
 		return medidasCaseiras;
 	}
@@ -76,6 +91,7 @@ public class AlimentoMedidasCaseirasBean {
 	if(getMedidasCaseiras().getId()==null)	{
 		medidasCaseiras.setQuantidade(100D);
 		medidasCaseirasService.create(medidasCaseiras);
+		salvarPorcaoCemGramas();
 		msg="Alimento Cadastrado!!!";	
 
 	}else {
@@ -118,7 +134,14 @@ public class AlimentoMedidasCaseirasBean {
 	}
 	
 	
-	
+	public void salvarPorcaoCemGramas() {
+		porcaoPadrao.setDescricao("Porção");
+		porcaoPadrao.setQuantidade(100);
+		porcaoPadrao.setAlimentoTabela(medidasCaseiras);
+		porcaoService.merge(porcaoPadrao);
+		
+		
+	}
 	
 	
 	

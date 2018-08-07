@@ -12,7 +12,9 @@ import javax.faces.context.FacesContext;
 
 import modelo.AlimentoTaco;
 import modelo.Atendimento;
+import modelo.Porcao;
 import service.AlimentoTacoService;
+import service.PorcaoService;
 
 
 
@@ -24,17 +26,28 @@ public class AlimentoTacoBean  {
 	
 	@EJB
 	AlimentoTacoService tacoService;
+	@EJB
+	PorcaoService porcaoService;
 	
 	
 	AlimentoTaco alimentoSelecionado = new AlimentoTaco();
 	
 	AlimentoTaco taco = new AlimentoTaco();
+	Porcao porcaoPadrao = new Porcao();
 	
 	
 	List<AlimentoTaco> alimentos = new ArrayList<AlimentoTaco>();
 	
 	
 	
+	public Porcao getPorcaoPadrao() {
+		return porcaoPadrao;
+	}
+
+	public void setPorcaoPadrao(Porcao porcaoPadrao) {
+		this.porcaoPadrao = porcaoPadrao;
+	}
+
 	public AlimentoTaco getTaco() {
 		return taco;
 	}
@@ -90,6 +103,7 @@ public class AlimentoTacoBean  {
 		
 	if(getTaco().getId()==null)	{
 		tacoService.create(taco);
+		salvarPorcaoCemGramas();
 		msg="Alimento Cadastrado!!!";	
 
 	}else {
@@ -128,6 +142,16 @@ public class AlimentoTacoBean  {
 		 alimentos = tacoService.obtemAlimentosPorNome(getTaco().getNome());	
 		
 	
+		
+	}
+	
+	
+	public void salvarPorcaoCemGramas() {
+		porcaoPadrao.setDescricao("Porção");
+		porcaoPadrao.setQuantidade(100);
+		porcaoPadrao.setAlimentoTabela(taco);
+		porcaoService.merge(porcaoPadrao);
+		
 		
 	}
 	

@@ -59,10 +59,20 @@ public class AtendimentoAdultoBean {
 	
 	Long porcaoId=0L;	
 	
-	double quantidadePorcaoAtual=0D;
+	double quantidadePorcaoAtual=1D;
+	
+	double calcAtualMetabolismoBasal;
 	
 
 	
+	public double getCalcAtualMetabolismoBasal() {
+		return calcAtualMetabolismoBasal;
+	}
+
+	public void setCalcAtualMetabolismoBasal(double calcAtualMetabolismoBasal) {
+		this.calcAtualMetabolismoBasal = calcAtualMetabolismoBasal;
+	}
+
 	public double getQuantidadePorcaoAtual() {
 		return quantidadePorcaoAtual;
 	}
@@ -252,7 +262,7 @@ public class AtendimentoAdultoBean {
 	
 	atendimentoAdulto.setMetabolismoBasal(metabolismoConverter.doubleValue());		
 	getAtendimentoAdulto().getDieta().setMetabolismoBasalDieta(metabolismoConverter.doubleValue());	
-		
+	calcAtualMetabolismoBasal = atendimentoAdulto.getMetabolismoBasal();
 	}
 	
 	public void calculoMetabolismoBasalDieta() {
@@ -271,8 +281,18 @@ public class AtendimentoAdultoBean {
 		quantidadePorcaoAtual.setPorcao(porcaoService.obtemPorId(porcaoId));
 		porcoesQuantidadeAtuais.add(quantidadePorcaoAtual);
 		
+		calcAtualMetabolismoBasal = calcAtualMetabolismoBasal - (quantidadePorcaoAtual.getQuantidade() * quantidadePorcaoAtual.getPorcao().getQuantidade());
+		BigDecimal calcAtualMetabolismoBasalConvet = new BigDecimal(calcAtualMetabolismoBasal).setScale(2, RoundingMode.HALF_EVEN);
+		
+		getAtendimentoAdulto().getDieta().setMetabolismoBasalDieta(calcAtualMetabolismoBasalConvet.doubleValue());
+		
 	}
 	
+	public void removerPorcao(Porcao porcaoAtual) {
+		
+		
+		
+	}
 	
 	public void adicionarRefeicao() {
 		getDietaRefeicaoAtual().setQuantidadePorcoes(getPorcoesQuantidadeAtuais());

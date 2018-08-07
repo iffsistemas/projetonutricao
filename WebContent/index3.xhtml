@@ -1,0 +1,101 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+
+ 
+<h:head>
+
+<style>
+
+#principal{
+    position:absolute;
+    left:50%;
+    top:50%;
+    margin-left:-460px;
+    margin-top:-135px;
+    width: 900px;
+    height: 390px;
+    border: 2px solid #6495ED;
+    padding: 10px;
+    text-align: left;
+    font-family: calibri;
+    font-size: 13px;
+    border-radius: 50px;
+}
+
+#msg1 
+ {
+    float: left;
+    padding: 10px;
+    font-family: Cambria;
+    font-size: 21px;
+    color: #6495ED;
+    text-align: left;
+ }
+ #msg2 
+ {
+    float: left;
+    padding: 10px;
+    font-family: calibri;
+    color: #6495ED;
+    font-size: 15px;
+    text-align: left;
+ }
+
+
+</style>
+
+<title>Facelet Title</title>
+
+</h:head>
+
+<h:body>
+
+ <div id="principal">
+<p:layout style="min-width:400px;min-height:270px;" id="layout">  
+    <p:layoutUnit position="west" resizable="true" size="200" minSize="250">  
+        <div id="msg1">
+            Seja Bem vindo
+        </div><br/>
+        <div id="msg2">
+            Identifique-se por favor para utilizar
+            o sistema.
+        </div><br/>
+        <h:panelGrid columns="2">
+        <h:outputLabel value="Nome:" for="nome" />
+        <h:inputText id="nome" label="Nome" value="#{#}"  required="true" style="width:180px; height: 20px; line-height: 15px;" />
+        <h:outputLabel value="Senha:" for="senha" />
+        <h:inputSecret id="senha" label="Senha" value="#{#}" required="true" style="width:180px; height: 20px; line-height: 15px;"/>
+        </h:panelGrid>
+
+        <div align="right">
+        <h:commandButton action="#{#}" value="Salvar" />
+        </div>
+
+
+        <div id="msg2">
+            Esqueceu sua senha?
+            <h:form>
+                <h:commandLink action="inicio" value="Enviar Senha"/>
+            </h:form>
+        </div><br/>
+    </p:layoutUnit>
+
+    <p:layoutUnit position="center" resizable="true" size="200" minSize="250">  
+        <h:graphicImage library="imagens" name="logo.png"/>
+    </p:layoutUnit>  
+</p:layout>
+</div>
+
+</h:body>
+
+</html>
+
+
+
+
+ 

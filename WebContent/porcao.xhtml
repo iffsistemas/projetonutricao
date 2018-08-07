@@ -20,7 +20,7 @@
 	<h:panelGrid id ="talbeAddPorcao" columns="2">
 
 <p:outputLabel value="Alimento: " for="alimento" />
-		<p:selectOneMenu id="alimento" value="#{porcaoBean.alimentoId}" style="width:150px;">
+		<p:selectOneMenu id="alimento" value="#{porcaoBean.alimentoId}" style="width:200px;" filter="true">
 			<f:selectItem  itemLabel="Selecione..." />
 			<f:selectItems value="#{porcaoBean.alimentos}" var="por" 
 				 itemLabel="#{por.nomeAlimento}" itemValue="#{por.id}" />
@@ -29,7 +29,7 @@
 		</p:selectOneMenu>
 
 <p:outputLabel value="Descrição" for="descricao"/>
-     	<p:inputText id="descricao" value="#{porcaoBean.porcao.descricao}"  stepFactor="0.1" min="0"  />
+     	<p:inputText id="descricao" value="#{porcaoBean.porcao.descricao}" style="width:220px;" stepFactor="0.1" min="0"  />
 
 <p:outputLabel value="Quantidade" for="quantidade"/>
      	<p:spinner id="quantidade" value="#{porcaoBean.porcao.quantidade}"  stepFactor="0.1" min="0"  />

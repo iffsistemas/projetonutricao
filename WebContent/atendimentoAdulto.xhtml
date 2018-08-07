@@ -26,7 +26,7 @@
    	<h:panelGrid columns="2"> 
        
         <h:outputText value="Diagnóstico Nutricional: " for="diagnosticoNutricional"/>
-        <p:inputTextarea id="diagnosticoNutricional"  value="#{atendimentoAdultoBean.atendimentoAdulto.diagnosticoNutricional}" rows="3" cols="50" autoResize="false" />
+        <p:inputTextarea id="diagnosticoNutricional"  value="#{atendimentoAdultoBean.atendimentoAdulto.diagnosticoNutricional}" rows="3" cols="50" autoResize="true" />
        
       </h:panelGrid> </p:tab>
             
@@ -210,18 +210,18 @@
     	<p:outputLabel value=""/> 		 
         
         
-        <p:inputTextarea id="altura" 		value="#{atendimentoAdultoBean.atendimentoAdulto.altura}"  		rows="1" cols="8" autoResize="false" >
+        <p:inputTextarea id="altura" 		value="#{atendimentoAdultoBean.atendimentoAdulto.altura}"  		rows="1" cols="8" autoResize="true" >
         <p:ajax event="change"/>
      	</p:inputTextarea>
      	
-     	<p:inputTextarea id="pesoAtual" 	value="#{atendimentoAdultoBean.atendimentoAdulto.pesoAtual}"  	rows="1" cols="8" autoResize="false" >
+     	<p:inputTextarea id="pesoAtual" 	value="#{atendimentoAdultoBean.atendimentoAdulto.pesoAtual}"  	rows="1" cols="8" autoResize="true" >
      	<p:ajax listener="#{atendimentoAdultoBean.calcularIMC()}" update="imc" event="change"/>
      	<p:ajax listener="#{atendimentoAdultoBean.classificacaoIMC()}" update="classificacaoIMC" event="change"/>
      	<p:ajax listener="#{atendimentoAdultoBean.calculoMetabolismoBasal()}" update="metabolismoBasal" event="change"/>
      	</p:inputTextarea>
      	
-     	<p:inputTextarea id="pesoHabitual" 	value="#{atendimentoAdultoBean.atendimentoAdulto.pesoHabitual}"  	rows="1" cols="8" autoResize="false" />
-       	<p:inputTextarea id="pesoObjetivo" 	value="#{atendimentoAdultoBean.atendimentoAdulto.pesoObjetivo}"	rows="1" cols="8" autoResize="false" />
+     	<p:inputTextarea id="pesoHabitual" 	value="#{atendimentoAdultoBean.atendimentoAdulto.pesoHabitual}"  	rows="1" cols="8" autoResize="true" />
+       	<p:inputTextarea id="pesoObjetivo" 	value="#{atendimentoAdultoBean.atendimentoAdulto.pesoObjetivo}"	rows="1" cols="8" autoResize="true" />
        	
        
      	                
@@ -250,10 +250,10 @@
         <p:outputLabel value="C ABD" 		for="cabd"/>
                  
                
-     	<p:inputTextarea id="cc" 	value="#{atendimentoAdultoBean.atendimentoAdulto.circunferencia.cc}"  		rows="1" cols="5" autoResize="false" />
-     	<p:inputTextarea id="cq" 	value="#{atendimentoAdultoBean.atendimentoAdulto.circunferencia.cq}"  		rows="1" cols="5" autoResize="false" />
-     	<p:inputTextarea id="cb" 	value="#{atendimentoAdultoBean.atendimentoAdulto.circunferencia.cb}"  		rows="1" cols="5" autoResize="false" />
-     	<p:inputTextarea id="cabd" 	value="#{atendimentoAdultoBean.atendimentoAdulto.circunferencia.cabd}"		rows="1" cols="5" autoResize="false" />
+     	<p:inputTextarea id="cc" 	value="#{atendimentoAdultoBean.atendimentoAdulto.circunferencia.cc}"  		rows="1" cols="5" autoResize="true" />
+     	<p:inputTextarea id="cq" 	value="#{atendimentoAdultoBean.atendimentoAdulto.circunferencia.cq}"  		rows="1" cols="5" autoResize="true" />
+     	<p:inputTextarea id="cb" 	value="#{atendimentoAdultoBean.atendimentoAdulto.circunferencia.cb}"  		rows="1" cols="5" autoResize="true" />
+     	<p:inputTextarea id="cabd" 	value="#{atendimentoAdultoBean.atendimentoAdulto.circunferencia.cabd}"		rows="1" cols="5" autoResize="true" />
      	
      	              
         </h:panelGrid>  </p:fieldset>
@@ -271,7 +271,7 @@
         <h:panelGrid columns="2"> 
         
         <p:outputLabel value="Fato de Atividade:"	 		for="fatorDeAtividade"/> 
-        <p:inputTextarea id="fatorDeAtividade" 	value="#{atendimentoAdultoBean.atendimentoAdulto.fatorDeAtividade}"	rows="2" cols="10" autoResize="false" />
+        <p:inputTextarea id="fatorDeAtividade" 	value="#{atendimentoAdultoBean.atendimentoAdulto.fatorDeAtividade}"	rows="2" cols="10" autoResize="true" />
         
         <p:outputLabel value="Metabolismo Basal:"	 		for="metabolismoBasal"/> 
         <p:outputLabel id="metabolismoBasal" 	value="#{atendimentoAdultoBean.atendimentoAdulto.metabolismoBasal} Kcal"/>
@@ -279,9 +279,9 @@
         
         
         <p:outputLabel value="Valor calórico para plano alimentar (KCAL):"	 		for="valorCalorico"/> 
-        <p:inputTextarea id="valorCalorico" 	value="#{atendimentoAdultoBean.atendimentoAdulto.valorCaloricoEscolhido}"		rows="2" cols="10" autoResize="false" />
+        <p:inputTextarea id="valorCalorico" 	value="#{atendimentoAdultoBean.atendimentoAdulto.valorCaloricoEscolhido}"		rows="2" cols="10" autoResize="true" />
        	<p:outputLabel value="Conclusões/Combinado com Cliente:"	 		for="conclusao"/> 
-        <p:inputTextarea id="conclusao" 	value="#{atendimentoAdultoBean.atendimentoAdulto.conclusao}"				rows="4" cols="40" autoResize="false" />
+        <p:inputTextarea id="conclusao" 	value="#{atendimentoAdultoBean.atendimentoAdulto.conclusao}"				rows="4" cols="40" autoResize="true" />
         
         
         
@@ -295,7 +295,7 @@
     <h:panelGrid columns="2" id="teste">
 		
 		<p:outputLabel value="Nome da Refeição:" for="nomeRefeicao"/>
-     	<p:inputTextarea id="nomeRefeicao" value="#{atendimentoAdultoBean.dietaRefeicaoAtual.descricao}"  rows="2" cols="20" autoResize="false" />
+     	<p:inputTextarea id="nomeRefeicao" value="#{atendimentoAdultoBean.dietaRefeicaoAtual.descricao}"  rows="2" cols="20" autoResize="true" />
      	
      	<p:outputLabel value="Horário" for="horario"/>
      	<p:inputText id="horario" value="#{atendimentoAdultoBean.dietaRefeicaoAtual.hora}" />
@@ -425,16 +425,16 @@
  	<p:dialog  header="Adicionar Alimento" widgetVar="AddAlimento" resizable="false" 
  		draggable="false" modal="true" showEffect="slide" hideEffect="slide"  >
 
-		<h:panelGrid columns="2">
+		<h:panelGrid  columns="2">
 		
 		<p:outputLabel value="Metabolismo Basal:" for="metabolismoBasal"/> 
         <p:outputLabel id="metabolismoBasal" value="#{atendimentoAdultoBean.atendimentoAdulto.metabolismoBasal} Kcal"/>	
 		
-		<p:outputLabel value="Metabolismo Basa Restantel:" for="metabolismoBasalRes"/> 
+		<p:outputLabel value="Metabolismo Basa Restante:" for="metabolismoBasalRes"/> 
         <p:outputLabel id="metabolismoBasalRes" value="#{atendimentoAdultoBean.atendimentoAdulto.dieta.metabolismoBasalDieta} Kcal"/>		
 					
 		<p:outputLabel value="Alimento: " for="alimento" />
-		<p:selectOneMenu id="alimento" value="#{atendimentoAdultoBean.alimentoId}" style="width:150px;">
+		<p:selectOneMenu id="alimento" value="#{atendimentoAdultoBean.alimentoId}" style="width:150px;" filter="true">
 			<f:selectItem  itemLabel="Selecione..." />
 			<f:selectItems value="#{atendimentoAdultoBean.alimentos}" var="alim" 
 				 itemLabel="#{alim.nomeAlimento}" itemValue="#{alim.id}" />
@@ -445,14 +445,14 @@
 		<p:outputLabel value="Porção" for="porcao"/>
      	<p:selectOneMenu id="porcao" value="#{atendimentoAdultoBean.porcaoId}" style="width:150px;">
 			<f:selectItems value="#{atendimentoAdultoBean.porcoes}" var="porco" 
-				 itemLabel="#{porco.descricao}" itemValue="#{porco.id}" />
+				 itemLabel="#{porco.descricao} (#{porco.quantidade}g)" itemValue="#{porco.id}" />
 		</p:selectOneMenu>	
      	
      	<p:outputLabel value="Quantidade" for="quantidade"/>
      	<p:spinner id="quantidade" value="#{atendimentoAdultoBean.quantidadePorcaoAtual}"  stepFactor="0.1" min="0"  />
      					     	
      	<p:commandButton value="Adicionar Alimento" icon="ui-icon-disk" action="#{atendimentoAdultoBean.adicionarPorcao()}"
-     	update=":mensagem, porcoesQuantidadeAtuais"/> 
+     	update=":mensagem, porcoesQuantidadeAtuais, metabolismoBasalRes "/> 
      	
 		<p:commandButton value="Fechar" icon="ui-icon-close" oncomplete="PF('AddAlimento').hide();"/>
 
@@ -469,6 +469,20 @@
 		</p:column>
 		<p:column headerText="Quantidade a ser consumida">
 			<h:outputText value="#{por.quantidade}" />
+		</p:column>
+		
+		<p:column style="width:55px">
+			<f:facet name="header">Excluir</f:facet>
+			<p:commandButton icon="ui-icon-trash" action="#{porcaoBean.excluirPorcao(por)}"
+			 update=":mensagem, porcoesQuantidadeAtuais" process="@form" >
+			<p:confirm header="Confirmação" message="Deseja excluir alimento e sua porção?" icon="ui-icon-alert" />
+			</p:commandButton>
+			
+			<p:confirmDialog global="true" showEffect="slide" hideEffect="slide">
+        <p:commandButton value="Sim" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+        <p:commandButton value="Não" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+        </p:confirmDialog>
+						 
 		</p:column>
 		
 							
