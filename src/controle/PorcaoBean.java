@@ -20,7 +20,7 @@ import service.PorcaoService;
 
 @ViewScoped
 @ManagedBean
-public class porcaoBean  {
+public class PorcaoBean  {
 	
 	
 	
