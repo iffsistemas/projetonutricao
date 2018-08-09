@@ -102,6 +102,7 @@ public class AlimentoTacoBean  {
 		String msg;
 		
 	if(getTaco().getId()==null)	{
+		taco.setQuantidade(100D);
 		tacoService.create(taco);
 		salvarPorcaoCemGramas();
 		msg="Alimento Cadastrado!!!";	
@@ -148,7 +149,7 @@ public class AlimentoTacoBean  {
 	
 	public void salvarPorcaoCemGramas() {
 		porcaoPadrao.setDescricao("Porção");
-		porcaoPadrao.setQuantidade(100);
+		porcaoPadrao.setQuantidade(100D);
 		porcaoPadrao.setAlimentoTabela(taco);
 		porcaoService.merge(porcaoPadrao);
 		

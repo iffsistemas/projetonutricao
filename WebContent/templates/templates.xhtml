@@ -55,28 +55,28 @@
 				<p:menubar>
 
 					<p:menuitem value="Atendimento" icon="ui-icon-document" url="paciente.xhtml" />
-
+	
+					<p:submenu label="Cadastrar" icon="ui-icon-pencil">
+					
+					<p:menuitem value="Usuários" icon="ui-icon-pencil" url="usuario.xhtml" />
 					
 					<p:submenu label="Tabelas" icon="ui-icon-pencil">
 
 						<p:menuitem value="TACO" url="taco.xhtml" icon="ui-icon-pencil" />
+						<p:menuitem value="Medidas Caseiras" url="medidasCaseiras.xhtml" icon="ui-icon-pencil"/>
+						<p:menuitem value="Porção/Alimento" url="porcao.xhtml" icon="ui-icon-pencil" />
 																		
-							<p:submenu label="Medidas Caseiras" icon="ui-icon-pencil">
-								<p:menuitem value="Alimento" url="medidasCaseiras.xhtml" icon="ui-icon-pencil"/>
-								<p:menuitem value="Porção/Alimento" url="porcao.xhtml" icon="ui-icon-pencil" />
-							
-						
 				</p:submenu>
-					</p:submenu>
-
+		</p:submenu>
 
 					<p:menuitem value="Pacientes Inativos" icon="ui-icon-person" url="pacientesInativos.xhtml" />
 					<p:menuitem value="Schedule" icon="ui-icon-calendar" url="schedule.xhtml" />
 
 
+					<p:menuitem value="Sair" icon="ui-icon-power" url="index.xhtml" />
 
 
-					<p:submenu label="Sair" icon="ui-icon-power"></p:submenu>
+					
 
 
 				</p:menubar>

@@ -10,10 +10,9 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 
-import modelo.AlimentoMedidasCaseiras;
 import modelo.AlimentoTabela;
 import modelo.Porcao;
-import service.AlimentoMedidasCaseirasService;
+import service.AlimentoTabelaService;
 import service.PorcaoService;
 
 
@@ -28,13 +27,13 @@ public class PorcaoBean  {
 	PorcaoService porcaoService;
 	
 	@EJB
-	AlimentoMedidasCaseirasService alimentoMedidasCaseirasService	;
+	AlimentoTabelaService alimentoTabelaService	;
 	
 	private Porcao porcao = new Porcao();
 	
 	
 	List<Porcao> porcoes = new ArrayList<Porcao>();
-	List<AlimentoMedidasCaseiras> alimentos = new ArrayList<AlimentoMedidasCaseiras>();
+	List<AlimentoTabela> alimentos = new ArrayList<AlimentoTabela>();
 	
 	Long alimentoId=0L;
 	
@@ -52,11 +51,10 @@ public class PorcaoBean  {
 		this.porcoes = porcoes;
 	}
 	
-			
-	public List<AlimentoMedidasCaseiras> getAlimentos() {
+	public List<AlimentoTabela> getAlimentos() {
 		return alimentos;
 	}
-	public void setAlimentos(List<AlimentoMedidasCaseiras> alimentos) {
+	public void setAlimentos(List<AlimentoTabela> alimentos) {
 		this.alimentos = alimentos;
 	}
 	public Long getAlimentoId() {
@@ -69,7 +67,7 @@ public class PorcaoBean  {
 	public void init(){
 		//atualizarPorcoes();
 		
-		setAlimentos(alimentoMedidasCaseirasService.listarAlimentosOrdenados());
+		setAlimentos(alimentoTabelaService.listarAlimentosOrdenados());
 		
 		
 		
@@ -86,7 +84,7 @@ public class PorcaoBean  {
 		String msg;		
 		if(getPorcao().getId()==null)	{
 		AlimentoTabela alimento = new AlimentoTabela();
-		alimento =   alimentoMedidasCaseirasService.obtemPorId(alimentoId);
+		alimento =   alimentoTabelaService.obtemPorId(alimentoId);
 		porcao.setAlimentoTabela(alimento);
 		porcaoService.create(porcao);
 		msg="Porção Cadastrada com sucesso!";

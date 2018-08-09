@@ -12,7 +12,11 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 
+import org.primefaces.context.RequestContext;
+
+import modelo.AlimentoMedidasCaseiras;
 import modelo.AlimentoTabela;
+import modelo.AlimentoTaco;
 import modelo.AtendimentoAdulto;
 import modelo.DietaRefeicao;
 import modelo.ExamesLaboratoriais;
@@ -20,7 +24,9 @@ import modelo.Paciente;
 import modelo.PacienteAdulto;
 import modelo.Porcao;
 import modelo.QuantidadePorcao;
+import service.AlimentoMedidasCaseirasService;
 import service.AlimentoTabelaService;
+import service.AlimentoTacoService;
 import service.AtendimentoAdultoService;
 import service.PorcaoService;
 
@@ -34,7 +40,10 @@ public class AtendimentoAdultoBean {
 	
 	@EJB
 	AlimentoTabelaService alimentoTabelaService;
-	
+	@EJB
+	AlimentoTacoService alimentoTacoService;
+	@EJB
+	AlimentoMedidasCaseirasService alimentoMedidasCaseirasService;
 	@EJB
 	PorcaoService porcaoService;
 	
@@ -54,23 +63,72 @@ public class AtendimentoAdultoBean {
 	List<QuantidadePorcao> porcoesQuantidadeAtuais = new ArrayList<QuantidadePorcao>();
 	
 	List<Porcao> porcoes = new ArrayList<Porcao>();
-
+	
+	AlimentoTabela alimentoProvisorio = new AlimentoTabela();
+	
+	AlimentoTaco tacoConvertido = new AlimentoTaco();
+	AlimentoMedidasCaseiras medidasConvertido = new AlimentoMedidasCaseiras();
+	
 	Long alimentoId=0L;
 	
 	Long porcaoId=0L;	
 	
-	double quantidadePorcaoAtual=1D;
+	Double quantidadePorcaoAtual=1D;
 	
-	double calcAtualMetabolismoBasal;
+	Double calcProteinaAtual;
+	Double calcCarboidratoAtual;
+	Double calcLipidioAtual;
 	
 
 	
-	public double getCalcAtualMetabolismoBasal() {
-		return calcAtualMetabolismoBasal;
+	
+
+	public AlimentoTaco getTacoConvertido() {
+		return tacoConvertido;
 	}
 
-	public void setCalcAtualMetabolismoBasal(double calcAtualMetabolismoBasal) {
-		this.calcAtualMetabolismoBasal = calcAtualMetabolismoBasal;
+	public void setTacoConvertido(AlimentoTaco tacoConvertido) {
+		this.tacoConvertido = tacoConvertido;
+	}
+
+	public AlimentoMedidasCaseiras getMedidasConvertido() {
+		return medidasConvertido;
+	}
+
+	public void setMedidasConvertido(AlimentoMedidasCaseiras medidasConvertido) {
+		this.medidasConvertido = medidasConvertido;
+	}
+
+	public AlimentoTabela getAlimentoProvisorio() {
+		return alimentoProvisorio;
+	}
+
+	public void setAlimentoProvisorio(AlimentoTabela alimentoProvisorio) {
+		this.alimentoProvisorio = alimentoProvisorio;
+	}
+
+	public Double getCalcCarboidratoAtual() {
+		return calcCarboidratoAtual;
+	}
+
+	public void setCalcCarboidratoAtual(Double calcCarboidratoAtual) {
+		this.calcCarboidratoAtual = calcCarboidratoAtual;
+	}
+
+	public Double getCalcLipidioAtual() {
+		return calcLipidioAtual;
+	}
+
+	public void setCalcLipidioAtual(Double calcLipidioAtual) {
+		this.calcLipidioAtual = calcLipidioAtual;
+	}
+
+	public Double getCalcProteinaAtual() {
+		return calcProteinaAtual;
+	}
+
+	public void setCalcProteinaAtual(Double calcProteinaAtual) {
+		this.calcProteinaAtual = calcProteinaAtual;
 	}
 
 	public double getQuantidadePorcaoAtual() {
@@ -175,7 +233,7 @@ public class AtendimentoAdultoBean {
 		atualizarAtendimentos();
 		//Paciente Enviado de outro pagina
 		PacienteAdulto pacEnviado = (PacienteAdulto) FacesContext.getCurrentInstance().getExternalContext().getFlash().get("pacienteAdulto");
-		System.out.println("Enviado: "+pacEnviado.getNome());
+		//System.out.println("Enviado: "+pacEnviado.getNome());
 		getAtendimentoAdulto().setPaciente(pacEnviado);
 		setAlimentos(alimentoTabelaService.listarAlimentosOrdenados());
 		
@@ -261,13 +319,48 @@ public class AtendimentoAdultoBean {
 	BigDecimal metabolismoConverter = new BigDecimal(calculoMetabolismoBasal).setScale(2, RoundingMode.HALF_EVEN);
 	
 	atendimentoAdulto.setMetabolismoBasal(metabolismoConverter.doubleValue());		
-	getAtendimentoAdulto().getDieta().setMetabolismoBasalDieta(metabolismoConverter.doubleValue());	
-	calcAtualMetabolismoBasal = atendimentoAdulto.getMetabolismoBasal();
+	
+	
+	//getAtendimentoAdulto().getDieta().setMetabolismoBasalDieta(metabolismoConverter.doubleValue());	
+	//calcAtualMetabolismoBasal = atendimentoAdulto.getMetabolismoBasal();
+	
+	Double calcProteinaRestante = atendimentoAdulto.getMetabolismoBasal()*0.15/4;
+	Double calcCarboitratoRestante = atendimentoAdulto.getMetabolismoBasal()*0.6/4;
+	Double calcLipidioRestante = atendimentoAdulto.getMetabolismoBasal()*0.25/9;
+	
+	BigDecimal calcProteinaRestanteConvertido = new BigDecimal(calcProteinaRestante).setScale(2, RoundingMode.HALF_EVEN);
+	BigDecimal calcCarboitratoRestanteConvertido = new BigDecimal(calcCarboitratoRestante).setScale(2, RoundingMode.HALF_EVEN);
+	BigDecimal calcLipidioRestanteConvertido = new BigDecimal(calcLipidioRestante).setScale(2, RoundingMode.HALF_EVEN);
+	
+	
+	
+	
+	
+	atendimentoAdulto.getDieta().setProteinaRestante(calcProteinaRestanteConvertido.doubleValue());
+	atendimentoAdulto.getDieta().setCarboidratoRestante(calcCarboitratoRestanteConvertido.doubleValue());
+	atendimentoAdulto.getDieta().setLipidioRestante(calcLipidioRestanteConvertido.doubleValue());
+	
+	calcProteinaAtual= atendimentoAdulto.getDieta().getProteinaRestante();
+	calcCarboidratoAtual = atendimentoAdulto.getDieta().getCarboidratoRestante();
+	calcLipidioAtual = atendimentoAdulto.getDieta().getLipidioRestante();
+	
+	
 	}
 	
-	public void calculoMetabolismoBasalDieta() {
-		getAtendimentoAdulto().getDieta().setMetabolismoBasalDieta(0D);
+	public void carboidratoRestante() {
+		getAtendimentoAdulto().getDieta().setCarboidratoRestante(100D);
 	}
+	
+	public void proteinaRestante() {
+		getAtendimentoAdulto().getDieta().setProteinaRestante(100D);
+	}
+	
+	public void lipidiosRestante() {
+		getAtendimentoAdulto().getDieta().setLipidioRestante(100D);
+	}
+	
+	
+	
 	
 	public void filtrarPorcao() {
 		setPorcoes(porcaoService.porcoesDeUmAlimento(alimentoId));
@@ -281,12 +374,167 @@ public class AtendimentoAdultoBean {
 		quantidadePorcaoAtual.setPorcao(porcaoService.obtemPorId(porcaoId));
 		porcoesQuantidadeAtuais.add(quantidadePorcaoAtual);
 		
-		calcAtualMetabolismoBasal = calcAtualMetabolismoBasal - (quantidadePorcaoAtual.getQuantidade() * quantidadePorcaoAtual.getPorcao().getQuantidade());
-		BigDecimal calcAtualMetabolismoBasalConvet = new BigDecimal(calcAtualMetabolismoBasal).setScale(2, RoundingMode.HALF_EVEN);
+	//	calcAtualMetabolismoBasal = calcAtualMetabolismoBasal - (quantidadePorcaoAtual.getQuantidade() * quantidadePorcaoAtual.getPorcao().getQuantidade());
+	//	BigDecimal calcAtualMetabolismoBasalConvet = new BigDecimal(calcAtualMetabolismoBasal).setScale(2, RoundingMode.HALF_EVEN);
 		
-		getAtendimentoAdulto().getDieta().setMetabolismoBasalDieta(calcAtualMetabolismoBasalConvet.doubleValue());
+	//	getAtendimentoAdulto().getDieta().setMetabolismoBasalDieta(calcAtualMetabolismoBasalConvet.doubleValue());
+	
+		if(quantidadePorcaoAtual.getPorcao().getAlimentoTabela() instanceof AlimentoTaco) {
+			AlimentoTaco t = new AlimentoTaco();
+			t = alimentoTacoService.obtemPorId(quantidadePorcaoAtual.getPorcao().getAlimentoTabela().getId());
+			AlimentoTaco tacoProvisorio = new AlimentoTaco();
+			
+			tacoProvisorio.setNome(t.getNome());
+			tacoProvisorio.setKcal(t.getKcal() * quantidadePorcaoAtual.getPorcao().getQuantidade() / t.getQuantidade());
+			tacoProvisorio.setProteina(t.getProteina() * quantidadePorcaoAtual.getPorcao().getQuantidade()/ t.getQuantidade());
+			tacoProvisorio.setLipideos(t.getLipideos() * quantidadePorcaoAtual.getPorcao().getQuantidade()/ t.getQuantidade());
+			tacoProvisorio.setCalcio(t.getCalcio() * quantidadePorcaoAtual.getPorcao().getQuantidade()/ t.getQuantidade());
+			tacoProvisorio.setFerro(t.getFerro() * quantidadePorcaoAtual.getPorcao().getQuantidade()/ t.getQuantidade());
+			tacoProvisorio.setVitaminaC(t.getVitaminaC() * quantidadePorcaoAtual.getPorcao().getQuantidade()/ t.getQuantidade());
+			tacoProvisorio.setUmidade(t.getUmidade() * quantidadePorcaoAtual.getPorcao().getQuantidade()/ t.getQuantidade());
+			tacoProvisorio.setKj(t.getKj() * quantidadePorcaoAtual.getPorcao().getQuantidade()/ t.getQuantidade());
+			tacoProvisorio.setColesterol(t.getColesterol() * quantidadePorcaoAtual.getPorcao().getQuantidade()/ t.getQuantidade());
+			tacoProvisorio.setCarboidrato(t.getCarboidrato() * quantidadePorcaoAtual.getPorcao().getQuantidade()/ t.getQuantidade());
+			tacoProvisorio.setFibraAlimentar(t.getFibraAlimentar() * quantidadePorcaoAtual.getPorcao().getQuantidade()/ t.getQuantidade());
+			tacoProvisorio.setCinzas(t.getCinzas() * quantidadePorcaoAtual.getPorcao().getQuantidade()/ t.getQuantidade());
+			tacoProvisorio.setMagnesio(t.getMagnesio() * quantidadePorcaoAtual.getPorcao().getQuantidade()/ t.getQuantidade());
+			tacoProvisorio.setManganes(t.getManganes() * quantidadePorcaoAtual.getPorcao().getQuantidade()/ t.getQuantidade());
+			tacoProvisorio.setFosforo(t.getFosforo() * quantidadePorcaoAtual.getPorcao().getQuantidade()/ t.getQuantidade());
+			tacoProvisorio.setSodio(t.getSodio() * quantidadePorcaoAtual.getPorcao().getQuantidade()/ t.getQuantidade());
+			tacoProvisorio.setPotassio(t.getPotassio() * quantidadePorcaoAtual.getPorcao().getQuantidade()/ t.getQuantidade());
+			tacoProvisorio.setCobre(t.getCobre() * quantidadePorcaoAtual.getPorcao().getQuantidade()/ t.getQuantidade());
+			tacoProvisorio.setZinco(t.getZinco() * quantidadePorcaoAtual.getPorcao().getQuantidade()/ t.getQuantidade());
+			tacoProvisorio.setRetinol(t.getRetinol() * quantidadePorcaoAtual.getPorcao().getQuantidade()/ t.getQuantidade());
+			tacoProvisorio.setRe(t.getRe() * quantidadePorcaoAtual.getPorcao().getQuantidade()/ t.getQuantidade());
+			tacoProvisorio.setRea(t.getRea() * quantidadePorcaoAtual.getPorcao().getQuantidade()/ t.getQuantidade());
+			tacoProvisorio.setTiamina(t.getTiamina() * quantidadePorcaoAtual.getPorcao().getQuantidade()/ t.getQuantidade());
+			tacoProvisorio.setRiboflavina(t.getRiboflavina() * quantidadePorcaoAtual.getPorcao().getQuantidade()/ t.getQuantidade());
+			tacoProvisorio.setPiridoxina(t.getPiridoxina() * quantidadePorcaoAtual.getPorcao().getQuantidade()/ t.getQuantidade());
+			tacoProvisorio.setNiacina(t.getNiacina() * quantidadePorcaoAtual.getPorcao().getQuantidade()/ t.getQuantidade());
+			
+			
+			
+			alimentoProvisorio = tacoProvisorio;
 		
+					
+		}else {
+			AlimentoMedidasCaseiras mc = new AlimentoMedidasCaseiras();
+			mc = alimentoMedidasCaseirasService.obtemPorId(quantidadePorcaoAtual.getPorcao().getAlimentoTabela().getId());
+			AlimentoMedidasCaseiras medidasCaseirasProvisorio = new AlimentoMedidasCaseiras();	
+			
+			
+			medidasCaseirasProvisorio.setNome(mc.getNome());
+			medidasCaseirasProvisorio.setKcal(mc.getKcal() * quantidadePorcaoAtual.getPorcao().getQuantidade() / mc.getQuantidade());
+			medidasCaseirasProvisorio.setProteina(mc.getProteina() * quantidadePorcaoAtual.getPorcao().getQuantidade()/ mc.getQuantidade());
+			medidasCaseirasProvisorio.setLipideos(mc.getLipideos() * quantidadePorcaoAtual.getPorcao().getQuantidade()/ mc.getQuantidade());
+			medidasCaseirasProvisorio.setCalcio(mc.getCalcio() * quantidadePorcaoAtual.getPorcao().getQuantidade()/ mc.getQuantidade());
+			medidasCaseirasProvisorio.setFerro(mc.getFerro() * quantidadePorcaoAtual.getPorcao().getQuantidade()/ mc.getQuantidade());
+			medidasCaseirasProvisorio.setVitaminaC(mc.getVitaminaC() * quantidadePorcaoAtual.getPorcao().getQuantidade()/ mc.getQuantidade());
+			medidasCaseirasProvisorio.setGli(mc.getGli() * quantidadePorcaoAtual.getPorcao().getQuantidade()/ mc.getQuantidade());
+			medidasCaseirasProvisorio.setVitaminaA(mc.getVitaminaA() * quantidadePorcaoAtual.getPorcao().getQuantidade()/ mc.getQuantidade());
+			
+			alimentoProvisorio = medidasCaseirasProvisorio;
+			
+						
+			
+		}
+		
+		
+		
+		
+		
+		
+		
+	calcProteinaAtual = calcProteinaAtual - (alimentoProvisorio.getProteina() * quantidadePorcaoAtual.getQuantidade());	
+	BigDecimal calcProteinaAtualConvertido = new BigDecimal(calcProteinaAtual).setScale(2, RoundingMode.HALF_EVEN);
+	getAtendimentoAdulto().getDieta().setProteinaRestante(calcProteinaAtualConvertido.doubleValue());
+			
+	calcCarboidratoAtual = calcCarboidratoAtual - (alimentoProvisorio.getKcal() * quantidadePorcaoAtual.getQuantidade());	
+	BigDecimal calcCarboidratoAtualConvertido = new BigDecimal(calcCarboidratoAtual).setScale(2, RoundingMode.HALF_EVEN);
+	getAtendimentoAdulto().getDieta().setCarboidratoRestante(calcCarboidratoAtualConvertido.doubleValue());
+	
+	calcLipidioAtual = calcLipidioAtual - (alimentoProvisorio.getLipideos() * quantidadePorcaoAtual.getQuantidade());	
+	BigDecimal calcLipidioAtualConvertido = new BigDecimal(calcLipidioAtual).setScale(2, RoundingMode.HALF_EVEN);
+	getAtendimentoAdulto().getDieta().setLipidioRestante(calcLipidioAtualConvertido.doubleValue());
+	
+	
+	
+	
+	
 	}
+	
+	
+	public void alimentoRegraDeTrez() {
+		
+		QuantidadePorcao quantidadePorcaoAtual = new QuantidadePorcao();
+		quantidadePorcaoAtual.setQuantidade(getQuantidadePorcaoAtual());
+		quantidadePorcaoAtual.setPorcao(porcaoService.obtemPorId(porcaoId));
+		
+		
+		if(quantidadePorcaoAtual.getPorcao().getAlimentoTabela() instanceof AlimentoTaco) {
+			AlimentoTaco t = new AlimentoTaco();
+			t = alimentoTacoService.obtemPorId(quantidadePorcaoAtual.getPorcao().getAlimentoTabela().getId());
+			AlimentoTaco tacoProvisorio = new AlimentoTaco();
+			
+			tacoProvisorio.setNome(t.getNome());
+			tacoProvisorio.setKcal(t.getKcal() * quantidadePorcaoAtual.getPorcao().getQuantidade() / t.getQuantidade());
+			tacoProvisorio.setProteina(t.getProteina() * quantidadePorcaoAtual.getPorcao().getQuantidade()/ t.getQuantidade());
+			tacoProvisorio.setLipideos(t.getLipideos() * quantidadePorcaoAtual.getPorcao().getQuantidade()/ t.getQuantidade());
+			tacoProvisorio.setCalcio(t.getCalcio() * quantidadePorcaoAtual.getPorcao().getQuantidade()/ t.getQuantidade());
+			tacoProvisorio.setFerro(t.getFerro() * quantidadePorcaoAtual.getPorcao().getQuantidade()/ t.getQuantidade());
+			tacoProvisorio.setVitaminaC(t.getVitaminaC() * quantidadePorcaoAtual.getPorcao().getQuantidade()/ t.getQuantidade());
+			tacoProvisorio.setUmidade(t.getUmidade() * quantidadePorcaoAtual.getPorcao().getQuantidade()/ t.getQuantidade());
+			tacoProvisorio.setKj(t.getKj() * quantidadePorcaoAtual.getPorcao().getQuantidade()/ t.getQuantidade());
+			tacoProvisorio.setColesterol(t.getColesterol() * quantidadePorcaoAtual.getPorcao().getQuantidade()/ t.getQuantidade());
+			tacoProvisorio.setCarboidrato(t.getCarboidrato() * quantidadePorcaoAtual.getPorcao().getQuantidade()/ t.getQuantidade());
+			tacoProvisorio.setFibraAlimentar(t.getFibraAlimentar() * quantidadePorcaoAtual.getPorcao().getQuantidade()/ t.getQuantidade());
+			tacoProvisorio.setCinzas(t.getCinzas() * quantidadePorcaoAtual.getPorcao().getQuantidade()/ t.getQuantidade());
+			tacoProvisorio.setMagnesio(t.getMagnesio() * quantidadePorcaoAtual.getPorcao().getQuantidade()/ t.getQuantidade());
+			tacoProvisorio.setManganes(t.getManganes() * quantidadePorcaoAtual.getPorcao().getQuantidade()/ t.getQuantidade());
+			tacoProvisorio.setFosforo(t.getFosforo() * quantidadePorcaoAtual.getPorcao().getQuantidade()/ t.getQuantidade());
+			tacoProvisorio.setSodio(t.getSodio() * quantidadePorcaoAtual.getPorcao().getQuantidade()/ t.getQuantidade());
+			tacoProvisorio.setPotassio(t.getPotassio() * quantidadePorcaoAtual.getPorcao().getQuantidade()/ t.getQuantidade());
+			tacoProvisorio.setCobre(t.getCobre() * quantidadePorcaoAtual.getPorcao().getQuantidade()/ t.getQuantidade());
+			tacoProvisorio.setZinco(t.getZinco() * quantidadePorcaoAtual.getPorcao().getQuantidade()/ t.getQuantidade());
+			tacoProvisorio.setRetinol(t.getRetinol() * quantidadePorcaoAtual.getPorcao().getQuantidade()/ t.getQuantidade());
+			tacoProvisorio.setRe(t.getRe() * quantidadePorcaoAtual.getPorcao().getQuantidade()/ t.getQuantidade());
+			tacoProvisorio.setRea(t.getRea() * quantidadePorcaoAtual.getPorcao().getQuantidade()/ t.getQuantidade());
+			tacoProvisorio.setTiamina(t.getTiamina() * quantidadePorcaoAtual.getPorcao().getQuantidade()/ t.getQuantidade());
+			tacoProvisorio.setRiboflavina(t.getRiboflavina() * quantidadePorcaoAtual.getPorcao().getQuantidade()/ t.getQuantidade());
+			tacoProvisorio.setPiridoxina(t.getPiridoxina() * quantidadePorcaoAtual.getPorcao().getQuantidade()/ t.getQuantidade());
+			tacoProvisorio.setNiacina(t.getNiacina() * quantidadePorcaoAtual.getPorcao().getQuantidade()/ t.getQuantidade());
+			
+			
+			
+			tacoConvertido = tacoProvisorio;
+			RequestContext.getCurrentInstance().execute("PF('dialogVerTacoConvertido').show();");
+		
+		
+		}else {
+			AlimentoMedidasCaseiras mc = new AlimentoMedidasCaseiras();
+			mc = alimentoMedidasCaseirasService.obtemPorId(quantidadePorcaoAtual.getPorcao().getAlimentoTabela().getId());
+			AlimentoMedidasCaseiras medidasCaseirasProvisorio = new AlimentoMedidasCaseiras();	
+			
+			
+			medidasCaseirasProvisorio.setNome(mc.getNome());
+			medidasCaseirasProvisorio.setKcal(mc.getKcal() * quantidadePorcaoAtual.getPorcao().getQuantidade() / mc.getQuantidade());
+			medidasCaseirasProvisorio.setProteina(mc.getProteina() * quantidadePorcaoAtual.getPorcao().getQuantidade()/ mc.getQuantidade());
+			medidasCaseirasProvisorio.setLipideos(mc.getLipideos() * quantidadePorcaoAtual.getPorcao().getQuantidade()/ mc.getQuantidade());
+			medidasCaseirasProvisorio.setCalcio(mc.getCalcio() * quantidadePorcaoAtual.getPorcao().getQuantidade()/ mc.getQuantidade());
+			medidasCaseirasProvisorio.setFerro(mc.getFerro() * quantidadePorcaoAtual.getPorcao().getQuantidade()/ mc.getQuantidade());
+			medidasCaseirasProvisorio.setVitaminaC(mc.getVitaminaC() * quantidadePorcaoAtual.getPorcao().getQuantidade()/ mc.getQuantidade());
+			medidasCaseirasProvisorio.setGli(mc.getGli() * quantidadePorcaoAtual.getPorcao().getQuantidade()/ mc.getQuantidade());
+			medidasCaseirasProvisorio.setVitaminaA(mc.getVitaminaA() * quantidadePorcaoAtual.getPorcao().getQuantidade()/ mc.getQuantidade());
+			
+			medidasConvertido = medidasCaseirasProvisorio;
+			RequestContext.getCurrentInstance().execute("PF('dialogVerMedidasConvertido').show();");
+			
+			
+		}
+				
+	}
+	
+	
 	
 	public void removerPorcao(Porcao porcaoAtual) {
 		

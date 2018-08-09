@@ -10,7 +10,7 @@
 <ui:composition template="/templates/templates.xhtml"> 
 
 
-<ui:define name="titulo">Formulário de Atendimento do Adulto</ui:define>
+<ui:define name="titulo">Atendimento Adulto</ui:define>
 
 
 <ui:define name="conteudo">
@@ -263,24 +263,25 @@
        
        <h:panelGrid columns="2"> 
         
-      
+      <p:outputLabel value="Percentual de gordura"	 		for="percentualGordura"/> 
+      <p:inputTextarea id="percentualGordura" value="#{atendimentoBean.atendimentoAdulto.pregaCutanea.percentualGordura}" rows="1" cols="8" autoResize="true" />
     	   	              
         </h:panelGrid>  </p:fieldset>
         
         
         <h:panelGrid columns="2"> 
         
-        <p:outputLabel value="Fato de Atividade:"	 		for="fatorDeAtividade"/> 
-        <p:inputTextarea id="fatorDeAtividade" 	value="#{atendimentoAdultoBean.atendimentoAdulto.fatorDeAtividade}"	rows="2" cols="10" autoResize="true" />
+        <p:outputLabel value="Fato de Atividade"	 		for="fatorDeAtividade"/> 
+        <p:inputTextarea id="fatorDeAtividade" 	value="#{atendimentoAdultoBean.atendimentoAdulto.fatorDeAtividade}"	rows="1" cols="8" autoResize="true" />
         
-        <p:outputLabel value="Metabolismo Basal:"	 		for="metabolismoBasal"/> 
+        <p:outputLabel value="Metabolismo Basal"	 		for="metabolismoBasal"/> 
         <p:outputLabel id="metabolismoBasal" 	value="#{atendimentoAdultoBean.atendimentoAdulto.metabolismoBasal} Kcal"/>
        
         
         
-        <p:outputLabel value="Valor calórico para plano alimentar (KCAL):"	 		for="valorCalorico"/> 
-        <p:inputTextarea id="valorCalorico" 	value="#{atendimentoAdultoBean.atendimentoAdulto.valorCaloricoEscolhido}"		rows="2" cols="10" autoResize="true" />
-       	<p:outputLabel value="Conclusões/Combinado com Cliente:"	 		for="conclusao"/> 
+        <p:outputLabel value="Valor calórico para plano alimentar (KCAL)"	 		for="valorCalorico"/> 
+        <p:inputTextarea id="valorCalorico" 	value="#{atendimentoAdultoBean.atendimentoAdulto.valorCaloricoEscolhido}"		rows="1" cols="8" autoResize="true" />
+       	<p:outputLabel value="Conclusões/Combinado com Cliente"	 		for="conclusao"/> 
         <p:inputTextarea id="conclusao" 	value="#{atendimentoAdultoBean.atendimentoAdulto.conclusao}"				rows="4" cols="40" autoResize="true" />
         
         
@@ -295,7 +296,7 @@
     <h:panelGrid columns="2" id="teste">
 		
 		<p:outputLabel value="Nome da Refeição:" for="nomeRefeicao"/>
-     	<p:inputTextarea id="nomeRefeicao" value="#{atendimentoAdultoBean.dietaRefeicaoAtual.descricao}"  rows="2" cols="20" autoResize="true" />
+     	<p:inputTextarea id="nomeRefeicao" value="#{atendimentoAdultoBean.dietaRefeicaoAtual.descricao}"  rows="2" cols="18" autoResize="true" />
      	
      	<p:outputLabel value="Horário" for="horario"/>
      	<p:inputText id="horario" value="#{atendimentoAdultoBean.dietaRefeicaoAtual.hora}" />
@@ -306,8 +307,7 @@
      	<p:outputLabel value="Alimentos e porções:" for="addAlimento"/>
      	<p:commandButton id="addAlimento" value="Adicionar Alimento" icon="ui-icon-plus" oncomplete="PF('AddAlimento').show();" update=":formAddAlimento"/>    		    	
      	
-     	
-     	     	
+     	     	     	
      	<p:commandButton value="Adicionar Refeição" icon="ui-icon-disk" action="#{atendimentoAdultoBean.adicionarRefeicao()}"
      	update=":mensagem, tableDieta, teste" process="teste"/> 
      	
@@ -324,18 +324,32 @@
 				<h:outputText value="#{dietRef.descricao}" />	
 			</p:column>	
 			
-			<p:column>
+			<p:column style="width:55px">
 				<f:facet name="header">Horário</f:facet>
 				<h:outputText value="#{dietRef.hora}" />
 			</p:column>		
-			<p:column>
+			<p:column style="width:55px">
 				<f:facet name="header">Local</f:facet>
 				<h:outputText value="#{dietRef.local}" />
 			</p:column>	
 			<p:column>
 				<f:facet name="header">Alimentos</f:facet>
 				<h:outputText value="#{dietRef.quantidadePorcoes}" />	
-			</p:column>				
+			</p:column>	
+			
+			<p:column style="width:55px">
+			<f:facet name="header">Editar</f:facet>
+			<p:commandButton icon="ui-icon-pencil" action="#{#}"
+			update=":mensagem" process="@form"/>
+		</p:column>
+		
+		<p:column style="width:55px">
+			<f:facet name="header">Excluir</f:facet>
+			<p:commandButton icon="ui-icon-trash" action="#{#}"
+			 update=":mensagem" process="@form" >
+			<p:confirm header="Confirmação" message="Deseja excluir refeição?" icon="ui-icon-alert" />
+			</p:commandButton>
+     	</p:column>			
 		</p:dataTable>
 	
 		
@@ -345,16 +359,17 @@
     <p:tab title="Substituíção ">
     
           
-    	<p:editor id="editorSubistituicao" widgetVar="editorSubistituicao"  icon="ui-icon-print" value="#{#}" width="850"  />
+    	<p:editor id="editorSubistituicao" widgetVar="editorSubistituicao"  icon="ui-icon-print" 
+    	value="#{atendimentoAdultoBean.atendimentoAdulto.dieta.substituicao}" width="850"  />
     	
-    	<p:commandButton value="Imprimir" actionListener="#{atendimentoAdultoBean.imprimirSubistituicao}" />
+    	
      
     
     </p:tab>
     
     <p:tab title="Orientação ">
     
-    		<p:editor id="editor" widgetVar="editorWidget" value="#{#}" width="850"  />
+    		<p:editor id="editor" widgetVar="editorWidget" value="#{atendimentoAdultoBean.atendimentoAdulto.dieta.orientacao}" width="850"  />
     
     </p:tab>
     
@@ -430,8 +445,14 @@
 		<p:outputLabel value="Metabolismo Basal:" for="metabolismoBasal"/> 
         <p:outputLabel id="metabolismoBasal" value="#{atendimentoAdultoBean.atendimentoAdulto.metabolismoBasal} Kcal"/>	
 		
-		<p:outputLabel value="Metabolismo Basa Restante:" for="metabolismoBasalRes"/> 
-        <p:outputLabel id="metabolismoBasalRes" value="#{atendimentoAdultoBean.atendimentoAdulto.dieta.metabolismoBasalDieta} Kcal"/>		
+		<p:outputLabel value="Proteína Restante:" for="proteinaRestante"/> 
+        <p:outputLabel id="proteinaRestante" value="#{atendimentoAdultoBean.atendimentoAdulto.dieta.proteinaRestante} Kcal"/>
+        
+        <p:outputLabel value="Carboídrato Restante:" for="carboidratoRestante"/> 
+        <p:outputLabel id="carboidratoRestante" value="#{atendimentoAdultoBean.atendimentoAdulto.dieta.carboidratoRestante} Kcal"/>
+        
+        <p:outputLabel value="Lipídio Restante:" for="lipidioRestante"/> 
+        <p:outputLabel id="lipidioRestante" value="#{atendimentoAdultoBean.atendimentoAdulto.dieta.lipidioRestante} Kcal"/>		
 					
 		<p:outputLabel value="Alimento: " for="alimento" />
 		<p:selectOneMenu id="alimento" value="#{atendimentoAdultoBean.alimentoId}" style="width:150px;" filter="true">
@@ -448,11 +469,16 @@
 				 itemLabel="#{porco.descricao} (#{porco.quantidade}g)" itemValue="#{porco.id}" />
 		</p:selectOneMenu>	
      	
+     	<p:outputLabel value="Tabela Nutricional" for="tabelaNutricional"/>
+     	<p:commandButton update="formTabeAlimentoTaco:panelAlimento, formTabeAlimentoMedidas:panelAlimento, porcoesQuantidadeAtuais" value="Ver" id="tabelaNutricional"
+			icon="ui-icon-extlink" 	action="#{atendimentoAdultoBean.alimentoRegraDeTrez()}"/>
+     	
+     	     	
      	<p:outputLabel value="Quantidade" for="quantidade"/>
      	<p:spinner id="quantidade" value="#{atendimentoAdultoBean.quantidadePorcaoAtual}"  stepFactor="0.1" min="0"  />
      					     	
      	<p:commandButton value="Adicionar Alimento" icon="ui-icon-disk" action="#{atendimentoAdultoBean.adicionarPorcao()}"
-     	update=":mensagem, porcoesQuantidadeAtuais, metabolismoBasalRes "/> 
+     	update=":mensagem, porcoesQuantidadeAtuais, proteinaRestante, carboidratoRestante, lipidioRestante "/> 
      	
 		<p:commandButton value="Fechar" icon="ui-icon-close" oncomplete="PF('AddAlimento').hide();"/>
 
@@ -484,15 +510,151 @@
         </p:confirmDialog>
 						 
 		</p:column>
-		
-							
+									
 	</p:dataTable>
-		
-		
+				
 </p:dialog>
  </h:form> 	
- 
- 
+ <p:dialog  header="Tabela Nutricional" widgetVar="dialogVerTacoConvertido" 
+draggable="false" resizable="false" modal="true" showEffect="slide" hideEffect="slide"> 
+
+<h:form id="formTabeAlimentoTaco">
+	
+
+<p:panelGrid  columns="2" id="panelAlimento">	
+	
+	
+	<h:outputText value="Alimento:" />
+    <h:outputText value="#{atendimentoAdultoBean.tacoConvertido.nome}" />
+    
+    <h:outputText value="Umidade:" />
+    <h:outputText value="#{atendimentoAdultoBean.tacoConvertido.umidade}" />
+    
+    <h:outputText value="Kcal:" />
+    <h:outputText value="#{atendimentoAdultoBean.tacoConvertido.kcal}" />
+    
+    <h:outputText value="Kj:" />
+    <h:outputText value="#{atendimentoAdultoBean.tacoConvertido.kj}" />
+    
+    <h:outputText value="Proteína (g):" />
+    <h:outputText value="#{atendimentoAdultoBean.tacoConvertido.proteina}" />
+    
+    <h:outputText value="Lipídeos:" />
+    <h:outputText value="#{atendimentoAdultoBean.tacoConvertido.lipideos}" />
+    
+    <h:outputText value="Colesterol (mg):" />
+    <h:outputText value="#{atendimentoAdultoBean.tacoConvertido.colesterol}" />
+    
+    <h:outputText value="Carboítrado (g):" />
+    <h:outputText value="#{atendimentoAdultoBean.tacoConvertido.carboidrato}" />
+    
+    <h:outputText value="Fibra Alimentar (g):" />
+    <h:outputText value="#{atendimentoAdultoBean.tacoConvertido.fibraAlimentar}" />
+    
+    <h:outputText value="Cinzas (g):" />
+    <h:outputText value="#{atendimentoAdultoBean.tacoConvertido.cinzas}" />
+    
+    <h:outputText value="Cálcio (mg):" />
+    <h:outputText value="#{atendimentoAdultoBean.tacoConvertido.calcio}" />
+    
+    <h:outputText value="Magnésio:" />
+    <h:outputText value="#{atendimentoAdultoBean.tacoConvertido.magnesio}" />
+    
+    <h:outputText value="Manganês:" />
+    <h:outputText value="#{atendimentoAdultoBean.tacoConvertido.manganes}" />
+    
+    <h:outputText value="Fósforo:" />
+    <h:outputText value="#{atendimentoAdultoBean.tacoConvertido.fosforo}" />
+    
+    <h:outputText value="Ferro (mg):" />
+    <h:outputText value="#{atendimentoAdultoBean.tacoConvertido.ferro}" />
+    
+    <h:outputText value="Sódio (mg):" />
+    <h:outputText value="#{atendimentoAdultoBean.tacoConvertido.sodio}" />
+    
+    <h:outputText value="Potássio (mg):" />
+    <h:outputText value="#{atendimentoAdultoBean.tacoConvertido.potassio}" />
+    
+    <h:outputText value="Cobre (mg):" />
+    <h:outputText value="#{atendimentoAdultoBean.tacoConvertido.cobre}" />
+    
+    <h:outputText value="Zinco (mg):" />
+    <h:outputText value="#{atendimentoAdultoBean.tacoConvertido.zinco}" />
+    
+    <h:outputText value="Retinol:" />
+    <h:outputText value="#{atendimentoAdultoBean.tacoConvertido.retinol}" />
+    
+    <h:outputText value="RE:" />
+    <h:outputText value="#{atendimentoAdultoBean.tacoConvertido.re}" />
+    
+    <h:outputText value="REA:" />
+    <h:outputText value="#{atendimentoAdultoBean.tacoConvertido.rea}" />
+    
+    <h:outputText value="Tiamina (mg):" />
+    <h:outputText value="#{atendimentoAdultoBean.tacoConvertido.tiamina}" />
+    
+    <h:outputText value="Riboflavina (mg):" />
+    <h:outputText value="#{atendimentoAdultoBean.tacoConvertido.riboflavina}" />
+    
+    <h:outputText value="Piridoxina (mg):" />
+    <h:outputText value="#{atendimentoAdultoBean.tacoConvertido.piridoxina}" />
+    
+    <h:outputText value="Niacina (mg):" />
+    <h:outputText value="#{atendimentoAdultoBean.tacoConvertido.niacina}" />
+    
+    <h:outputText value="Vitamina C (mg):" />
+    <h:outputText value="#{atendimentoAdultoBean.tacoConvertido.vitaminaC}" />
+	
+		
+	</p:panelGrid>
+
+</h:form>
+</p:dialog>
+
+<p:dialog  header="Tabela Nutricional" widgetVar="dialogVerMedidasConvertido" 
+draggable="false" resizable="false" modal="true" showEffect="slide" hideEffect="slide"> 
+
+<h:form id="formTabeAlimentoMedidas">
+	
+
+<p:panelGrid  columns="2" id="panelAlimento">	
+	
+	
+	<h:outputText value="Alimento:" />
+    <h:outputText value="#{atendimentoAdultoBean.medidasConvertido.nome}" />
+    
+    <h:outputText value="Kcal:" />
+    <h:outputText value="#{atendimentoAdultoBean.medidasConvertido.kcal}" />
+    
+    <h:outputText value="Proteína:" />
+    <h:outputText value="#{atendimentoAdultoBean.medidasConvertido.proteina}" />
+    
+    <h:outputText value="Gli:" />
+    <h:outputText value="#{atendimentoAdultoBean.medidasConvertido.gli}" />
+    
+    <h:outputText value="Lipídeos:" />
+    <h:outputText value="#{atendimentoAdultoBean.medidasConvertido.lipideos}" />
+    
+    <h:outputText value="Cálcio:" />
+    <h:outputText value="#{atendimentoAdultoBean.medidasConvertido.calcio}" />
+    
+    <h:outputText value="Ferro:" />
+    <h:outputText value="#{atendimentoAdultoBean.medidasConvertido.ferro}" />
+    
+    <h:outputText value="Vitamina C:" />
+    <h:outputText value="#{atendimentoAdultoBean.medidasConvertido.vitaminaC}" />
+    
+    <h:outputText value="Vitamina A:" />
+    <h:outputText value="#{atendimentoAdultoBean.medidasConvertido.vitaminaA}" />
+    
+    
+		
+	</p:panelGrid>
+
+</h:form>
+
+</p:dialog>
+
      
 </ui:define>	 
 

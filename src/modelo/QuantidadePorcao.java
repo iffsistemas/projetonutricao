@@ -42,7 +42,7 @@ public class QuantidadePorcao {
 
 	@Override
 	public String toString() {
-		return "QuantidadePorcao [quantidade=" + quantidade + ", porcao=" + porcao + "]";
+		return  porcao.getAlimentoTabela().getNome();
 	}
 	
 	

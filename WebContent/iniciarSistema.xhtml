@@ -1,0 +1,42 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+
+<ui:composition template="/templates/templateLogin.xhtml"> 
+
+
+
+<ui:define name="titulo">Configuração Inicial do Sistema</ui:define>
+
+
+<ui:define name="conteudo">
+
+<h:form id="form">
+<h:panelGrid width="100%" style="text-align:center">
+					<h:panelGroup>
+<p:commandButton id="iniciarSistema" value="Primeiro Acesso! Clique aqui para configurar o sistema."  action="#{iniciarSistemaBean.iniciar()}"
+					update="mensagem"/>
+</h:panelGroup>
+</h:panelGrid>
+			
+					
+</h:form>
+
+<h:outputLink value="index.xhtml" >Voltar à pagina de Login</h:outputLink>	
+
+ 
+</ui:define>	 
+</ui:composition>
+
+
+
+
+  
+
+
+
+</html>

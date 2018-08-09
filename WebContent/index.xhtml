@@ -1,62 +1,48 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:p="http://primefaces.org/ui">
-
-
-<ui:composition template="/templates/templateLogin.xhtml"> 
-
-
-<ui:define name="titulo"></ui:define>
-
-
-<ui:define name="conteudo">
-
-<h:graphicImage library="imagens" name="logoNutrapp.png"/>
-
-<h:form id="formLogin">
-
-	<p:growl id="mensagemLogin" life="5000" showDetail="true" />
-            <div align="center" >
-            <p:panelGrid columns="2">
-            
-            
-                  <p:outputLabel for="login" value="Login:" required="true" requiredMessage="Nome Obrigatório!" />
-                  <p:inputText id="login" value="#{usuarioBean.login}" />
-                   
-                  <p:outputLabel for="senha" value="Senha:" />
-                  <p:password id="senha" value="#{usuarioBean.senha}" />
-                  
-                                   
-                  <p:commandButton value="Enviar" icon="ui-icon-star"  update=":formLogin" process="@form"
-                  action="#{usuarioBean.validarLoginESenha()}"/>
-               
-  
-            </p:panelGrid>
-            </div>
-      </h:form>
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
 
 
 
+ <h:head>
+        <title>Nutrapp - Login </title>         
+        
+    </h:head>
+    <h:body>
+    <p:growl id="mensagem" life="5000" showDetail="true" />
+			<p:dialog id="dialogLogin" visible="true" width="570" height="420"
+				header="Acessar o Sistema" showHeader="false" modal="true"
+				resizable="false" showEffect="slide" draggable="false">
+					<h:graphicImage library="imagens" name="logo1.png"/>
+				<h:panelGrid style="margin: 0 auto;">
+					
+				</h:panelGrid>
+				<h:form id="formLogin">
+					<h:panelGrid cellspacing="10">
+                    Digite seu login e senha para ter acesso ao sistema:                    
+                    <p:inputText placeholder="Login" value="#{usuarioBean.login}"
+							size="40" 
+							requiredMessage="Campo Login é obrigatório" />
+						<p:password placeholder="Senha" value="#{usuarioBean.senha}"
+							size="40" 
+							requiredMessage="Campo Senha é obrigatório" />
+						<p:commandButton value="Log In" action="#{usuarioBean.validarLoginESenha()}"
+							update="mensagem" />
+					</h:panelGrid>
+					<h:panelGrid width="100%" style="text-align:right">
+					<h:panelGroup>
+					<h:outputLink value="iniciarSistema.xhtml" >Inicar Sistema</h:outputLink>
+					</h:panelGroup>
+   			 </h:panelGrid>
+						
+				</h:form>
+			</p:dialog>
+</h:body>
 
 
-
-  
-</ui:define>	 
-</ui:composition>
-
-
-
-
-
-
-
-
-
-
-
-
-
+	
 </html>
+

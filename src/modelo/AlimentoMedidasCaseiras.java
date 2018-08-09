@@ -8,8 +8,7 @@ public class AlimentoMedidasCaseiras extends AlimentoTabela {
 	
 	private Double gli;
 	private Double vitaminaA;
-	private String fonte;
-
+	
 	public Double getGli() {
 		return gli;
 	}
@@ -26,13 +25,7 @@ public class AlimentoMedidasCaseiras extends AlimentoTabela {
 		this.vitaminaA = vitaminaA;
 	}
 
-	public String getFonte() {
-		return fonte;
-	}
-
-	public void setFonte(String fonte) {
-		this.fonte = fonte;
-	}
+	
 	
 	@Override
 	public String getNomeAlimento() {

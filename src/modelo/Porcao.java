@@ -12,7 +12,7 @@ public class Porcao {
 		@Id @GeneratedValue
 		private Long id;
 		private String descricao;
-		private double quantidade;
+		private Double quantidade;
 		
 		@ManyToOne
 		private AlimentoTabela alimentoTabela;
@@ -33,11 +33,11 @@ public class Porcao {
 			this.descricao = descricao;
 		}
 
-		public double getQuantidade() {
+		public Double getQuantidade() {
 			return quantidade;
 		}
 
-		public void setQuantidade(double quantidade) {
+		public void setQuantidade(Double quantidade) {
 			this.quantidade = quantidade;
 		}
 
@@ -51,8 +51,7 @@ public class Porcao {
 
 		@Override
 		public String toString() {
-			return "Porcao [descricao=" + descricao + ", quantidade=" + quantidade + ", alimentoTabela="
-					+ alimentoTabela + "]";
+			return quantidade + " " + alimentoTabela.getNome();
 		}	
 		
 		

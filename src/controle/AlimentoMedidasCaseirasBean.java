@@ -136,7 +136,7 @@ public class AlimentoMedidasCaseirasBean {
 	
 	public void salvarPorcaoCemGramas() {
 		porcaoPadrao.setDescricao("Porção");
-		porcaoPadrao.setQuantidade(100);
+		porcaoPadrao.setQuantidade(100D);
 		porcaoPadrao.setAlimentoTabela(medidasCaseiras);
 		porcaoService.merge(porcaoPadrao);
 		
