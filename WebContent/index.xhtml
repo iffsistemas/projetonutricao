@@ -13,7 +13,7 @@
     </h:head>
     <h:body>
     <p:growl id="mensagem" life="5000" showDetail="true" />
-			<p:dialog id="dialogLogin" visible="true" width="570" height="420"
+			<p:dialog id="dialogLogin" visible="true" width="570" height="370"
 				header="Acessar o Sistema" showHeader="false" modal="true"
 				resizable="false" showEffect="slide" draggable="false">
 					<h:graphicImage library="imagens" name="logo1.png"/>
@@ -32,11 +32,7 @@
 						<p:commandButton value="Log In" action="#{usuarioBean.validarLoginESenha()}"
 							update="mensagem" />
 					</h:panelGrid>
-					<h:panelGrid width="100%" style="text-align:right">
-					<h:panelGroup>
-					<h:outputLink value="iniciarSistema.xhtml" >Inicar Sistema</h:outputLink>
-					</h:panelGroup>
-   			 </h:panelGrid>
+					
 						
 				</h:form>
 			</p:dialog>

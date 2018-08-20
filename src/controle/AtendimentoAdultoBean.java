@@ -230,7 +230,7 @@ public class AtendimentoAdultoBean {
 
 	@PostConstruct
 	public void init(){
-		atualizarAtendimentos();
+		//atualizarAtendimentos();
 		//Paciente Enviado de outro pagina
 		PacienteAdulto pacEnviado = (PacienteAdulto) FacesContext.getCurrentInstance().getExternalContext().getFlash().get("pacienteAdulto");
 		//System.out.println("Enviado: "+pacEnviado.getNome());
@@ -367,8 +367,19 @@ public class AtendimentoAdultoBean {
 	}
 		
 		
+	
+	
 		
 	public void adicionarPorcao() {
+		
+		
+if(atendimentoAdulto.getMetabolismoBasal() == null || atendimentoAdulto.getMetabolismoBasal() == 0D) {
+			
+			FacesContext.getCurrentInstance().addMessage("menssagem", new FacesMessage("Atenção!", "Matabolismo Basal não pode ser 0."));
+					
+		}else {
+			
+		
 		QuantidadePorcao quantidadePorcaoAtual = new QuantidadePorcao();
 		quantidadePorcaoAtual.setQuantidade(getQuantidadePorcaoAtual());
 		quantidadePorcaoAtual.setPorcao(porcaoService.obtemPorId(porcaoId));
@@ -460,7 +471,7 @@ public class AtendimentoAdultoBean {
 	
 	
 	
-	
+	}
 	}
 	
 	
@@ -543,13 +554,21 @@ public class AtendimentoAdultoBean {
 	}
 	
 	public void adicionarRefeicao() {
-		getDietaRefeicaoAtual().setQuantidadePorcoes(getPorcoesQuantidadeAtuais());
-		getAtendimentoAdulto().getDieta().getDietasRefeicoes().add(getDietaRefeicaoAtual());
-		setPorcoesQuantidadeAtuais(new ArrayList<QuantidadePorcao>());
-		setDietaRefeicaoAtual(new DietaRefeicao());
+		if(atendimentoAdulto.getMetabolismoBasal() == null || atendimentoAdulto.getMetabolismoBasal() == 0D) {
+			
+	FacesContext.getCurrentInstance().addMessage("menssagem", new FacesMessage("Atenção!", "Matabolismo Basal não pode ser 0."));
+			
+		}else {
+			
+			getDietaRefeicaoAtual().setQuantidadePorcoes(getPorcoesQuantidadeAtuais());
+			getAtendimentoAdulto().getDieta().getDietasRefeicoes().add(getDietaRefeicaoAtual());
+			setPorcoesQuantidadeAtuais(new ArrayList<QuantidadePorcao>());
+			setDietaRefeicaoAtual(new DietaRefeicao());
+						
+		}
+				
 	}
-	
-	
+		
 	
 }
 

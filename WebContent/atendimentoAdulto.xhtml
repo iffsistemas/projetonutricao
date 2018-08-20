@@ -305,7 +305,7 @@
      	<p:inputText id="local" value="#{atendimentoAdultoBean.dietaRefeicaoAtual.local}" /> 
      	 
      	<p:outputLabel value="Alimentos e porções:" for="addAlimento"/>
-     	<p:commandButton id="addAlimento" value="Adicionar Alimento" icon="ui-icon-plus" oncomplete="PF('AddAlimento').show();" update=":formAddAlimento"/>    		    	
+     	<p:commandButton id="addAlimento" value="Gerenciar Refeição" icon="ui-icon-plus" oncomplete="PF('AddAlimento').show();" update=":formAddAlimento"/>    		    	
      	
      	     	     	
      	<p:commandButton value="Adicionar Refeição" icon="ui-icon-disk" action="#{atendimentoAdultoBean.adicionarRefeicao()}"
@@ -455,7 +455,7 @@
         <p:outputLabel id="lipidioRestante" value="#{atendimentoAdultoBean.atendimentoAdulto.dieta.lipidioRestante} Kcal"/>		
 					
 		<p:outputLabel value="Alimento: " for="alimento" />
-		<p:selectOneMenu id="alimento" value="#{atendimentoAdultoBean.alimentoId}" style="width:150px;" filter="true">
+		<p:selectOneMenu id="alimento" value="#{atendimentoAdultoBean.alimentoId}" style="width:210px;" filter="true">
 			<f:selectItem  itemLabel="Selecione..." />
 			<f:selectItems value="#{atendimentoAdultoBean.alimentos}" var="alim" 
 				 itemLabel="#{alim.nomeAlimento}" itemValue="#{alim.id}" />
@@ -464,7 +464,7 @@
 		</p:selectOneMenu>		
      	  				
 		<p:outputLabel value="Porção" for="porcao"/>
-     	<p:selectOneMenu id="porcao" value="#{atendimentoAdultoBean.porcaoId}" style="width:150px;">
+     	<p:selectOneMenu id="porcao" value="#{atendimentoAdultoBean.porcaoId}" style="width:210px;">
 			<f:selectItems value="#{atendimentoAdultoBean.porcoes}" var="porco" 
 				 itemLabel="#{porco.descricao} (#{porco.quantidade}g)" itemValue="#{porco.id}" />
 		</p:selectOneMenu>	
@@ -476,13 +476,17 @@
      	     	
      	<p:outputLabel value="Quantidade" for="quantidade"/>
      	<p:spinner id="quantidade" value="#{atendimentoAdultoBean.quantidadePorcaoAtual}"  stepFactor="0.1" min="0"  />
+     	
+     	</h:panelGrid>
      					     	
-     	<p:commandButton value="Adicionar Alimento" icon="ui-icon-disk" action="#{atendimentoAdultoBean.adicionarPorcao()}"
+     	<p:commandButton value="Adicionar Alimento" icon="ui-icon-plus" action="#{atendimentoAdultoBean.adicionarPorcao()}"
      	update=":mensagem, porcoesQuantidadeAtuais, proteinaRestante, carboidratoRestante, lipidioRestante "/> 
      	
-		<p:commandButton value="Fechar" icon="ui-icon-close" oncomplete="PF('AddAlimento').hide();"/>
+		<p:commandButton value="Fechar e Salvar" icon="ui-icon-disk" oncomplete="PF('AddAlimento').hide();"/>
+		
+		<p:commandButton value="Cancelar" icon="ui-icon-close" oncomplete="PF('AddAlimento').hide();"/>
 
-		</h:panelGrid>	
+		
 	
 	<p:dataTable value="#{atendimentoAdultoBean.porcoesQuantidadeAtuais}" var="por" style="max-width: 600px; min-width: 600px"
 	paginator="true"  emptyMessage="Nenhum registro encontrado!" rows="5" id="porcoesQuantidadeAtuais" >

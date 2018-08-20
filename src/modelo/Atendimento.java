@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -28,7 +29,8 @@ public class Atendimento {
 	@Temporal(TemporalType.DATE)
 	private Date dataAtendimento = new Date();
 	
-	@OneToOne(cascade=CascadeType.ALL)
+	//@OneToOne(cascade=CascadeType.ALL)
+	@ManyToOne(cascade=CascadeType.ALL)
 	private Paciente paciente;
 	
 	@OneToOne(cascade=CascadeType.ALL)
